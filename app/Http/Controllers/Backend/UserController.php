@@ -40,11 +40,38 @@ class UserController extends Controller
      */
     public function store(Request $request)
     {
-        return User::create([
+        $request->validate([
             'username' => $request['username'],
             'email' => $request['email'],
+            'role' => $request['role'],
+            'user_description' => $request['user_description'],
+            'image' => $request['required|image|mimes:jpeg,png,jpg,gif,svg|max:2048'],
             'password' => Hash::make($request['password']),
+            // 'username' => 'require',
+            // 'email' => 'require',
+            // 'role' => 'require',
+            // 'user_description' => 'require',
+            // 'image' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+            // 'password' => 'require',
         ]);
+
+        $input = $request->all();
+        // $input['id'] = auth()->user()->id;
+
+        if ($user_img = $request->file('user_img')) {
+            $destinationPath = 'user_img/';
+            $profileImage = date('YmdHis') . "." . $user_img->getClientOriginalExtension();
+            $user_img->move($destinationPath, $profileImage);
+            $input['image'] = "$profileImage";
+        }
+        User::create($input);
+
+        return redirect()->route('admin.users.index');
+        // return User::create([
+        //     'username' => $request['username'],
+        //     'email' => $request['email'],
+        //     'password' => Hash::make($request['password']),
+        // ]);
     }
 
     /**
@@ -53,8 +80,9 @@ class UserController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(User $user)
     {
+        return view('admin.users.show', compact('user'));
     }
 
     /**
@@ -63,8 +91,9 @@ class UserController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(User $user)
     {
+        return view('admin.users.edit', compact('user'));
     }
 
     /**

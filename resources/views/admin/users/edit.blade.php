@@ -5,7 +5,7 @@
         <div class="page-header">
             <div class="row">
                 <div class="col-sm-12 mt-5">
-                    <h3 class="page-title mt-3">Tambah Pengguna</h3>
+                    <h3 class="page-title mt-3">Edit Pengguna</h3>
                     <ul class="breadcrumb">
                         {{-- <li class="breadcrumb-item active">List</li> --}}
                     </ul>
@@ -19,29 +19,28 @@
                         <form action="#">
                             <div class="form-group">
                                 <label>Email</label>
-                                <input type="text" class="form-control" placeholder="Email">
+                                <input type="text" class="form-control" placeholder="Email" value="{{ $user->email }}">
                             </div>
                             <div class="form-group">
                                 <label>Nama Lengkap</label>
-                                <input type="text" class="form-control" placeholder="Nama Lengkap">
-                            </div>
-                            <div class="form-group">
-                                <label>Password</label>
-                                <input type="text" class="form-control" placeholder="Password">
-                            </div>
-                            <div class="form-group">
-                                <label>Konfirmasi Password</label>
-                                <input type="email" class="form-control" placeholder="Konfirmasi Password">
+                                <input type="text" class="form-control" placeholder="Nama Lengkap"
+                                    value="{{ $user->username }}">
                             </div>
                             <div class="form-group">
                                 <label>Deskripsi</label>
-                                <input type="text" class="form-control" placeholder="Deskripsi">
+                                <input type="text" class="form-control" placeholder="Deskripsi"
+                                    value="{{ $user->user_description }}">
                             </div>
                             <div class="form-group">
                                 <label>Hak Akses</label>
-                                <select class="form-control" id="sel1" name="sellist1">
-                                    <option>User</option>
-                                    <option>Administrator</option>
+                                <select class="form-control" id="sel1" name="role">
+                                    @if ($user->role === "Admin")
+                                    <option value="Admin" selected>Admin</option>
+                                    <option value="Administrator">Administrator</option>
+                                    @else
+                                    <option value="Admin">Admin</option>
+                                    <option value="Administrator" selected>Administrator</option>
+                                    @endif
                                 </select>
                             </div>
                         </form>

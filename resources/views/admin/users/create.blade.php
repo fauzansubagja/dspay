@@ -16,35 +16,36 @@
             <div class="col-xl-8 d-flex">
                 <div class="card flex-fill">
                     <div class="card-body">
-                        <form action="#">
+                        <form action="{{ route('user.store') }}" method="POST" enctype="multipart/form-data">
+                            @csrf
                             <div class="form-group">
                                 <label>Email</label>
-                                <input type="text" class="form-control" placeholder="Email">
+                                <input type="text" class="form-control" placeholder="Email" name="email">
                             </div>
                             <div class="form-group">
                                 <label>Nama Lengkap</label>
-                                <input type="text" class="form-control" placeholder="Nama Lengkap">
+                                <input type="text" class="form-control" placeholder="Nama Lengkap" name="username">
                             </div>
                             <div class="form-group">
                                 <label>Password</label>
-                                <input type="text" class="form-control" placeholder="Password">
+                                <input type="text" class="form-control" placeholder="Password" name="password">
                             </div>
                             <div class="form-group">
                                 <label>Konfirmasi Password</label>
-                                <input type="email" class="form-control" placeholder="Konfirmasi Password">
+                                <input type="text" class="form-control" placeholder="Konfirmasi Password"
+                                    name="password">
                             </div>
                             <div class="form-group">
                                 <label>Deskripsi</label>
-                                <input type="text" class="form-control" placeholder="Deskripsi">
+                                <input type="text" class="form-control" placeholder="Deskripsi" name="user_description">
                             </div>
                             <div class="form-group">
                                 <label>Hak Akses</label>
-                                <select class="form-control" id="sel1" name="sellist1">
+                                <select class="form-control" id="sel1" name="role">
                                     <option>User</option>
                                     <option>Administrator</option>
                                 </select>
                             </div>
-                        </form>
                     </div>
                 </div>
             </div>
@@ -54,19 +55,32 @@
                         <h4 class="card-title">
                             <div class="form-group">
                                 <label>Foto</label>
-                                <img src="/app/img/404.jpg" class="img-thumbnail img-responsive">
+                                <img id='output' class="img-thumbnail img-responsive">
                             </div>
                             <div class="form-group">
-                                <input class="form-control" type="file">
+                                <input class="form-control" id="user_img" type="file" name="user_img"
+                                    onchange="readFoto(event)">
                             </div>
-                            <form action="" method="get" accept-charset="utf-8">
-                                <button class="btn btn-primary btn-block" type="submit">Simpan</button>
-                                <button class="btn btn-danger btn-block" type="submit">Batal</button>
-                            </form>
+                            <button class="btn btn-primary btn-block" type="submit">Simpan</button>
+                            <button class="btn btn-danger btn-block" type="submit">Batal</button>
                         </h4>
+                        </form>
                     </div>
                 </div>
             </div>
         </div>
     </div>
+
+    <script type="text/javascript">
+        var readFoto = function(event){
+            var input = event.target;
+            var reader = new FileReader();
+            reader.onload = function(){
+                var dataURL = reader.result;
+                var output = document.getElementById('output');
+                output.src = dataURL;
+            };
+            reader.readAsDataURL(input.files[0]);
+        };
+    </script>
     @endsection
