@@ -40,23 +40,37 @@ class UserController extends Controller
      */
     public function store(Request $request)
     {
-        $request->validate([
+        // $request->validate([
+        //     'username' => $request['username|max:255'],
+        //     'email' => $request['email|required'],
+        //     'role' => $request['role|required'],
+        //     'user_description' => $request['user_description|required'],
+        //     'image' => $request['required|image|mimes:jpeg,png,jpg,gif,svg|max:2048'],
+        //     'password' => Hash::make($request['password|required']),
+        // ]);
+
+        // // $input = $request->all();
+        // $input['id'] = auth()->user()->id;
+
+        // if ($user_img = $request->file('user_img')) {
+        //     $destinationPath = 'user_img/';
+        //     $profileImage = date('YmdHis') . "." . $user_img->getClientOriginalExtension();
+        //     $user_img->move($destinationPath, $profileImage);
+        //     $input['image'] = "$profileImage";
+        // }
+        // User::create($input);
+
+        // return redirect()->route('admin.users.index');
+        User::create([
             'username' => $request['username'],
             'email' => $request['email'],
             'role' => $request['role'],
             'user_description' => $request['user_description'],
             'image' => $request['required|image|mimes:jpeg,png,jpg,gif,svg|max:2048'],
             'password' => Hash::make($request['password']),
-            // 'username' => 'require',
-            // 'email' => 'require',
-            // 'role' => 'require',
-            // 'user_description' => 'require',
-            // 'image' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
-            // 'password' => 'require',
         ]);
 
-        $input = $request->all();
-        // $input['id'] = auth()->user()->id;
+        $input['id'] = auth()->user()->id;
 
         if ($user_img = $request->file('user_img')) {
             $destinationPath = 'user_img/';
@@ -66,12 +80,15 @@ class UserController extends Controller
         }
         User::create($input);
 
+        dd($input);
         return redirect()->route('admin.users.index');
-        // return User::create([
-        //     'username' => $request['username'],
-        //     'email' => $request['email'],
-        //     'password' => Hash::make($request['password']),
-        // ]);
+        // $file = $request->file('user_img');
+        // $name = 'FT' . date('Ymdhis') . '.' . $request->file('user_img')->getClientOriginalExtension();
+
+        // $resize_foto = Image::make($file->getRealPath());
+        // $resize_foto->resize(200, 200, function ($constraint) {
+        //     $constraint->aspectRatio();
+        // })->save('user_img/' . $name);
     }
 
     /**
