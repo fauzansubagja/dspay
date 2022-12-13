@@ -28,8 +28,7 @@ class UserController extends Controller
      */
     public function create()
     {
-        $user = User::all();
-        return view('admin.users.create', compact('user'));
+        return view('admin.users.create');
     }
 
     /**
@@ -40,55 +39,28 @@ class UserController extends Controller
      */
     public function store(Request $request)
     {
-        // $request->validate([
-        //     'username' => $request['username|max:255'],
-        //     'email' => $request['email|required'],
-        //     'role' => $request['role|required'],
-        //     'user_description' => $request['user_description|required'],
-        //     'image' => $request['required|image|mimes:jpeg,png,jpg,gif,svg|max:2048'],
-        //     'password' => Hash::make($request['password|required']),
-        // ]);
+        $request->validate([
+            'username' => 'required',
+            'email' => 'required',
+            'role' => 'required',
+            'user_description' => 'required',
+            'user_img' => 'required|image|mimes:jpg,png,jpeg,gif,svg|max:2048',
+            'password' => 'required|min:6|max:255',
 
-        // // $input = $request->all();
-        // $input['id'] = auth()->user()->id;
-
-        // if ($user_img = $request->file('user_img')) {
-        //     $destinationPath = 'user_img/';
-        //     $profileImage = date('YmdHis') . "." . $user_img->getClientOriginalExtension();
-        //     $user_img->move($destinationPath, $profileImage);
-        //     $input['image'] = "$profileImage";
-        // }
-        // User::create($input);
-
-        // return redirect()->route('admin.users.index');
-        User::create([
-            'username' => $request['username'],
-            'email' => $request['email'],
-            'role' => $request['role'],
-            'user_description' => $request['user_description'],
-            'image' => $request['required|image|mimes:jpeg,png,jpg,gif,svg|max:2048'],
-            'password' => Hash::make($request['password']),
         ]);
 
-        $input['id'] = auth()->user()->id;
+        $input = $request->all();
 
         if ($user_img = $request->file('user_img')) {
             $destinationPath = 'user_img/';
-            $profileImage = date('YmdHis') . "." . $user_img->getClientOriginalExtension();
-            $user_img->move($destinationPath, $profileImage);
-            $input['image'] = "$profileImage";
+            $productImage = date('YmdHis') . "." . $user_img->getClientOriginalExtension();
+            $user_img->move($destinationPath, $productImage);
+            $input['user_img'] = "$productImage";
         }
+
         User::create($input);
 
-        dd($input);
-        return redirect()->route('admin.users.index');
-        // $file = $request->file('user_img');
-        // $name = 'FT' . date('Ymdhis') . '.' . $request->file('user_img')->getClientOriginalExtension();
-
-        // $resize_foto = Image::make($file->getRealPath());
-        // $resize_foto->resize(200, 200, function ($constraint) {
-        //     $constraint->aspectRatio();
-        // })->save('user_img/' . $name);
+        return redirect('/management/user');
     }
 
     /**
@@ -120,9 +92,32 @@ class UserController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, $user)
     {
-        //
+        $request->validate([
+            'username' => 'required',
+            'email' => 'required',
+            'role' => 'required',
+            'user_description' => 'required',
+            'user_img' => 'required|image|mimes:jpg,png,jpeg,gif,svg|max:2048',
+            'password' => 'required|min:6|max:255',
+
+        ]);
+
+        $input = $request->all();
+
+        if ($user_img = $request->file('user_img')) {
+            $destinationPath = 'user_img/';
+            $productImage = date('YmdHis') . "." . $user_img->getClientOriginalExtension();
+            $user_img->move($destinationPath, $productImage);
+            $input['user_img'] = "$productImage";
+        } else {
+            unset($input['user_img']);
+        }
+
+        $user->update($input);
+
+        return redirect('/management/user');
     }
 
     /**

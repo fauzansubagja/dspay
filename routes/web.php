@@ -23,3 +23,4 @@ Auth::routes();
 
 Route::get('/dashboard', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 Route::resource('/management/user', UserController::class);
+// Route::post('/management/user/create', [UserController::class, 'store']);

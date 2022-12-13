@@ -59,7 +59,7 @@
                             </div>
                             <div class="form-group">
                                 <input class="form-control" id="user_img" type="file" name="user_img"
-                                    onchange="readFoto(event)">
+                                    onchange="previewImage()">
                             </div>
                             <button class="btn btn-primary btn-block" type="submit">Simpan</button>
                             <button class="btn btn-danger btn-block" type="submit">Batal</button>
@@ -70,8 +70,22 @@
             </div>
         </div>
     </div>
+    <script>
+        function previewImage(){
+            const image = document.querySelector('#user_img')
+            const imgPreview = document.querySelector('.img-thumbnail')
 
-    <script type="text/javascript">
+            imgPreview.style.display = 'dblock';
+
+            const oFReader = new FileReader();
+            oFReader.readAsDataURL(image.files[0]);
+
+            oFReader.onload = function(oFREvent){
+                imgPreview.src = oFREvent.target.result;
+            }
+        }
+    </script>
+    {{-- <script type="text/javascript">
         var readFoto = function(event){
             var input = event.target;
             var reader = new FileReader();
@@ -82,5 +96,5 @@
             };
             reader.readAsDataURL(input.files[0]);
         };
-    </script>
+    </script> --}}
     @endsection
