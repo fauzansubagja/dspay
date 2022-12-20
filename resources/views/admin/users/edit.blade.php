@@ -5,7 +5,7 @@
         <div class="page-header">
             <div class="row">
                 <div class="col-sm-12 mt-5">
-                    <h3 class="page-title mt-3">Tambah Pengguna</h3>
+                    <h3 class="page-title mt-3">Edit Pengguna</h3>
                     <ul class="breadcrumb">
                         {{-- <li class="breadcrumb-item active">List</li> --}}
                     </ul>
@@ -70,7 +70,7 @@
                                 <input class="form-control" id="user_img" type="file" name="user_img"
                                     onchange="previewImage()">
                             </div>
-                            <button class="btn btn-primary btn-block" type="submit">Simpan</button>
+                            <button class="btn btn-primary btn-block" type="submit">Update</button>
                             <button class="btn btn-danger btn-block" type="submit">Batal</button>
                         </h4>
                         </form>

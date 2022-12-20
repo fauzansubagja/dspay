@@ -5,7 +5,7 @@ namespace App\Http\Controllers\Backend;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\User;
-use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Auth;
 
 
 class UserController extends Controller
@@ -60,7 +60,7 @@ class UserController extends Controller
 
         User::create($input);
 
-        return redirect('/management/user');
+        return redirect('/management/user')->with('success', 'Data Berhasil Di Tambahkan!');
     }
 
     /**
@@ -92,14 +92,13 @@ class UserController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $user)
+    public function update(Request $request, User $user)
     {
         $request->validate([
             'username' => 'required',
             'email' => 'required',
             'role' => 'required',
             'user_description' => 'required',
-            'user_img' => 'required|image|mimes:jpg,png,jpeg,gif,svg|max:2048',
             'password' => 'required|min:6|max:255',
 
         ]);
@@ -108,16 +107,16 @@ class UserController extends Controller
 
         if ($user_img = $request->file('user_img')) {
             $destinationPath = 'user_img/';
-            $productImage = date('YmdHis') . "." . $user_img->getClientOriginalExtension();
-            $user_img->move($destinationPath, $productImage);
-            $input['user_img'] = "$productImage";
+            $profileImage = date('YmdHis') . "." . $user_img->getClientOriginalExtension();
+            $user_img->move($destinationPath, $profileImage);
+            $input['user_img'] = "$profileImage";
         } else {
             unset($input['user_img']);
         }
 
         $user->update($input);
 
-        return redirect('/management/user');
+        return redirect('/management/user')->with('success', 'User berhasil di update.');
     }
 
     /**
@@ -128,6 +127,8 @@ class UserController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $data = User::where('id', $id);
+        $data->delete();
+        return redirect('/management/user');
     }
 }
