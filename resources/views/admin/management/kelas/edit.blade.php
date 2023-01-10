@@ -20,7 +20,7 @@
                         <h4 class="card-title">Edit Kelas</h4>
                     </div>
                     <div class="card-body">
-                        <form action="{{ route('kelas.update', $kelas->id_kelas) }}" method="POST">
+                        <form action="" method="POST">
                             @csrf
                             @method('PUT')
                             <div class="form-group row">

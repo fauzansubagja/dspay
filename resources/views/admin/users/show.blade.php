@@ -19,7 +19,7 @@
                     <div class="row align-items-center">
                         <div class="col-auto profile-image">
                             <a href="#"> <img class="rounded-circle" alt="User Image"
-                                    src="{{ asset('/img/profile-img.jpg') }}"> </a>
+                                    src="{{ asset('storage/' . $user->user_img) }}"> </a>
                         </div>
                         <div class="col ml-md-n2 profile-user-info">
                             <h4 class="user-name mb-3">{{ $user->username }}</h4>

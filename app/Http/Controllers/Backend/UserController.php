@@ -5,7 +5,7 @@ namespace App\Http\Controllers\Backend;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\User;
-use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Storage;
 
 
 class UserController extends Controller
@@ -39,26 +39,22 @@ class UserController extends Controller
      */
     public function store(Request $request)
     {
-        $request->validate([
+        $validateData = $request->validate([
             'username' => 'required',
             'email' => 'required',
             'role' => 'required',
+            'user_img' => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048',
             'user_description' => 'required',
-            'user_img' => 'required|image|mimes:jpg,png,jpeg,gif,svg|max:2048',
             'password' => 'required|min:6|max:255',
-
         ]);
 
-        $input = $request->all();
-
-        if ($user_img = $request->file('user_img')) {
-            $destinationPath = 'user_img/';
-            $productImage = date('YmdHis') . "." . $user_img->getClientOriginalExtension();
-            $user_img->move($destinationPath, $productImage);
-            $input['user_img'] = "$productImage";
+        if ($request->file('user_img')) {
+            $validateData['user_img'] = $request->file('user_img')->store('user-images');
         }
 
-        User::create($input);
+        $validateData['id'] = auth()->user()->id;
+
+        User::create($validateData);
 
         return redirect('/management/user')->with('success', 'Data Berhasil Di Tambahkan!');
     }
@@ -94,27 +90,27 @@ class UserController extends Controller
      */
     public function update(Request $request, User $user)
     {
-        $request->validate([
+        $rules = [
             'username' => 'required',
             'email' => 'required',
             'role' => 'required',
+            'user_img' => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048',
             'user_description' => 'required',
             'password' => 'required|min:6|max:255',
+        ];
 
-        ]);
+        $validateData = $request->validate($rules);
 
-        $input = $request->all();
-
-        if ($user_img = $request->file('user_img')) {
-            $destinationPath = 'user_img/';
-            $profileImage = date('YmdHis') . "." . $user_img->getClientOriginalExtension();
-            $user_img->move($destinationPath, $profileImage);
-            $input['user_img'] = "$profileImage";
-        } else {
-            unset($input['user_img']);
+        if ($request->file('user_img')) {
+            if ($request->oldImage) {
+                Storage::delete($request->oldImage);
+            }
+            $validateData['user_img'] = $request->file('user_img')->store('user-images');
         }
 
-        $user->update($input);
+        $validateData['id'] = auth()->user()->id;
+
+        $user->update($validateData);
 
         return redirect('/management/user')->with('success', 'User berhasil di update.');
     }
@@ -125,10 +121,12 @@ class UserController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(User $user)
     {
-        $data = User::where('id', $id);
-        $data->delete();
+        if ($user->img_user) {
+            Storage::delete($user->user_img);
+        }
+        User::destroy($user->id);
         return redirect('/management/user');
     }
 }

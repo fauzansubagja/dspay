@@ -60,8 +60,10 @@
                         <h4 class="card-title">
                             <div class="form-group">
                                 <label>Foto</label>
+                                <input type="hidden" name="oldImage" value="{{ $user->user_img }}">
                                 @if ($user->user_img)
-                                <img src='/user_img/{{ $user->user_img }}' class="img-thumbnail img-responsive">
+                                <img src="{{ asset('storage/' . $user->user_img) }}"
+                                    class="img-thumbnail img-responsive">
                                 @else
                                 <img class="img-thumbnail img-responsive">
                                 @endif

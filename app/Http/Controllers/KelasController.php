@@ -63,11 +63,9 @@ class KelasController extends Controller
      * @param  \App\Models\Kelas  $kelas
      * @return \Illuminate\Http\Response
      */
-    public function edit(Kelas $kelas)
+    public function edit(Kelas $kelas, $id)
     {
-        return view('admin.management.kelas.edit', [
-            'kelas' => $kelas
-        ]);
+        return view('admin.management.kelas.edit', compact('kelas'));
     }
 
     /**
