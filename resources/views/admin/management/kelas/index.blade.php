@@ -56,10 +56,10 @@
                                     <tr>
                                         <td>{{ $no++ }}</td>
                                         <td>{{ $data->nama_kelas}}</td>
-                                        <td>{{ $data->id_kelas}}</td>
+                                        <td>{{ $data->id}}</td>
                                         <td>
-                                            <a href="{{ route('kelas.edit', $data->id_kelas) }}"
-                                                class="btn btn-warning"><i class="fas fa-edit"></i></a>
+                                            <a href="{{ route('kelas.edit',$data->id) }}" class="btn btn-warning"><i
+                                                    class="fas fa-edit"></i></a>
                                             <form action="/kelas/{{ $data->id_kelas }}" method="post" class="d-inline">
                                                 @csrf
                                                 @method('delete')

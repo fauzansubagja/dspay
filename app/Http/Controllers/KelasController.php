@@ -36,12 +36,13 @@ class KelasController extends Controller
      */
     public function store(Request $request)
     {
-        $request->validate([
+        $validateData = $request->validate([
             'nama_kelas' => 'required',
         ]);
 
-        $input = $request->all();
-        Kelas::create($input);
+        $validateData['id'] = auth()->user()->id;
+
+        Kelas::create($validateData);
 
         return redirect('/management/kelas')->with('success', 'Data Berhasil Di Tambahkan!');
     }
@@ -63,7 +64,7 @@ class KelasController extends Controller
      * @param  \App\Models\Kelas  $kelas
      * @return \Illuminate\Http\Response
      */
-    public function edit(Kelas $kelas, $id)
+    public function edit(Kelas $kelas)
     {
         return view('admin.management.kelas.edit', compact('kelas'));
     }
@@ -77,7 +78,16 @@ class KelasController extends Controller
      */
     public function update(Request $request, Kelas $kelas)
     {
-        //
+        $rules = [
+            'nama_kelas' => 'required',
+        ];
+
+        $validateData = $request->validate($rules);
+        $validateData['id'] = auth()->user()->id;
+
+        $kelas->update($validateData);
+
+        return redirect('/management/kelas')->with('success', 'Kelas berhasil di update.');
     }
 
     /**

@@ -22,7 +22,7 @@ Route::get('/', function () {
 
 Auth::routes();
 Route::get('/dashboard', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
 Route::resource('/management/user', UserController::class);
 
 Route::resource('/management/kelas', KelasController::class);
-// Route::post('/management/user/create', [UserController::class, 'store']);
