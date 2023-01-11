@@ -56,19 +56,20 @@
                                     <tr>
                                         <td>{{ $no++ }}</td>
                                         <td>{{ $data->nama_kelas}}</td>
-                                        <td>{{ $data->id}}</td>
+                                        <td>{{ $data->id_kelas}}</td>
                                         <td>
-                                            <a href="{{ route('kelas.edit',$data->id) }}" class="btn btn-warning"><i
-                                                    class="fas fa-edit"></i></a>
+                                            <a href="/management/kelas/{{ $data->id_kelas }}/edit"
+                                                class="btn btn-warning"><i class="fas fa-edit"></i></a>
                                             <form action="/kelas/{{ $data->id_kelas }}" method="post" class="d-inline">
                                                 @csrf
                                                 @method('delete')
                                                 <button type="button" class="btn btn-danger"
-                                                    onclick="return confirm('Apakah Anda Yakin?')"><i
+                                                    onclick="deleteData({{ $data->id_kelas }})"><i
                                                         class="fas fa-trash-alt"></i></button>
                                             </form>
                                         </td>
                                     </tr>
+                                    @include('sweetalert::alert')
                                     @endforeach
                                 </tbody>
                             </table>
@@ -79,4 +80,27 @@
         </div>
     </div>
 </div>
+<script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+{{-- Sweet Alert --}}
+<script>
+    $(document).ready(function(){
+        $ '#kelasTable' (.DataTable());
+    });
+
+    function deleteData(id_kelas){
+        Swal.fire({
+            title: 'Are you sure?',
+            text: "You won't be able to revert this!",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Yes, delete it!'
+            }).then((result) => {
+            if (result.value) {
+                $('#delete' + id_kelas).submit();
+            }
+            })
+    }
+</script>
 @endsection

@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Models\Kelas;
 use Illuminate\Http\Request;
+use Alert;
+use Hash;
 
 class KelasController extends Controller
 {
@@ -12,6 +14,7 @@ class KelasController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+
     public function index()
     {
         $kelas = Kelas::all();
@@ -40,10 +43,16 @@ class KelasController extends Controller
             'nama_kelas' => 'required',
         ]);
 
-        $validateData['id'] = auth()->user()->id;
-
-        Kelas::create($validateData);
-
+        if ($validateData) :
+            $store = Kelas::create([
+                'nama_kelas' => $request->nama_kelas
+            ]);
+            if ($store) :
+                Alert::success('Berhasil', 'Data Berhasil Di Tambahkan!');
+            else :
+                Alert::error('Terjadi Kesalahan', 'Data Gagal Di Tambahkan!');
+            endif;
+        endif;
         return redirect('/management/kelas')->with('success', 'Data Berhasil Di Tambahkan!');
     }
 
@@ -64,9 +73,14 @@ class KelasController extends Controller
      * @param  \App\Models\Kelas  $kelas
      * @return \Illuminate\Http\Response
      */
-    public function edit(Kelas $kelas)
+    public function edit(Kelas $kelas, $id_kelas)
     {
-        return view('admin.management.kelas.edit', compact('kelas'));
+        $kelas = Kelas::find($id_kelas);
+        return view('admin.management.kelas.edit', [
+            'kelas' => $kelas
+        ]);
+        // $kelas = Kelas::all();
+        // return view('admin.management.kelas.edit', compact('kelas'));
     }
 
     /**
@@ -76,18 +90,23 @@ class KelasController extends Controller
      * @param  \App\Models\Kelas  $kelas
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Kelas $kelas)
+    public function update(Request $request, $id_kelas)
     {
-        $rules = [
+        $validateData = $request->validate([
             'nama_kelas' => 'required',
-        ];
+        ]);
 
-        $validateData = $request->validate($rules);
-        $validateData['id'] = auth()->user()->id;
-
-        $kelas->update($validateData);
-
-        return redirect('/management/kelas')->with('success', 'Kelas berhasil di update.');
+        if ($validateData) :
+            $update = Kelas::findOrFail($id_kelas)->update([
+                'nama_kelas' => $request->nama_kelas
+            ]);
+            if ($update) :
+                Alert::success('Berhasil', 'Data Berhasil Di Ubah!');
+            else :
+                Alert::error('Terjadi Kesalahan', 'Data Gagal Di Ubah!');
+            endif;
+        endif;
+        return redirect('/management/kelas')->with('success', 'Data berhasil di update.');
     }
 
     /**
@@ -96,8 +115,14 @@ class KelasController extends Controller
      * @param  \App\Models\Kelas  $kelas
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Kelas $kelas)
+    public function destroy(Kelas $id_kelas)
     {
-        //
+        if (Kelas::find($id_kelas)->delete()) :
+            Alert::success('Berhasil', 'Data Berhasil di hapus');
+        else :
+            Alert::error('Terjadi Kesalahan', 'Data Gagal di hapus');
+        endif;
+
+        return back();
     }
 }

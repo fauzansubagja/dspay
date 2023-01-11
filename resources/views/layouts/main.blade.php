@@ -211,6 +211,7 @@
     <script src="{{ asset('js/script.js') }}"></script>
     <script src="{{ asset('https://cdn.jsdelivr.net/npm/apexcharts') }}"></script>
     <script src="{{ asset('https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.9.1/chart.min.js') }}"></script>
+
     <script>
         var options = {
               series: [{

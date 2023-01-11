@@ -9,7 +9,7 @@ class Kelas extends Model
 {
     use HasFactory;
 
-    protected $fillable = [
-        'nama_kelas',
-    ];
+    protected $primaryKey = 'id_kelas';
+
+    protected $guarded = [];
 }

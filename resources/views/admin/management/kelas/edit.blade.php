@@ -16,14 +16,16 @@
             <div class="col-xl-8 d-flex">
                 <div class="card flex-fill">
                     <div class="card-body">
-                        <form action="{{ route('kelas.update', $kelas->id) }}" method="POST"
+                        <form action="/management/kelas/{{ $kelas->id_kelas }}" method="POST"
                             enctype="multipart/form-data">
                             @csrf
                             @method('PUT')
                             <div class="form-group">
                                 <label>Nama Kelas</label>
-                                <input type="text" class="form-control" placeholder="kelas" name="kelas"
+                                <input type="text" class="form-control" name="nama_kelas"
                                     value="{{ $kelas->nama_kelas }}">
+                                {{-- <input type="text" class="form-control" placeholder="kelas" name="kelas"
+                                    value="{{ $kelas->nama_kelas }}"> --}}
                             </div>
                     </div>
                 </div>

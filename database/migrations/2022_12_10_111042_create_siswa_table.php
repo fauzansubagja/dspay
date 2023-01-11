@@ -14,7 +14,7 @@ class CreateSiswaTable extends Migration
     public function up()
     {
         Schema::create('siswa', function (Blueprint $table) {
-            $table->bigIncrements('id');
+            $table->id('nisn');
             $table->integer('kelas_id');
             $table->string('nama');
             $table->string('tempat_lahir')->nullable();
