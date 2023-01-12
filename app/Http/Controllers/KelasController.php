@@ -117,14 +117,15 @@ class KelasController extends Controller
      */
     public function destroy(Kelas $kelas, $id_kelas)
     {
-        // Kelas::destroy($kelas->id_kelas);
-        // return redirect('/management/kelas')->with('success', 'Data berhasil di hapus.');
-        if (Kelas::find($id_kelas)->delete()) :
-            Alert::success('Berhasil', 'Data Berhasil di hapus');
-        else :
-            Alert::error('Terjadi Kesalahan', 'Data Gagal di hapus');
-        endif;
-
+        Kelas::find($id_kelas)->delete();
         return back();
+
+        // if (Kelas::find($id_kelas)->delete()) :
+        //     Alert::success('Berhasil', 'Data Berhasil di hapus');
+        // else :
+        //     Alert::error('Terjadi Kesalahan', 'Data Gagal di hapus');
+        // endif;
+
+        // return back();
     }
 }

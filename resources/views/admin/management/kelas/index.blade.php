@@ -60,14 +60,32 @@
                                         <td>
                                             <a href="/management/kelas/{{ $data->id_kelas }}/edit"
                                                 class="btn btn-warning"><i class="fas fa-edit"></i></a>
-                                            <form action="/management/kelas/{{ $data->id_kelas }}" method="post"
+                                            {{-- <form method="POST" class="d-inline"
+                                                action="/management/kelas/{{ $data->id_kelas }}">
+                                                @csrf
+                                                <input name="_method" type="hidden" value="DELETE">
+                                                <button class="btn btn-danger" data-toggle="tooltip" title='Delete'
+                                                    onclick="deleteData({{ $data->id_kelas }})"><i
+                                                        class="fas fa-trash-alt"></i></button>
+                                            </form> --}}
+
+                                            {{-- bener --}}
+                                            <form method="POST" class="d-inline"
+                                                action="/management/kelas/{{ $data->id_kelas }}">
+                                                @csrf
+                                                <input name="_method" type="hidden" value="DELETE">
+                                                <button type="submit" class="btn btn-danger show_confirm"
+                                                    data-toggle="tooltip" title='Delete'><i
+                                                        class="fas fa-trash-alt"></i></button>
+                                            </form>
+                                            {{-- <form action="/management/kelas/{{ $data->id_kelas }}" method="post"
                                                 class="d-inline" id="delete{{ $data->id_kelas }}">
                                                 @csrf
                                                 @method('delete')
                                                 <button type=" button" class="btn btn-danger"
                                                     onclick="deleteData({{ $data->id_kelas }})"><i
                                                         class="fas fa-trash-alt"></i></button>
-                                            </form>
+                                            </form> --}}
                                         </td>
                                     </tr>
                                     @include('sweetalert::alert')
@@ -83,26 +101,31 @@
 </div>
 {{-- Sweet Alert --}}
 <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-<script>
-    $(document).ready(function(){
-        $('#kelasTable').DataTable();
-    });
 
-    function deleteData(id_kelas){
-        Swal.fire({
-        title: 'PERINGATAN!',
-        text: 'Yakin ingin menghapus data kelas?',
-        icon: 'warning',
-        showCancelButton:true,
-        confirmButtonColor: '#3085d6',
-        cancelButtonColor: '#d33',
-        confirmButtonText: 'Yakin',
-        cancelButtonText: 'Batal',
-        }).then((result) => {
-            if(result.value){
-                $('#delete' + id_kelas).submit();
-            }
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/2.1.0/sweetalert.min.js"></script>
+
+<script type="text/javascript">
+    $('.show_confirm').click(function(event) {
+          var form =  $(this).closest("form");
+          var name = $(this).data("name");
+          event.preventDefault();
+          Swal.fire({
+            title: 'PERINGATAN!',
+            text: 'Yakin ingin menghapus data kelas?',
+            icon: 'warning',
+            showCancelButton:true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Yakin',
+            cancelButtonText: 'Batal',
         })
-    }
+          .then((willDelete) => {
+            if (willDelete) {
+              form.submit();
+            }
+          });
+      });
+  
 </script>
 @endsection
