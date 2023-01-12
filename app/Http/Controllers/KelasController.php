@@ -115,8 +115,10 @@ class KelasController extends Controller
      * @param  \App\Models\Kelas  $kelas
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Kelas $id_kelas)
+    public function destroy(Kelas $kelas, $id_kelas)
     {
+        // Kelas::destroy($kelas->id_kelas);
+        // return redirect('/management/kelas')->with('success', 'Data berhasil di hapus.');
         if (Kelas::find($id_kelas)->delete()) :
             Alert::success('Berhasil', 'Data Berhasil di hapus');
         else :

@@ -60,10 +60,11 @@
                                         <td>
                                             <a href="/management/kelas/{{ $data->id_kelas }}/edit"
                                                 class="btn btn-warning"><i class="fas fa-edit"></i></a>
-                                            <form action="/kelas/{{ $data->id_kelas }}" method="post" class="d-inline">
+                                            <form action="/management/kelas/{{ $data->id_kelas }}" method="post"
+                                                class="d-inline" id="delete{{ $data->id_kelas }}">
                                                 @csrf
                                                 @method('delete')
-                                                <button type="button" class="btn btn-danger"
+                                                <button type=" button" class="btn btn-danger"
                                                     onclick="deleteData({{ $data->id_kelas }})"><i
                                                         class="fas fa-trash-alt"></i></button>
                                             </form>
@@ -80,27 +81,28 @@
         </div>
     </div>
 </div>
-<script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 {{-- Sweet Alert --}}
+<script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 <script>
     $(document).ready(function(){
-        $ '#kelasTable' (.DataTable());
+        $('#kelasTable').DataTable();
     });
 
     function deleteData(id_kelas){
         Swal.fire({
-            title: 'Are you sure?',
-            text: "You won't be able to revert this!",
-            icon: 'warning',
-            showCancelButton: true,
-            confirmButtonColor: '#3085d6',
-            cancelButtonColor: '#d33',
-            confirmButtonText: 'Yes, delete it!'
-            }).then((result) => {
-            if (result.value) {
+        title: 'PERINGATAN!',
+        text: 'Yakin ingin menghapus data kelas?',
+        icon: 'warning',
+        showCancelButton:true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        confirmButtonText: 'Yakin',
+        cancelButtonText: 'Batal',
+        }).then((result) => {
+            if(result.value){
                 $('#delete' + id_kelas).submit();
             }
-            })
+        })
     }
 </script>
 @endsection
