@@ -149,7 +149,7 @@
                                     Siswa
                                 </span></a>
                         </li>
-                        <li class="submenu"> <a href="#"><i class="fas fa-user"></i> <span> Manajemen Data </span> <span
+                        <li class="submenu"> <a href="#"><i class="fas fa-user"></i> <span> management Data </span> <span
                                     class="menu-arrow"></span></a>
                             <ul class="submenu_class" style="display: none;">
                                 <li><a class="{{ (request()->is('management/periode*')) ? 'active' : '' }}"
@@ -180,7 +180,7 @@
                             </ul>
                         </li>
                         <li class="{{ (request()->is('management/user*')) ? 'active' : '' }}"> <a
-                                href="/management/user"><i class="fas fa-users-cog"></i> <span> Manajemen Pengguna
+                                href="/management/user"><i class="fas fa-users-cog"></i> <span> management Pengguna
                                 </span></a>
                         <li class="{{ (request()->is('admin/cities*')) ? 'active' : '' }}"> <a href=""><i
                                     class="fas fa-cog"></i>

@@ -73,8 +73,8 @@
                                             <form method="POST" class="d-inline"
                                                 action="/management/kelas/{{ $data->id_kelas }}">
                                                 @csrf
-                                                <input name="_method" type="hidden" value="DELETE">
-                                                <button type="submit" class="btn btn-danger show_confirm"
+                                                @method('DELETE')
+                                                <button type="button" class="btn btn-danger show_confirm"
                                                     data-toggle="tooltip" title='Delete'><i
                                                         class="fas fa-trash-alt"></i></button>
                                             </form>
@@ -103,10 +103,9 @@
 <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
 <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/2.1.0/sweetalert.min.js"></script>
 
 <script type="text/javascript">
-    $('.show_confirm').click(function(event) {
+    $(document).on('click', '.show_confirm', function(event) {
           var form =  $(this).closest("form");
           var name = $(this).data("name");
           event.preventDefault();
@@ -120,9 +119,16 @@
             confirmButtonText: 'Yakin',
             cancelButtonText: 'Batal',
         })
-          .then((willDelete) => {
-            if (willDelete) {
-              form.submit();
+          .then((result) => {
+            if (result.isConfirmed) {
+                Swal.fire(
+                    'Hapus!',
+                    'Data Berhasil di hapus',
+                    'success'
+                )
+                setTimeout(() => {
+                    form.submit();
+                }, 2000);
             }
           });
       });
