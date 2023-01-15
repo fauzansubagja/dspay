@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Periode;
 use Illuminate\Http\Request;
+use Alert;
 
 class PeriodeController extends Controller
 {
@@ -14,8 +15,8 @@ class PeriodeController extends Controller
      */
     public function index()
     {
-        // $periode = Periode::all();
-        return view('admin.management.periode.index');
+        $periode = Periode::all();
+        return view('admin.management.periode.index', compact('periode'));
     }
 
     /**
@@ -36,7 +37,23 @@ class PeriodeController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $validateData = $request->validate([
+            'periode' => 'required',
+            'status' => 'required',
+        ]);
+
+        if ($validateData) :
+            $store = Periode::create([
+                'periode' => $request->periode,
+                'status' => $request->status
+            ]);
+            if ($store) :
+                Alert::success('Berhasil', 'Data Berhasil Di Tambahkan!');
+            else :
+                Alert::error('Terjadi Kesalahan', 'Data Gagal Di Tambahkan!');
+            endif;
+        endif;
+        return redirect('/management/periode');
     }
 
     /**
@@ -56,9 +73,12 @@ class PeriodeController extends Controller
      * @param  \App\Models\Periode  $periode
      * @return \Illuminate\Http\Response
      */
-    public function edit(Periode $periode)
+    public function edit(Periode $periode, $id_periode)
     {
-        //
+        $periode = Periode::find($id_periode);
+        return view('admin.management.periode.edit', [
+            'periode' => $periode
+        ]);
     }
 
     /**

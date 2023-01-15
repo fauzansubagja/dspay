@@ -8,6 +8,9 @@ use Illuminate\Database\Eloquent\Model;
 class Periode extends Model
 {
     use HasFactory;
-    public $fillable = ['start', 'end', 'status'];
+
+    protected $table = 'periode';
+    protected $primaryKey = 'id_periode';
+
     protected $guarded = [];
 }

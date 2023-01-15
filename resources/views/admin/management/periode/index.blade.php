@@ -7,7 +7,7 @@
                 <div class="col-sm-12 mt-5">
                     <h3 class="page-title mt-3">Tahun Ajaran</h3>
                     <ul class="breadcrumb">
-                        <li class="breadcrumb-item active">List</li>
+                        <li class="breadcrumb-data active">List</li>
                     </ul>
                 </div>
             </div>
@@ -43,16 +43,38 @@
                                     </tr>
                                 </thead>
                                 <tbody>
+                                    @php $no = 1; @endphp
+                                    @foreach ($periode as $data)
                                     <tr>
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
+                                        <td>{{ $no++ }}</td>
+                                        <td>{{ $data->periode}}</td>
+                                        @if($data->status =='Aktif')
+                                        <td class="status"><span class="badge bg-success">{{ $data->status }}</span>
+                                        </td>
+                                        @endif
+                                        @if($data->status =='Tidak Aktif')
+                                        <td class="status"><span class="badge bg-danger">{{ $data->status }}</span>
+                                        </td>
+                                        @endif
+                                        @if($data->status ==null)
+                                        <td class="status"><span class="badge bg-danger">{{ $data->status }}</span></td>
+                                        @endif
+
                                         <td>
-                                            <a href="" class="btn btn-warning"><i class="fas fa-edit"></i></a>
-                                            <button type="button" class="btn btn-danger"><i
-                                                    class="fas fa-trash-alt"></i></button>
+                                            <a href="/management/periode/{{ $data->id_periode }}/edit"
+                                                class="btn btn-warning"><i class="fas fa-edit"></i></a>
+                                            <form method="POST" class="d-inline"
+                                                action="/management/periode/{{ $data->id_periode }}">
+                                                @csrf
+                                                @method('DELETE')
+                                                <button type="button" class="btn btn-danger show_confirm"
+                                                    data-toggle="tooltip" title='Delete'><i
+                                                        class="fas fa-trash-alt"></i></button>
+                                            </form>
                                         </td>
                                     </tr>
+                                    @include('sweetalert::alert')
+                                    @endforeach
                                 </tbody>
                             </table>
                         </div>

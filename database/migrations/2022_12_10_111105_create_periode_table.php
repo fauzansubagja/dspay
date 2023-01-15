@@ -14,11 +14,9 @@ class CreatePeriodeTable extends Migration
     public function up()
     {
         Schema::create('periode', function (Blueprint $table) {
-            $table->bigIncrements('id');
-            $table->string('nama');
-            $table->date('tgl_mulai');
-            $table->date('tgl_selesai');
-            $table->boolean('is_active');
+            $table->id('id_periode');
+            $table->string('periode');
+            $table->string('status')->nullable();
             $table->timestamps();
             $table->softDeletes();
         });

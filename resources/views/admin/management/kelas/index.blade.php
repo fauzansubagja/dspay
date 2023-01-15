@@ -13,12 +13,6 @@
             </div>
         </div>
 
-        @if ($message = Session::get('success'))
-        <div class="alert alert-success">
-            <p>{{ $message }}</p>
-        </div>
-        @endif
-
         <div class="row">
             <div class="col-lg-12">
                 <div class="card">
@@ -60,16 +54,6 @@
                                         <td>
                                             <a href="/management/kelas/{{ $data->id_kelas }}/edit"
                                                 class="btn btn-warning"><i class="fas fa-edit"></i></a>
-                                            {{-- <form method="POST" class="d-inline"
-                                                action="/management/kelas/{{ $data->id_kelas }}">
-                                                @csrf
-                                                <input name="_method" type="hidden" value="DELETE">
-                                                <button class="btn btn-danger" data-toggle="tooltip" title='Delete'
-                                                    onclick="deleteData({{ $data->id_kelas }})"><i
-                                                        class="fas fa-trash-alt"></i></button>
-                                            </form> --}}
-
-                                            {{-- bener --}}
                                             <form method="POST" class="d-inline"
                                                 action="/management/kelas/{{ $data->id_kelas }}">
                                                 @csrf
@@ -78,14 +62,6 @@
                                                     data-toggle="tooltip" title='Delete'><i
                                                         class="fas fa-trash-alt"></i></button>
                                             </form>
-                                            {{-- <form action="/management/kelas/{{ $data->id_kelas }}" method="post"
-                                                class="d-inline" id="delete{{ $data->id_kelas }}">
-                                                @csrf
-                                                @method('delete')
-                                                <button type=" button" class="btn btn-danger"
-                                                    onclick="deleteData({{ $data->id_kelas }})"><i
-                                                        class="fas fa-trash-alt"></i></button>
-                                            </form> --}}
                                         </td>
                                     </tr>
                                     @include('sweetalert::alert')
@@ -128,7 +104,7 @@
                 )
                 setTimeout(() => {
                     form.submit();
-                }, 2000);
+                }, 100);
             }
           });
       });

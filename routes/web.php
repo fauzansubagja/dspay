@@ -35,7 +35,9 @@ Route::get('/dashboard', [App\Http\Controllers\HomeController::class, 'index'])-
 Route::resource('/management/user', UserController::class);
 
 Route::resource('/management/kelas', KelasController::class);
+
 Route::resource('/management/periode', PeriodeController::class);
+
 Route::resource('/management/kenaikan', KenaikanController::class);
 Route::resource('/management/kelulusan', KelulusanController::class);
 Route::resource('/pembayaran', PembayaranController::class);

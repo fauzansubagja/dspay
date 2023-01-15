@@ -5,7 +5,6 @@ namespace App\Http\Controllers;
 use App\Models\Kelas;
 use Illuminate\Http\Request;
 use Alert;
-use Hash;
 
 class KelasController extends Controller
 {
@@ -53,7 +52,7 @@ class KelasController extends Controller
                 Alert::error('Terjadi Kesalahan', 'Data Gagal Di Tambahkan!');
             endif;
         endif;
-        return redirect('/management/kelas')->with('success', 'Data Berhasil Di Tambahkan!');
+        return redirect('/management/kelas');
     }
 
     /**
@@ -79,8 +78,6 @@ class KelasController extends Controller
         return view('admin.management.kelas.edit', [
             'kelas' => $kelas
         ]);
-        // $kelas = Kelas::all();
-        // return view('admin.management.kelas.edit', compact('kelas'));
     }
 
     /**
@@ -106,7 +103,7 @@ class KelasController extends Controller
                 Alert::error('Terjadi Kesalahan', 'Data Gagal Di Ubah!');
             endif;
         endif;
-        return redirect('/management/kelas')->with('success', 'Data berhasil di update.');
+        return redirect('/management/kelas');
     }
 
     /**
