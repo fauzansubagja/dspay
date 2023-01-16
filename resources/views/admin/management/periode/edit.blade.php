@@ -20,13 +20,14 @@
                         <h4 class="card-title">Tambah Tahun Ajaran</h4>
                     </div>
                     <div class="card-body">
-                        <form action="{{ route('periode.store') }}" method="POST">
+                        <form action="/management/periode/{{ $periode->id_periode }}" method="POST">
                             @csrf
+                            @method('PUT')
                             <div class="form-group row">
                                 <label class="col-lg-3 col-form-label">Periode</label>
                                 <div class="col-lg-9">
                                     <input type="text" class="form-control @error('periode') is-invalid @enderror"
-                                        name="periode">
+                                        name="periode" value="{{ $periode->periode }}">
                                     @error('periode')
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>

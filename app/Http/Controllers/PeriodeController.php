@@ -73,7 +73,7 @@ class PeriodeController extends Controller
      * @param  \App\Models\Periode  $periode
      * @return \Illuminate\Http\Response
      */
-    public function edit(Periode $periode, $id_periode)
+    public function edit($id_periode)
     {
         $periode = Periode::find($id_periode);
         return view('admin.management.periode.edit', [
@@ -88,9 +88,25 @@ class PeriodeController extends Controller
      * @param  \App\Models\Periode  $periode
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Periode $periode)
+    public function update(Request $request, $id_periode)
     {
-        //
+        $validateData = $request->validate([
+            'periode' => 'required',
+            'status' => 'required',
+        ]);
+
+        if ($validateData) :
+            $update = Periode::findOrFail($id_periode)->update([
+                'periode' => $request->periode,
+                'status' => $request->status
+            ]);
+            if ($update) :
+                Alert::success('Berhasil', 'Data Berhasil Di Ubah!');
+            else :
+                Alert::error('Terjadi Kesalahan', 'Data Gagal Di Ubah!');
+            endif;
+        endif;
+        return redirect('/management/periode');
     }
 
     /**
@@ -99,8 +115,9 @@ class PeriodeController extends Controller
      * @param  \App\Models\Periode  $periode
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Periode $periode)
+    public function destroy($id_periode)
     {
-        //
+        Periode::find($id_periode)->delete();
+        return back();
     }
 }

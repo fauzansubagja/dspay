@@ -84,4 +84,39 @@
         </div>
     </div>
 </div>
+{{-- Sweet Alert --}}
+<script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+
+<script type="text/javascript">
+    $(document).on('click', '.show_confirm', function(event) {
+          var form =  $(this).closest("form");
+          var name = $(this).data("name");
+          event.preventDefault();
+          Swal.fire({
+            title: 'PERINGATAN!',
+            text: 'Yakin ingin menghapus data periode?',
+            icon: 'warning',
+            showCancelButton:true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Yakin',
+            cancelButtonText: 'Batal',
+        })
+          .then((result) => {
+            if (result.isConfirmed) {
+                Swal.fire(
+                    'Hapus!',
+                    'Data Berhasil di hapus',
+                    'success'
+                )
+                setTimeout(() => {
+                    form.submit();
+                }, 100);
+            }
+          });
+      });
+  
+</script>
 @endsection
