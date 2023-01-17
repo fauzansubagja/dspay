@@ -17,7 +17,7 @@
             <div class="col-md-8">
                 <div class="card">
                     <div class="card-header">
-                        <h4 class="card-title">Solid Rounded</h4>
+                        <h4 class="card-title">Tambah Data Siswa</h4>
                     </div>
                     <div class="card-body">
                         <ul class="nav nav-tabs nav-tabs-solid nav-tabs-rounded">
@@ -132,12 +132,8 @@
                                             <div class="card-body">
                                                 <form action="#">
                                                     <div class="form-group">
-                                                        <label>Nama Ibu Kandung</label>
+                                                        <label>Nama Orang Tua</label>
                                                         <input type="text" class="form-control" placeholder="Nama Ibu">
-                                                    </div>
-                                                    <div class="form-group">
-                                                        <label>Nama Ayah Kandung</label>
-                                                        <input type="text" class="form-control" placeholder="Nama Ayah">
                                                     </div>
                                                     <div class="form-group">
                                                         <label>No. Handphone Orang Tua</label>
