@@ -28,6 +28,9 @@ use App\Http\Controllers\Backend\UserController;
 Route::get('/', function () {
     return view('welcome');
 });
+// Route::get('/pembayaran', function () {
+//     return view('admin.pembayaran.index');
+// });
 
 Auth::routes();
 Route::get('/dashboard', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
@@ -37,10 +40,12 @@ Route::resource('/management/user', UserController::class);
 Route::resource('/management/kelas', KelasController::class);
 
 Route::resource('/management/periode', PeriodeController::class);
+Route::resource('/admin/pembayaran', PembayaranController::class);
+
+// Route::resource('/admin/pembayaran', PembayaranController::class);
 
 Route::resource('/management/kenaikan', KenaikanController::class);
 Route::resource('/management/kelulusan', KelulusanController::class);
-Route::resource('/pembayaran', PembayaranController::class);
 // Route::resource('/kalender', KalenderController::class);
 Route::resource('/management/keuangan', KeuanganController::class);
 // Route::resource('/management/management', ManajamenController::class);
