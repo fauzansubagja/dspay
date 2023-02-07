@@ -48,7 +48,7 @@ class SiswaController extends Controller
      */
     public function create()
     {
-        return view('admin.management.siswa.create', [
+        return view('admin.management.siswa.form', [
             'kelass' => Kelas::all(),
             'prolis' => Proli::all()
         ]);
@@ -64,23 +64,17 @@ class SiswaController extends Controller
     {
         $request->validate($this->rules);
         $input = $request->all();
-
         $data = [
-            'nisn' => $input['nisn'],
+            'nis' => $input['nis'],
             'nama' => $input['nama'],
             'id_kelas' => $input['kelas'],
             'id_proli' => $input['proli'],
         ];
-        if ($request->hasFile('foto_siswa')) {
-            $input['foto_siswa'] = $request->file('foto_siswa')->store('photo-siswa');
-        }
+        // if ($request->hasFile('foto_siswa')) {
+        //     $input['foto_siswa'] = $request->file('foto_siswa')->store('photo-siswa');
+        // }
 
-        $create = Siswa::create([
-            'nisn' => $input['nisn'],
-            'nama' => $input['nama'],
-            'id_kelas' => $input['kelas'],
-            'id_proli' => $input['proli'],
-        ]);
+        $create = Siswa::create($data);
         if ($create) {
             alert::success('Berhasil!', "Siswa Berhasil Ditambahkan");
         } else {
@@ -108,7 +102,11 @@ class SiswaController extends Controller
      */
     public function edit(Siswa $siswa)
     {
-        return view('admin.management.siswa.edit');
+        return view('admin.management.siswa.form', [
+            'siswa' => $siswa,
+            'kelass' => Kelas::all(),
+            'prolis' => Proli::all()
+        ]);
     }
 
     /**
@@ -121,19 +119,31 @@ class SiswaController extends Controller
     public function update(Request $request, Siswa $siswa)
     {
         $request->validate($this->rules);
-
         $input = $request->all();
 
-        if ($request->hasFile('foto_siswa')) {
-            if ($request->old_product_image) {
-                Storage::delete($request->old_product_image);
-            }
-            $input['foto_siswa'] = $request->file('foto_siswa')->store('photo-siswa');
+        $data = [
+            'nis' => $input['nis'],
+            'nama' => $input['nama'],
+            'id_kelas' => $input['kelas'],
+            'id_proli' => $input['proli'],
+        ];
+
+        // if ($request->hasFile('foto_siswa')) {
+        //     if ($request->old_product_image) {
+        //         Storage::delete($request->old_product_image);
+        //     }
+        //     $input['foto_siswa'] = $request->file('foto_siswa')->store('photo-siswa');
+        // } else {
+        //     $input['foto_siswa'] = $siswa->foto_siswa;
+        // };
+        $update = $siswa->update($data);
+        // dd($update);
+        if ($update) {
+            alert::success('Berhasil!', "Siswa Berhasil Diubah");
         } else {
-            $input['foto_siswa'] = $siswa->foto_siswa;
-        };
-        $siswa->update($input);
-        return back()->with('success', 'Sukses Mengubah Siswa!');
+            alert::error('Gagal!', "Siswa Gagal Diubah");
+        }
+        return redirect(route('siswa.index'));
     }
 
     /**

@@ -17,20 +17,39 @@
     <link rel="stylesheet" href="{{ asset('css/style.css') }}">
     <link rel='stylesheet' href='https://cdn.jsdelivr.net/npm/sweetalert2@10.10.1/dist/sweetalert2.min.css'>
     <style>
+        /* input nis */
         Chrome, Safari, Edge, Opera
-        input#in-nisn::-webkit-outer-spin-button,
-        input#in-nisn::-webkit-inner-spin-button {
+        input#in-nis::-webkit-outer-spin-button,
+        input#in-nis::-webkit-inner-spin-button {
         -webkit-appearance: none;
         margin: 0;
         }
-        input#in-nisn::-webkit-outer-spin-button,
-        input#in-nisn::-webkit-inner-spin-button {
+        input#in-nis::-webkit-outer-spin-button,
+        input#in-nis::-webkit-inner-spin-button {
         -webkit-appearance: none;
         margin: 0;
         }
 
         /* Firefox */
-        input#in-nisn[type=number] {
+        input#in-no[type=number] {
+        -moz-appearance: textfield;
+        }
+
+        /* input no_hp */
+        Chrome, Safari, Edge, Opera
+        input#in-no::-webkit-outer-spin-button,
+        input#in-no::-webkit-inner-spin-button {
+        -webkit-appearance: none;
+        margin: 0;
+        }
+        input#in-no::-webkit-outer-spin-button,
+        input#in-no::-webkit-inner-spin-button {
+        -webkit-appearance: none;
+        margin: 0;
+        }
+
+        /* Firefox */
+        input#in-no[type=number] {
         -moz-appearance: textfield;
         }
     </style>

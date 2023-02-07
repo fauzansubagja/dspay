@@ -68,18 +68,16 @@
                                     @php $no = 1; @endphp
                                     @foreach ($siswa as $data)
                                     <tr>
-                                        <td>{{ $i }}</td>
-                                        <td>{{ $siswa->nisn }}</td>
-                                        <td>{{ $siswa->nama }}</td>
-                                        <td>{{ $siswa->kelas->kelas }} </td>
-                                        <td>{{ $siswa->proli }}</td>
-                                        <td>{{ $siswa->alamat }}</td>
-                                        <td>{{ $siswa->no_telp }}</td>
-                                        <td>{{ $siswa->status }}</td>
+                                        {{-- {{ dd($data) }} --}}
+                                        <td>{{ $no++ }}</td>
+                                        <td>{{ $data->nis }}</td>
+                                        <td>{{ $data->nama }}</td>
+                                        <td>{{ $data->kelas->kelas }} </td>
+                                        <td>{{ $data->proli->proli }}</td>
                                         <td>
-                                            <a href="" class="btn btn-warning"><i class="fas fa-edit"></i></a>
+                                            <a href="{{ route('siswa.edit', $data->id_siswa) }}" class="btn btn-warning"><i class="fas fa-edit"></i></a>
                                             <a href="" class="btn btn-secondary"><i class="fas fa-eye"></i></a>
-                                            <form action="" method="post" class="d-inline">
+                                            <form action="{{ route('siswa.destroy', $data->id_siswa) }}" method="post" class="d-inline">
                                                 @csrf
                                                 @method('DELETE')
                                                 <button type="submit" class="btn btn-danger"><i
