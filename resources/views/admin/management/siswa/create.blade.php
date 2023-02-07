@@ -125,51 +125,8 @@
                                                         <label>NIS</label>
                                                         <input type="text" class="form-control" placeholder="NIS Siswa">
                                                     </div>
-                                                    <div class="form-group">
-                                                        <label>Password</label>
-                                                        <input type="text" class="form-control" placeholder="Password">
-                                                    </div>
-                                                    <div class="form-group">
-                                                        <label>Konfirmasi Password</label>
-                                                        <input type="email" class="form-control"
-                                                            placeholder="Konfirmasi Password">
-                                                    </div>
-                                                    <div class="form-group">
-                                                        <label>NISN</label>
-                                                        <input type="text" class="form-control"
-                                                            placeholder="NISN Siswa">
-                                                    </div>
-                                                    <div class="form-group">
-                                                        <label>Kelas</label>
-                                                        <input type="password" class="form-control">
-                                                    </div>
-                                                </form>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="tab-pane" id="solid-rounded-tab3">
-                                <div class="row">
-                                    <div class="col-md-12">
-                                        <div class="card">
-                                            <div class="card-body">
-                                                <form action="#">
-                                                    <div class="form-group">
-                                                        <label>Nama Ibu Kandung</label>
-                                                        <input type="text" class="form-control" placeholder="Nama Ibu">
-                                                    </div>
-                                                    <div class="form-group">
-                                                        <label>Nama Ayah Kandung</label>
-                                                        <input type="text" class="form-control" placeholder="Nama Ayah">
-                                                    </div>
-                                                    <div class="form-group">
-                                                        <label>No. Handphone Orang Tua</label>
-                                                        <input type="email" class="form-control"
-                                                            placeholder="No Handphone Orang Tua">
-                                                    </div>
-                                                </form>
-                                            </div>
+                                                </div>
+                                            </form>
                                         </div>
                                     </div>
                                 </div>
@@ -183,16 +140,6 @@
                     <div class="card-header">
                         {{-- <div class="form-group">
                             <label class="d-block">Status</label>
-                            <div class="form-check form-check-inline">
-                                <input class="form-check-input" type="radio" name="gender" id="gender_male"
-                                    value="option1">
-                                <label class="form-check-label" for="gender_male">Aktif</label>
-                            </div>
-                            <div class="form-check form-check-inline">
-                                <input class="form-check-input" type="radio" name="gender" id="gender_female"
-                                    value="option2">
-                                <label class="form-check-label" for="gender_female">Tidak Aktif</label>
-                            </div>
                         </div>
                         <div class="form-group">
                             <label>Foto</label>

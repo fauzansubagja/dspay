@@ -23,12 +23,22 @@ class SiswaController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        return view('admin.management.siswa.index', [
-            'siswas' => Siswa::all(),
-            'i' => 1
-        ]);
+        $siswa = Siswa::query();
+        // filter by nama
+        $siswa->when($request->nama, function ($query) use ($request) {
+            return $query->where('nama', 'like', '%' . $request->nama . '%');
+        });
+        // filter by kelas
+        $siswa->when($request->kelas, function ($query) use ($request) {
+            return $query->where('kelas', 'like', '%' . $request->kelas . '%');
+        });
+        return view('admin.management.siswa.index', ['siswa' => $siswa->paginate(10)]);
+        // return view('admin.management.siswa.index', [
+        //     'siswas' => Siswa::all(),
+        //     'i' => 1
+        // ]);
     }
 
     /**

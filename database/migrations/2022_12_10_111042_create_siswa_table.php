@@ -26,6 +26,10 @@ class CreateSiswaTable extends Migration
             $table->string('nama_wali')->nullable();
             $table->string('telp_wali')->nullable();
             $table->string('pekerjaan_wali')->nullable();
+            $table->id('nis');
+            $table->string('nama');
+            $table->string('kelas');
+            $table->string('jurusan');
             $table->timestamps();
             $table->softDeletes();
         });

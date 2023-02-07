@@ -37,10 +37,16 @@
                             <div class="form-group row">
                                 <label class="col-lg-3 col-form-label">Status</label>
                                 <div class="col-lg-9">
-                                    <select class="form-control" id="sel1" name="status">
-                                        <option>Aktif</option>
-                                        <option>Tidak Aktif</option>
-                                    </select>
+                                    <div class="form-check form-check-inline">
+                                        <input class="form-check-input" type="radio" name="status" value="Aktifx" id="Aktif"
+                                            value="option1">
+                                        <label class="form-check-label" for="Aktif">Aktif</label>
+                                    </div>
+                                    <div class="form-check form-check-inline">
+                                        <input class="form-check-input" type="radio" name="status" value="Tidak Aktif" id="Tidak Aktif"
+                                            value="option2">
+                                        <label class="form-check-label" for="Tidak Aktif">Tidak Aktif</label>
+                                    </div>
                                 </div>
                             </div>
                             <p class="text-muted">*) Kolom Wajib Diisi.</p>
