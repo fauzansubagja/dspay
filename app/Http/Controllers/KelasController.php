@@ -39,12 +39,12 @@ class KelasController extends Controller
     public function store(Request $request)
     {
         $validateData = $request->validate([
-            'nama_kelas' => 'required',
+            'kelas' => 'required',
         ]);
 
         if ($validateData) :
             $store = Kelas::create([
-                'nama_kelas' => $request->nama_kelas
+                'kelas' => $request->nama_kelas
             ]);
             if ($store) :
                 Alert::success('Berhasil', 'Data Berhasil Di Tambahkan!');
@@ -90,12 +90,12 @@ class KelasController extends Controller
     public function update(Request $request, $id_kelas)
     {
         $validateData = $request->validate([
-            'nama_kelas' => 'required',
+            'kelas' => 'required',
         ]);
 
         if ($validateData) :
             $update = Kelas::findOrFail($id_kelas)->update([
-                'nama_kelas' => $request->nama_kelas
+                'kelas' => $request->nama_kelas
             ]);
             if ($update) :
                 Alert::success('Berhasil', 'Data Berhasil Di Ubah!');

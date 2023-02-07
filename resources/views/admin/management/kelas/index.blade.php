@@ -49,7 +49,7 @@
                                     @foreach ($kelas as $data)
                                     <tr>
                                         <td>{{ $no++ }}</td>
-                                        <td>{{ $data->nama_kelas}}</td>
+                                        <td>{{ $data->kelas}}</td>
                                         <td>{{ $data->id_kelas}}</td>
                                         <td>
                                             <a href="/management/kelas/{{ $data->id_kelas }}/edit"

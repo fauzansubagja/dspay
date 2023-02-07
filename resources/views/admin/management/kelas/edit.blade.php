@@ -22,10 +22,10 @@
                             @method('PUT')
                             <div class="form-group">
                                 <label>Nama Kelas</label>
-                                <input type="text" class="form-control" name="nama_kelas"
-                                    value="{{ $kelas->nama_kelas }}">
+                                <input type="text" class="form-control" name="kelas"
+                                    value="{{ $kelas->kelas }}">
                                 {{-- <input type="text" class="form-control" placeholder="kelas" name="kelas"
-                                    value="{{ $kelas->nama_kelas }}"> --}}
+                                    value="{{ $kelas->kelas }}"> --}}
                             </div>
                     </div>
                 </div>

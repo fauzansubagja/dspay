@@ -2,9 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Kelas;
+use App\Models\Proli;
 use App\Models\Siswa;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
+use Alert;
 
 class SiswaController extends Controller
 {
@@ -35,7 +38,10 @@ class SiswaController extends Controller
      */
     public function create()
     {
-        return view('admin.management.siswa.create');
+        return view('admin.management.siswa.create', [
+            'kelass' => Kelas::all(),
+            'prolis' => Proli::all()
+        ]);
     }
 
     /**
@@ -49,11 +55,28 @@ class SiswaController extends Controller
         $request->validate($this->rules);
         $input = $request->all();
 
+        $data = [
+            'nisn' => $input['nisn'],
+            'nama' => $input['nama'],
+            'id_kelas' => $input['kelas'],
+            'id_proli' => $input['proli'],
+        ];
         if ($request->hasFile('foto_siswa')) {
             $input['foto_siswa'] = $request->file('foto_siswa')->store('photo-siswa');
         }
-        Siswa::create($input);
-        return back()->with('success', 'Sukses Menambah Siswa!');
+
+        $create = Siswa::create([
+            'nisn' => $input['nisn'],
+            'nama' => $input['nama'],
+            'id_kelas' => $input['kelas'],
+            'id_proli' => $input['proli'],
+        ]);
+        if ($create) {
+            alert::success('Berhasil!', "Siswa Berhasil Ditambahkan");
+        } else {
+            alert::error('Gagal!', "Siswa Gagal Ditambahkan");
+        }
+        return redirect(route('siswa.index'));
     }
 
     /**

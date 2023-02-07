@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateKelasTable extends Migration
+class CreateProlisTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,11 +13,10 @@ class CreateKelasTable extends Migration
      */
     public function up()
     {
-        Schema::create('kelas', function (Blueprint $table) {
-            $table->id('id_kelas');
-            $table->string('kelas');
+        Schema::create('prolis', function (Blueprint $table) {
+            $table->id('id_proli');
+            $table->string('proli');
             $table->timestamps();
-            $table->softDeletes();
         });
     }
 
@@ -28,6 +27,6 @@ class CreateKelasTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('kelas');
+        Schema::dropIfExists('prolis');
     }
 }

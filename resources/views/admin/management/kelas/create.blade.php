@@ -25,9 +25,9 @@
                             <div class="form-group row">
                                 <label class="col-lg-3 col-form-label">Nama Kelas</label>
                                 <div class="col-lg-9">
-                                    <input type="text" class="form-control @error('nama_kelas') is-invalid @enderror"
-                                        name="nama_kelas">
-                                    @error('nama_kelas')
+                                    <input type="text" class="form-control @error('kelas') is-invalid @enderror"
+                                        name="kelas">
+                                    @error('kelas')
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
                                     </span>

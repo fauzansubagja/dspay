@@ -16,6 +16,24 @@
     <link rel="stylesheet" href="{{ asset('plugins/fullcalendar/fullcalendar.min.css') }}">
     <link rel="stylesheet" href="{{ asset('css/style.css') }}">
     <link rel='stylesheet' href='https://cdn.jsdelivr.net/npm/sweetalert2@10.10.1/dist/sweetalert2.min.css'>
+    <style>
+        Chrome, Safari, Edge, Opera
+        input#in-nisn::-webkit-outer-spin-button,
+        input#in-nisn::-webkit-inner-spin-button {
+        -webkit-appearance: none;
+        margin: 0;
+        }
+        input#in-nisn::-webkit-outer-spin-button,
+        input#in-nisn::-webkit-inner-spin-button {
+        -webkit-appearance: none;
+        margin: 0;
+        }
+
+        /* Firefox */
+        input#in-nisn[type=number] {
+        -moz-appearance: textfield;
+        }
+    </style>
 </head>
 
 <body>
@@ -266,6 +284,7 @@
             var chart = new ApexCharts(document.querySelector("#chart"), options);
             chart.render();
     </script>
+    @stack('script-page')
 
     <script>
         Morris.Donut({

@@ -56,8 +56,9 @@
                                     <tr>
                                         <td>{{ $i }}</td>
                                         <td>{{ $siswa->nisn }}</td>
-                                        <td>{{ $siswa->nama_siswa }}</td>
-                                        <td>{{ $siswa->kelas }} {{ $siswa->jurusan }}</td>
+                                        <td>{{ $siswa->nama }}</td>
+                                        <td>{{ $siswa->kelas->kelas }} </td>
+                                        <td>{{ $siswa->proli }}</td>
                                         <td>{{ $siswa->alamat }}</td>
                                         <td>{{ $siswa->no_telp }}</td>
                                         <td>{{ $siswa->status }}</td>
@@ -87,4 +88,5 @@
         </div>
     </div>
 </div>
+<script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 @endsection
