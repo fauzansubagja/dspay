@@ -14,16 +14,10 @@ class CreateSiswaTable extends Migration
     public function up()
     {
         Schema::create('siswa', function (Blueprint $table) {
-            $table->id('nisn');
+            $table->id('nis');
             $table->string('nama');
-            $table->string('tempat_lahir')->nullable();
-            // $table->foreign('id_kelas');
-            $table->string('no_hp');
-            $table->date('tanggal_lahir')->nullable();
-            $table->string('jenis_kelamin');
-            $table->string('alamat')->nullable();
-            $table->string('nama_wali')->nullable();
-            $table->string('telp_wali')->nullable();
+            $table->string('kelas');
+            $table->string('jurusan');
             $table->timestamps();
             $table->softDeletes();
         });

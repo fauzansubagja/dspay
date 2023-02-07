@@ -24,20 +24,35 @@
                                 Upload Siswa</a>
                             <a href="add-booking.html" class="btn btn-warning"><i class="fas fa-print"></i>
                                 Cetak</a>
-                            <form action="" class="form-horizontal float-right" method="get" accept-charset="utf-8">
-                                <div class="input-group input-group" style="width: 260px;">
-                                    <input type="text" id="field" autofocus name="n" placeholder="NIS Siswa"
-                                        class="form-control" required>
-                                    <div class="input-group-btn">
-                                        <button type="submit" class="btn btn-default veiwbutton"><i
-                                                class="fa fa-search"></i></button>
-                                    </div>
-                                </div>
-                            </form>
                         </h4>
                     </div>
                     <div class="card-body">
                         <div class="table-responsive">
+                            <form action="/management/siswa" method="get">
+                                @csrf
+                                <div class="row mb-3">
+                                    <div class="col-sm-3">
+                                        <label for="" class="form-label">Nama</label>
+                                        <input name="nama" type="text" class="form-control" placeholder="Nama"
+                                            value="{{isset($_GET['nama']) ? $_GET['nama'] : ''}}">
+                                    </div>
+                                    <div class="col-sm-3">
+                                        <label for="" class="form-label">Kelas</label>
+                                        <input name="kelas" type="text" class="form-control" placeholder="Kelas"
+                                            value="{{isset($_GET['kelas']) ? $_GET['kelas'] : ''}}">
+                                    </div>
+                                    <div class="col-sm-3 form-group">
+                                        <label>Jurusan</label>
+                                        <select class="form-control" id="sel1" name="role">
+                                            <option>User</option>
+                                            <option>Administrator</option>
+                                        </select>
+                                    </div>
+                                    <div class="col-sm-3">
+                                        <button type="submit" class="btn btn-primary mt-4">Search</button>
+                                    </div>
+                                </div>
+                            </form>
                             <table class="table table-nowrap mb-0">
                                 <thead>
                                     <tr>
@@ -45,27 +60,24 @@
                                         <th>NIS</th>
                                         <th>Nama</th>
                                         <th>Kelas</th>
-                                        <th>Alamat</th>
-                                        <th>No Telp</th>
-                                        <th>Status</th>
+                                        <th>Jurusan</th>
                                         <th>Aksi</th>
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    @foreach ($siswas as $siswa)
+                                    @php $no = 1; @endphp
+                                    @foreach ($siswa as $data)
                                     <tr>
-                                        <td>{{ $i }}</td>
-                                        <td>{{ $siswa->nisn }}</td>
-                                        <td>{{ $siswa->nama_siswa }}</td>
-                                        <td>{{ $siswa->kelas }} {{ $siswa->jurusan }}</td>
-                                        <td>{{ $siswa->alamat }}</td>
-                                        <td>{{ $siswa->no_telp }}</td>
-                                        <td>{{ $siswa->status }}</td>
+                                        <td>{{ $no++ }}</td>
+                                        <td>{{ $data->nis }}</td>
+                                        <td>{{ $data->nama }}</td>
+                                        <td>{{ $data->kelas }}</td>
+                                        <td>{{ $data->jurusan }}</td>
+                                        <td>{{ $data->status }}</td>
                                         <td>
                                             <a href="" class="btn btn-warning"><i class="fas fa-edit"></i></a>
                                             <a href="" class="btn btn-secondary"><i class="fas fa-eye"></i></a>
-                                            <form action="{{ url('management/siswa', $siswa->id_siswa) }}" method="post"
-                                                class="d-inline">
+                                            <form action="" method="post" class="d-inline">
                                                 @csrf
                                                 @method('DELETE')
                                                 <button type="submit" class="btn btn-danger"><i
@@ -73,9 +85,6 @@
                                                 </button>
                                             </form>
                                         </td>
-                                        @php
-                                        $i++
-                                        @endphp
                                     </tr>
                                     @endforeach
                                 </tbody>

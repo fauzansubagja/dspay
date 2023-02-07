@@ -42,8 +42,6 @@ Route::resource('/management/kelas', KelasController::class);
 Route::resource('/management/periode', PeriodeController::class);
 Route::resource('/admin/pembayaran', PembayaranController::class);
 
-// Route::resource('/admin/pembayaran', PembayaranController::class);
-
 Route::resource('/management/kenaikan', KenaikanController::class);
 Route::resource('/management/kelulusan', KelulusanController::class);
 // Route::resource('/kalender', KalenderController::class);
