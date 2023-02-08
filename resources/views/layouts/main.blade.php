@@ -197,10 +197,6 @@
                                 <li><a class="{{ (request()->is('management/siswa*')) ? 'active' : '' }}"
                                         href="/management/siswa">
                                         Siswa </a></li>
-                                <li><a class="{{ (request()->is('management/kelulusan*')) ? 'active' : '' }}"
-                                        href="/management/kelulusan"> Kelulusan </a></li>
-                                <li><a class="{{ (request()->is('management/kenaikan*')) ? 'active' : '' }}"
-                                        href="/management/kenaikan"> Kenaikan Kelas </a></li>
                             </ul>
                         </li>
                         <li class="{{ (request()->is('kalender*')) ? 'active' : '' }}"> <a href="/kalender"><i

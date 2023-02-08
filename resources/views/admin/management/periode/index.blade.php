@@ -35,20 +35,19 @@
                         <div class="table-responsive">
                             <table class="table table-nowrap mb-0">
                                 <thead>
-                                    <tr>
+                                    <tr class="text-center">
                                         <th>No.</th>
                                         <th>Tahun Ajaran</th>
-                                        <th>Status</th>
                                         <th>Aksi</th>
                                     </tr>
                                 </thead>
                                 <tbody>
                                     @php $no = 1; @endphp
                                     @foreach ($periode as $data)
-                                    <tr>
+                                    <tr class="text-center">
                                         <td>{{ $no++ }}</td>
                                         <td>{{ $data->periode}}</td>
-                                        @if($data->status =='Aktif')
+                                        {{-- @if($data->status =='Aktif')
                                         <td class="status"><span class="badge bg-success">{{ $data->status }}</span>
                                         </td>
                                         @endif
@@ -58,7 +57,7 @@
                                         @endif
                                         @if($data->status ==null)
                                         <td class="status"><span class="badge bg-danger">{{ $data->status }}</span></td>
-                                        @endif
+                                        @endif --}}
 
                                         <td>
                                             <a href="/management/periode/{{ $data->id_periode }}/edit"

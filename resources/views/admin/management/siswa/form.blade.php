@@ -21,8 +21,8 @@
                     </div> --}}
                     <div class="card-body">
                         <ul class="nav nav-tabs nav-tabs-solid nav-tabs-rounded">
-                            <li class="nav-item"><a class="nav-link active" href="#solid-rounded-tab1"
-                                    data-toggle="tab">Data Pribadi</a></li>
+                            {{-- <li class="nav-item"><a class="nav-link active" href="#solid-rounded-tab1"
+                                    data-toggle="tab">Data Pribadi</a></li> --}}
                             {{-- <li class="nav-item"><a class="nav-link" href="#solid-rounded-tab2" data-toggle="tab">Data
                                     Sekolah</a></li>
                             <li class="nav-item"><a class="nav-link" href="#solid-rounded-tab3" data-toggle="tab">Data
@@ -40,16 +40,11 @@
                                                         @method('PUT')
                                                     @endif
                                                     <div class="row">
-                                                        <div class="col-md-10">
+                                                        <div class="col-md-6">
                                                             <div class="form-group">
                                                                 <label>NIS</label>
                                                                 <input type="number" id="in-nis" class="form-control"
                                                                     placeholder="NIS" name="nis" value="{{old('nis', @$siswa ? $siswa->nis : '')}}">
-                                                            </div>
-                                                            <div class="form-group">
-                                                                <label>Nama Lengkap</label>
-                                                                <input type="text" class="form-control"
-                                                                    placeholder="Nama Lengkap" name="nama" value="{{old('nis', @$siswa ? $siswa->nama : '')}}">
                                                             </div>
                                                             <div class="form-group">
                                                                 <label>Kelas</label>
@@ -60,56 +55,22 @@
                                                                     @endforeach
                                                                 </select>
                                                             </div>
+                                                        </div>
+                                                        <div class="col-md-6">
                                                             <div class="form-group">
-                                                                <label>Proli</label>
+                                                                <label>Nama Lengkap</label>
+                                                                <input type="text" class="form-control"
+                                                                    placeholder="Nama Lengkap" name="nama" value="{{old('nis', @$siswa ? $siswa->nama : '')}}">
+                                                            </div>
+                                                            <div class="form-group">
+                                                                <label>Jurusan</label>
                                                                 <select id="sel-pro" class="form-control" name="proli">
-                                                                    <option id="opt-pro">Proli</option>
+                                                                    <option id="opt-pro">Jurusan</option>
                                                                     @foreach ($prolis as $proli)
                                                                         <option value="{{$proli->id_proli}}" {{@$siswa && $siswa->proli->id_proli == $proli->id_proli ? 'selected' : '' }}>{{$proli->proli}}</option>
                                                                     @endforeach
                                                                 </select>
                                                             </div>
-                                                            {{-- <div class="form-group">
-                                                                <label class="d-block">Jenis Kelamin</label>
-                                                                <div class="form-check form-check-inline">
-                                                                    <input class="form-check-input" type="radio"
-                                                                        name="gender" id="laki-laki" value="option1">
-                                                                    <label class="form-check-label"
-                                                                        for="laki-laki">Laki-Laki</label>
-                                                                </div>
-                                                                <div class="form-check form-check-inline">
-                                                                    <input class="form-check-input" type="radio"
-                                                                        name="gender" id="perempuan" value="option2">
-                                                                    <label class="form-check-label"
-                                                                        for="perempuan">Perempuan</label>
-                                                                </div>
-                                                            </div>
-                                                            <div class="form-group">
-                                                                <label>Tempat Lahir</label>
-                                                                <input type="text" class="form-control"
-                                                                    placeholder="Tempat Lahir">
-                                                            </div> --}}
-                                                            {{-- <div class="form-group">
-                                                                <label>Tanggal Lahir</label>
-                                                                <input type="date" class="form-control">
-                                                            </div> --}}
-                                                        </div>
-                                                        <div class="col-md-6">
-                                                            {{-- <div class="form-group">
-                                                                <label>Hobi</label>
-                                                                <input type="text" class="form-control"
-                                                                    placeholder="Hobi">
-                                                            </div>
-                                                            <div class="form-group">
-                                                                <label>No. Handphone</label>
-                                                                <input type="text" class="form-control"
-                                                                    placeholder="No Handphone">
-                                                            </div>
-                                                            <div class="form-group">
-                                                                <label>Alamat</label>
-                                                                <input type="text" class="form-control"
-                                                                    placeholder="Alamat Tempat Tinggal">
-                                                            </div> --}}
                                                         </div>
                                                     </div>
                                                 </form>

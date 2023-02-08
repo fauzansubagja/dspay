@@ -16,6 +16,7 @@ class DatabaseSeeder extends Seeder
         $this->call(AdminUserSeeder::class);
         $this->call(ProliSeeder::class);
         $this->call(KelasSeeder::class);
+        $this->call(PeriodeSeeder::class);
         // \App\Models\User::factory(10)->create();
     }
 }

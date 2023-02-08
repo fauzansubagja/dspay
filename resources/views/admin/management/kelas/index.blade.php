@@ -37,7 +37,7 @@
                         <div class="table-responsive">
                             <table class="table table-nowrap mb-0">
                                 <thead>
-                                    <tr>
+                                    <tr class="text-center">
                                         <th>No.</th>
                                         <th>Nama Kelas</th>
                                         <th>ID Kelas</th>
@@ -47,7 +47,7 @@
                                 <tbody>
                                     @php $no = 1; @endphp
                                     @foreach ($kelas as $data)
-                                    <tr>
+                                    <tr class="text-center">
                                         <td>{{ $no++ }}</td>
                                         <td>{{ $data->kelas}}</td>
                                         <td>{{ $data->id_kelas}}</td>

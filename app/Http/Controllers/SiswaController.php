@@ -32,9 +32,13 @@ class SiswaController extends Controller
         });
         // filter by kelas
         $siswa->when($request->kelas, function ($query) use ($request) {
-            return $query->where('kelas', 'like', '%' . $request->kelas . '%');
+            return $query->where('id_kelas', 'like', '%' . $request->kelas . '%');
         });
-        return view('admin.management.siswa.index', ['siswa' => $siswa->paginate(10)]);
+        return view('admin.management.siswa.index', [
+            'siswa' => $siswa->paginate(10),
+            'kelass' => Kelas::all(),
+            'prolis' => Proli::all(),
+    ]);
         // return view('admin.management.siswa.index', [
         //     'siswas' => Siswa::all(),
         //     'i' => 1
