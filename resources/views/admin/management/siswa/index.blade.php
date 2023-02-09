@@ -41,7 +41,7 @@
                                         <select id="sel-kel" class="form-control" name="kelas">
                                             <option id="opt-kel" value="">Kelas</option>
                                             @foreach ($kelass as $kelas)
-                                                <option value="{{$kelas->id_kelas}}">{{$kelas->kelas}}</option>
+                                            <option value="{{$kelas->id_kelas}}">{{$kelas->kelas}}</option>
                                             @endforeach
                                         </select>
                                     </div>
@@ -50,11 +50,11 @@
                                         <select id="sel-pro" class="form-control" name="proli">
                                             <option id="opt-pro">Jurusan</option>
                                             @foreach ($prolis as $proli)
-                                                <option value="{{$proli->id_proli}}">{{$proli->proli}}</option>
+                                            <option value="{{$proli->id_proli}}">{{$proli->proli}}</option>
                                             @endforeach
                                         </select>
                                     </div>
-                                    <div class="col-sm-3">
+                                    <div class="col-sm-3 mt-2">
                                         <button type="submit" class="btn btn-primary mt-4">Search</button>
                                     </div>
                                 </div>
@@ -81,9 +81,11 @@
                                         <td>{{ $data->kelas->kelas }} </td>
                                         <td>{{ $data->proli->proli }}</td>
                                         <td>
-                                            <a href="{{ route('siswa.edit', $data->id_siswa) }}" class="btn btn-warning"><i class="fas fa-edit"></i></a>
+                                            <a href="{{ route('siswa.edit', $data->id_siswa) }}"
+                                                class="btn btn-warning"><i class="fas fa-edit"></i></a>
                                             <a href="" class="btn btn-secondary"><i class="fas fa-eye"></i></a>
-                                            <form action="{{ route('siswa.destroy', $data->id_siswa) }}" method="post" class="d-inline">
+                                            <form action="{{ route('siswa.destroy', $data->id_siswa) }}" method="post"
+                                                class="d-inline">
                                                 @csrf
                                                 @method('DELETE')
                                                 <button type="button" class="btn btn-danger show_confirm"

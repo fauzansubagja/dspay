@@ -16,7 +16,6 @@ class KelasController extends Controller
 
     public function index()
     {
-
         $kelas = Kelas::all();
         return view('admin.management.kelas.index', compact('kelas'));
     }
@@ -45,7 +44,7 @@ class KelasController extends Controller
 
         if ($validateData) :
             $store = Kelas::create([
-                'kelas' => $request->nama_kelas
+                'kelas' => $request->kelas
             ]);
             if ($store) :
                 Alert::success('Berhasil', 'Data Berhasil Di Tambahkan!');
@@ -96,7 +95,7 @@ class KelasController extends Controller
 
         if ($validateData) :
             $update = Kelas::findOrFail($id_kelas)->update([
-                'kelas' => $request->nama_kelas
+                'kelas' => $request->kelas
             ]);
             if ($update) :
                 Alert::success('Berhasil', 'Data Berhasil Di Ubah!');

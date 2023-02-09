@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Proli;
 use Illuminate\Http\Request;
+use Alert;
 
 class ProliController extends Controller
 {
@@ -14,7 +15,8 @@ class ProliController extends Controller
      */
     public function index()
     {
-        //
+        $proli = Proli::all();
+        return view('admin.management.proli.index', compact('proli'));
     }
 
     /**
@@ -24,7 +26,7 @@ class ProliController extends Controller
      */
     public function create()
     {
-        //
+        return view('admin.management.proli.create');
     }
 
     /**
@@ -35,7 +37,21 @@ class ProliController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $validateData = $request->validate([
+            'proli' => 'required',
+        ]);
+
+        if ($validateData) :
+            $store = proli::create([
+                'proli' => $request->proli
+            ]);
+            if ($store) :
+                Alert::success('Berhasil', 'Data Berhasil Di Tambahkan!');
+            else :
+                Alert::error('Terjadi Kesalahan', 'Data Gagal Di Tambahkan!');
+            endif;
+        endif;
+        return redirect('/management/jurusan');
     }
 
     /**
@@ -46,7 +62,6 @@ class ProliController extends Controller
      */
     public function show(Proli $proli)
     {
-        //
     }
 
     /**
@@ -55,9 +70,12 @@ class ProliController extends Controller
      * @param  \App\Models\Proli  $proli
      * @return \Illuminate\Http\Response
      */
-    public function edit(Proli $proli)
+    public function edit(Proli $proli, $id_proli)
     {
-        //
+        $proli = Proli::find($id_proli);
+        return view('admin.management.proli.edit', [
+            'proli' => $proli
+        ]);
     }
 
     /**
@@ -67,9 +85,23 @@ class ProliController extends Controller
      * @param  \App\Models\Proli  $proli
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Proli $proli)
+    public function update(Request $request, Proli $id_proli)
     {
-        //
+        $validateData = $request->validate([
+            'proli' => 'required',
+        ]);
+
+        if ($validateData) :
+            $update = Proli::findOrFail($id_proli)->update([
+                'proli' => $request->proli
+            ]);
+            if ($update) :
+                Alert::success('Berhasil', 'Data Berhasil Di Ubah!');
+            else :
+                Alert::error('Terjadi Kesalahan', 'Data Gagal Di Ubah!');
+            endif;
+        endif;
+        return redirect('/management/jurusan');
     }
 
     /**
@@ -78,8 +110,9 @@ class ProliController extends Controller
      * @param  \App\Models\Proli  $proli
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Proli $proli)
+    public function destroy(Proli $proli, $id_proli)
     {
-        //
+        Proli::where('id_proli', $id_proli)->delete();
+        return back();
     }
 }

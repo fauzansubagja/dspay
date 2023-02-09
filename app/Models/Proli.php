@@ -8,4 +8,8 @@ use Illuminate\Database\Eloquent\Model;
 class Proli extends Model
 {
     use HasFactory;
+
+    protected $primaryKey = 'id_proli';
+
+    protected $guarded = [];
 }

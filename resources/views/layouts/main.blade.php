@@ -18,39 +18,45 @@
     <link rel='stylesheet' href='https://cdn.jsdelivr.net/npm/sweetalert2@10.10.1/dist/sweetalert2.min.css'>
     <style>
         /* input nis */
-        Chrome, Safari, Edge, Opera
-        input#in-nis::-webkit-outer-spin-button,
+        Chrome,
+        Safari,
+        Edge,
+        Opera input#in-nis::-webkit-outer-spin-button,
         input#in-nis::-webkit-inner-spin-button {
-        -webkit-appearance: none;
-        margin: 0;
+            -webkit-appearance: none;
+            margin: 0;
         }
+
         input#in-nis::-webkit-outer-spin-button,
         input#in-nis::-webkit-inner-spin-button {
-        -webkit-appearance: none;
-        margin: 0;
+            -webkit-appearance: none;
+            margin: 0;
         }
 
         /* Firefox */
         input#in-no[type=number] {
-        -moz-appearance: textfield;
+            -moz-appearance: textfield;
         }
 
         /* input no_hp */
-        Chrome, Safari, Edge, Opera
-        input#in-no::-webkit-outer-spin-button,
+        Chrome,
+        Safari,
+        Edge,
+        Opera input#in-no::-webkit-outer-spin-button,
         input#in-no::-webkit-inner-spin-button {
-        -webkit-appearance: none;
-        margin: 0;
+            -webkit-appearance: none;
+            margin: 0;
         }
+
         input#in-no::-webkit-outer-spin-button,
         input#in-no::-webkit-inner-spin-button {
-        -webkit-appearance: none;
-        margin: 0;
+            -webkit-appearance: none;
+            margin: 0;
         }
 
         /* Firefox */
         input#in-no[type=number] {
-        -moz-appearance: textfield;
+            -moz-appearance: textfield;
         }
     </style>
 </head>
@@ -186,8 +192,8 @@
                                     Siswa
                                 </span></a>
                         </li>
-                        <li class="submenu"> <a href="#"><i class="fas fa-user"></i> <span> management Data </span> <span
-                                    class="menu-arrow"></span></a>
+                        <li class="submenu"> <a href="#"><i class="fas fa-user"></i> <span> management Data </span>
+                                <span class="menu-arrow"></span></a>
                             <ul class="submenu_class" style="display: none;">
                                 <li><a class="{{ (request()->is('management/periode*')) ? 'active' : '' }}"
                                         href="/management/periode">Tahun Ajaran </a></li>
@@ -197,6 +203,9 @@
                                 <li><a class="{{ (request()->is('management/siswa*')) ? 'active' : '' }}"
                                         href="/management/siswa">
                                         Siswa </a></li>
+                                <li><a class="{{ (request()->is('management/jurusan*')) ? 'active' : '' }}"
+                                        href="/management/jurusan">
+                                        Jurusan </a></li>
                             </ul>
                         </li>
                         <li class="{{ (request()->is('kalender*')) ? 'active' : '' }}"> <a href="/kalender"><i
