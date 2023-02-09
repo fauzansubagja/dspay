@@ -107,7 +107,6 @@
         </div>
     </div>
 </div>
-@endsection
 
 @push('script-page')
     {{-- Sweet Alert --}}
@@ -158,3 +157,4 @@
 @endpush
 
 
+@endsection

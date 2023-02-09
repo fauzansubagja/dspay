@@ -5,14 +5,15 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\KelasController;
 use App\Http\Controllers\ProliController;
+use App\Http\Controllers\SiswaController;
 use App\Http\Controllers\PeriodeController;
+use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\KenaikanController;
 use App\Http\Controllers\KeuanganController;
 use App\Http\Controllers\KelulusanController;
-use App\Http\Controllers\SiswaController;
-use App\Http\Controllers\PembayaranController;
 // use App\Http\Controllers\KalenderController;
-use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\PembayaranController;
+use App\Http\Controllers\FilterSiswaController;
 use App\Http\Controllers\Backend\UserController;
 
 /*
@@ -48,7 +49,8 @@ Route::middleware('auth')->group(function () {
     Route::resource('/management/keuangan', KeuanganController::class);
     Route::resource('/management/profile', ProfileController::class);
     Route::resource('/management/siswa', SiswaController::class);
-    
+    Route::post('/filter/siswa', [FilterSiswaController::class, 'filter']);
+
     // Route::resource('/kalender', KalenderController::class);
     // Route::resource('/management/management', ManajamenController::class);
     // Route::resource('/management/rekapitulasi', RekapitulasiController::class);  
