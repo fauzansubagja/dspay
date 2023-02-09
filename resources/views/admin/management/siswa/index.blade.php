@@ -27,7 +27,7 @@
                         </h4>
                     </div>
                     <div class="card-body">
-                        <div class="table-responsive">
+                        <div class="table">
                             <form action="/management/siswa" method="get">
                                 @csrf
                                 <div class="row mb-3">
@@ -38,23 +38,23 @@
                                     </div>
                                     <div class="col-sm-3">
                                         <label for="" class="form-label">Kelas</label>
-                                        {{-- <input name="kelas" type="text" class="form-control" placeholder="Kelas"
-                                            value="{{isset($_GET['kelas']) ? $_GET['kelas'] : ''}}"> --}}
                                         <select id="sel-kel" class="form-control" name="kelas">
                                             <option id="opt-kel" value="">Kelas</option>
                                             @foreach ($kelass as $kelas)
-                                                <option value="{{$kelas->id_kelas}}">{{$kelas->kelas}}</option>
+                                            <option value="{{$kelas->id_kelas}}">{{$kelas->kelas}}</option>
                                             @endforeach
                                         </select>
                                     </div>
                                     <div class="col-sm-3 form-group">
                                         <label>Jurusan</label>
-                                        <select class="form-control" id="sel1" name="role">
-                                            <option>User</option>
-                                            <option>Administrator</option>
+                                        <select id="sel-pro" class="form-control" name="proli">
+                                            <option id="opt-pro">Jurusan</option>
+                                            @foreach ($prolis as $proli)
+                                            <option value="{{$proli->id_proli}}">{{$proli->proli}}</option>
+                                            @endforeach
                                         </select>
                                     </div>
-                                    <div class="col-sm-3">
+                                    <div class="col-sm-3 mt-2">
                                         <button type="submit" class="btn btn-primary mt-4">Search</button>
                                     </div>
                                 </div>
@@ -64,7 +64,7 @@
                             </form> --}}
                             <table class="table table-nowrap mb-0">
                                 <thead>
-                                    <tr>
+                                    <tr class="text-center">
                                         <th>No.</th>
                                         <th>NIS</th>
                                         <th>Nama</th>
@@ -76,7 +76,7 @@
                                 <tbody>
                                     @php $no = 1; @endphp
                                     @foreach ($siswa as $data)
-                                    <tr>
+                                    <tr class="text-center">
                                         {{-- {{ dd($data) }} --}}
                                         <td>{{ $no++ }}</td>
                                         <td>{{ $data->nis }}</td>
@@ -84,14 +84,16 @@
                                         <td>{{ $data->kelas->kelas }} </td>
                                         <td>{{ $data->proli->proli }}</td>
                                         <td>
-                                            <a href="{{ route('siswa.edit', $data->id_siswa) }}" class="btn btn-warning"><i class="fas fa-edit"></i></a>
+                                            <a href="{{ route('siswa.edit', $data->id_siswa) }}"
+                                                class="btn btn-warning"><i class="fas fa-edit"></i></a>
                                             <a href="" class="btn btn-secondary"><i class="fas fa-eye"></i></a>
-                                            <form action="{{ route('siswa.destroy', $data->id_siswa) }}" method="post" class="d-inline">
+                                            <form action="{{ route('siswa.destroy', $data->id_siswa) }}" method="post"
+                                                class="d-inline">
                                                 @csrf
                                                 @method('DELETE')
-                                                <button type="submit" class="btn btn-danger"><i
-                                                        class="fas fa-trash-alt"></i>
-                                                </button>
+                                                <button type="button" class="btn btn-danger show_confirm"
+                                                    data-toggle="tooltip" title='Delete'><i
+                                                        class="fas fa-trash-alt"></i></button>
                                             </form>
                                         </td>
                                     </tr>
@@ -105,9 +107,45 @@
         </div>
     </div>
 </div>
-<script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+@endsection
 
 @push('script-page')
+    {{-- Sweet Alert --}}
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+
+    <script type="text/javascript">
+        $(document).on('click', '.show_confirm', function(event) {
+            var form =  $(this).closest("form");
+            var name = $(this).data("name");
+            event.preventDefault();
+            Swal.fire({
+                title: 'PERINGATAN!',
+                text: 'Yakin ingin menghapus data siswa?',
+                icon: 'warning',
+                showCancelButton:true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Yakin',
+                cancelButtonText: 'Batal',
+            })
+            .then((result) => {
+                if (result.isConfirmed) {
+                    Swal.fire(
+                        'Hapus!',
+                        'Data Berhasil di hapus',
+                        'success'
+                    )
+                    setTimeout(() => {
+                        form.submit();
+                    }, 100);
+                }
+            });
+        });
+    
+    </script>
+
     <script>
         // delete option kelas
         $('#sel-kel').on('click', function(){
@@ -119,4 +157,4 @@
     </script>
 @endpush
 
-@endsection
+

@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\KelasController;
+use App\Http\Controllers\ProliController;
 use App\Http\Controllers\PeriodeController;
 use App\Http\Controllers\KenaikanController;
 use App\Http\Controllers\KeuanganController;
@@ -39,6 +40,7 @@ Route::get('/dashboard', [App\Http\Controllers\HomeController::class, 'index'])-
 Route::middleware('auth')->group(function () {
     Route::resource('/management/user', UserController::class);
     Route::resource('/management/kelas', KelasController::class);
+    Route::resource('/management/jurusan', ProliController::class);
     Route::resource('/management/periode', PeriodeController::class);
     Route::resource('/management/kenaikan', KenaikanController::class);
     Route::resource('/management/kelulusan', KelulusanController::class);

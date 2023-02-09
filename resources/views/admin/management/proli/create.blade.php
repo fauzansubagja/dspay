@@ -5,7 +5,7 @@
         <div class="page-header">
             <div class="row">
                 <div class="col-sm-12 mt-5">
-                    <h3 class="page-title mt-3">Tahun Ajaran</h3>
+                    <h3 class="page-title mt-3">Jurusan</h3>
                     <ul class="breadcrumb">
                         <li class="breadcrumb-item active">List</li>
                     </ul>
@@ -17,17 +17,17 @@
             <div class="col-xl-9 d-flex">
                 <div class="card flex-fill">
                     <div class="card-header">
-                        <h4 class="card-title">Tambah Tahun Ajaran</h4>
+                        <h4 class="card-title">Tambah Jurusan</h4>
                     </div>
                     <div class="card-body">
-                        <form action="{{ route('periode.store') }}" method="POST">
+                        <form action="/management/jurusan" method="POST">
                             @csrf
                             <div class="form-group row">
-                                <label class="col-lg-3 col-form-label">Periode</label>
+                                <label class="col-lg-3 col-form-label">Nama Jurusan</label>
                                 <div class="col-lg-9">
-                                    <input type="text" class="form-control @error('periode') is-invalid @enderror"
-                                        name="periode">
-                                    @error('periode')
+                                    <input type="text" class="form-control @error('proli') is-invalid @enderror"
+                                        name="proli">
+                                    @error('proli')
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
                                     </span>
