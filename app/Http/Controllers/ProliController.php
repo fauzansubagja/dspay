@@ -85,17 +85,15 @@ class ProliController extends Controller
      * @param  \App\Models\Proli  $proli
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Proli $id_proli)
+    public function update(Request $request, $id_proli)
     {
         $validateData = $request->validate([
             'proli' => 'required',
         ]);
-
         if ($validateData) :
             $update = Proli::findOrFail($id_proli)->update([
                 'proli' => $request->proli
             ]);
-            dd($update);
             if ($update) :
                 Alert::success('Berhasil', 'Data Berhasil Di Ubah!');
             else :
