@@ -5,7 +5,7 @@
         <div class="page-header">
             <div class="row">
                 <div class="col-sm-12 mt-5">
-                    <h3 class="page-title mt-3">Edit Kelas</h3>
+                    <h3 class="page-title mt-3">Edit Jurusan</h3>
                     <ul class="breadcrumb">
                         {{-- <li class="breadcrumb-item active">List</li> --}}
                     </ul>
@@ -16,14 +16,13 @@
             <div class="col-xl-8 d-flex">
                 <div class="card flex-fill">
                     <div class="card-body">
-                        <form action="/management/kelas/{{ $kelas->id_kelas }}" method="POST"
+                        <form action="/management/jurusan/{{ $proli->id_proli }}" method="POST"
                             enctype="multipart/form-data">
                             @csrf
                             @method('PUT')
                             <div class="form-group">
-                                <label>Nama Kelas</label>
-                                <input type="text" class="form-control" name="kelas"
-                                    value="{{ $kelas->kelas }}">
+                                <label>Nama Jurusan</label>
+                                <input type="text" class="form-control" name="proli" value="{{ $proli->proli }}">
                                 {{-- <input type="text" class="form-control" placeholder="kelas" name="kelas"
                                     value="{{ $kelas->kelas }}"> --}}
                             </div>
