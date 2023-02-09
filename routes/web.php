@@ -46,6 +46,7 @@ Route::middleware('auth')->group(function () {
     Route::resource('/management/keuangan', KeuanganController::class);
     Route::resource('/management/profile', ProfileController::class);
     Route::resource('/management/siswa', SiswaController::class);
+    
     // Route::resource('/kalender', KalenderController::class);
     // Route::resource('/management/management', ManajamenController::class);
     // Route::resource('/management/rekapitulasi', RekapitulasiController::class);  

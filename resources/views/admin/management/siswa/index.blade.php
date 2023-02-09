@@ -38,8 +38,14 @@
                                     </div>
                                     <div class="col-sm-3">
                                         <label for="" class="form-label">Kelas</label>
-                                        <input name="kelas" type="text" class="form-control" placeholder="Kelas"
-                                            value="{{isset($_GET['kelas']) ? $_GET['kelas'] : ''}}">
+                                        {{-- <input name="kelas" type="text" class="form-control" placeholder="Kelas"
+                                            value="{{isset($_GET['kelas']) ? $_GET['kelas'] : ''}}"> --}}
+                                        <select id="sel-kel" class="form-control" name="kelas">
+                                            <option id="opt-kel" value="">Kelas</option>
+                                            @foreach ($kelass as $kelas)
+                                                <option value="{{$kelas->id_kelas}}">{{$kelas->kelas}}</option>
+                                            @endforeach
+                                        </select>
                                     </div>
                                     <div class="col-sm-3 form-group">
                                         <label>Jurusan</label>
@@ -53,6 +59,9 @@
                                     </div>
                                 </div>
                             </form>
+                            {{-- <form action="/management/siswa" method="get">
+                                @csrf
+                            </form> --}}
                             <table class="table table-nowrap mb-0">
                                 <thead>
                                     <tr>
@@ -97,4 +106,17 @@
     </div>
 </div>
 <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+@push('script-page')
+    <script>
+        // delete option kelas
+        $('#sel-kel').on('click', function(){
+            $('#opt-kel').remove()
+        })
+        $('#sel-kel').on('change', function(){
+            $('#opt-kel').remove()
+        })    
+    </script>
+@endpush
+
 @endsection
