@@ -95,6 +95,7 @@ class ProliController extends Controller
             $update = Proli::findOrFail($id_proli)->update([
                 'proli' => $request->proli
             ]);
+            dd($update);
             if ($update) :
                 Alert::success('Berhasil', 'Data Berhasil Di Ubah!');
             else :
