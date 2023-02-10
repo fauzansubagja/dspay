@@ -169,7 +169,7 @@
                                     <input class="form-control" readonly="" required="" type="text" name="d" value="">
                                 </div>
                             </div>
-                            <button class="btn btn-success btn-block" formtarget="_blank" type="submit">Cetak</button>
+                            <button class="btn btn-success btn-block" id="btn-bayar" type="button">Bayar</button>
                         </form>
                     </div>
                 </div>
@@ -234,8 +234,31 @@
                     </div>
                 </div>
             </div>
-            @endsection
-            <script type="text/javascript">
+@endsection
+            
+@push('script-page')
+    <script type="text/javascript">
+        // For example trigger on button clicked, or any time you need
+        var payButton =$('#btn-bayar').on('click', function () {
+            // Trigger snap popup. @TODO: Replace TRANSACTION_TOKEN_HERE with your transaction token
+            window.snap.pay('{{ $midToken }}');
+            // customer will be redirected after completing payment pop-up 
+        });
+  </script>
+@endpush
+
+
+
+
+
+
+
+
+
+
+
+
+            {{-- <script type="text/javascript">
                 function startCalculate(){
 				interval=setInterval("Calculate()",10);
 			}
@@ -311,4 +334,4 @@ $(function(){
 		return false;        
 	});    
 });
-            </script>
+            </script> --}}

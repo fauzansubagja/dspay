@@ -33,8 +33,8 @@
                                 <div class="row mb-3">
                                     <div class="col-sm-3">
                                         <label for="" class="form-label">Nama</label>
-                                        <input name="nama" type="text" class="form-control" placeholder="Nama"
-                                            value="{{isset($_GET['nama']) ? $_GET['nama'] : ''}}">
+                                        <input name="nama" type="text" class="form-control" placeholder="Nama" 
+                                        value="{{isset($_GET['nama']) ? $_GET['nama'] : ''}}">
                                     </div>
                                     <div class="col-sm-3">
                                         <label for="" class="form-label">Kelas</label>
@@ -48,7 +48,7 @@
                                     <div class="col-sm-3 form-group">
                                         <label>Jurusan</label>
                                         <select id="sel-pro" class="form-control" name="proli">
-                                            <option id="opt-pro">Jurusan</option>
+                                            <option id="opt-pro" value="">Jurusan</option>
                                             @foreach ($prolis as $proli)
                                             <option value="{{$proli->id_proli}}">{{$proli->proli}}</option>
                                             @endforeach
@@ -59,9 +59,6 @@
                                     </div>
                                 </div>
                             </form>
-                            {{-- <form action="/management/siswa" method="get">
-                                @csrf
-                            </form> --}}
                             <table class="table table-nowrap mb-0">
                                 <thead>
                                     <tr class="text-center">
@@ -77,7 +74,6 @@
                                     @php $no = 1; @endphp
                                     @foreach ($siswa as $data)
                                     <tr class="text-center">
-                                        {{-- {{ dd($data) }} --}}
                                         <td>{{ $no++ }}</td>
                                         <td>{{ $data->nis }}</td>
                                         <td>{{ $data->nama }}</td>
@@ -92,7 +88,7 @@
                                                 @csrf
                                                 @method('DELETE')
                                                 <button type="button" class="btn btn-danger show_confirm"
-                                                    data-toggle="tooltip" title='Delete'><i
+                                                    data-toggle="tooltip" title="Delete"><i
                                                         class="fas fa-trash-alt"></i></button>
                                             </form>
                                         </td>
@@ -108,6 +104,7 @@
     </div>
 </div>
 
+@endsection
 @push('script-page')
     {{-- Sweet Alert --}}
     <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
@@ -152,9 +149,16 @@
         })
         $('#sel-kel').on('change', function(){
             $('#opt-kel').remove()
-        })    
+        })
+        
+        // delete option proli
+        $('#sel-pro').on('click', function(){
+            $('#opt-pro').remove()
+        })
+        $('#sel-pro').on('change', function(){
+            $('#opt-pro').remove()
+        })
     </script>
 @endpush
 
 
-@endsection

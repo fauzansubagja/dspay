@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use Midtrans\Config;
 use App\Models\Pembayaran;
 use Illuminate\Http\Request;
 
@@ -14,8 +15,35 @@ class PembayaranController extends Controller
      */
     public function index()
     {
+        // Set your Merchant Server Key
+        Config::$serverKey = 'SB-Mid-server-YjmgcU_0NTJSW-BjrO5RLEKb';
+        // Set to Development/Sandbox Environment (default). Set to true for Production Environment (accept real transaction).
+        \Midtrans\Config::$isProduction = false;
+        // Set sanitization on (default)
+        \Midtrans\Config::$isSanitized = true;
+        // Set 3DS transaction for credit card to true
+        \Midtrans\Config::$is3ds = true;
+
+        $params = [
+            'transaction_details' => [
+                'order_id' => rand(),
+                'gross_amount' => 6000000,
+            ],
+            'customer_details' => [
+                'first_name' => 'andhika',
+                'last_name' => 'pratama',
+                'email' => 'andhika1910@gmail.com',
+                'phone' => '081232040726',
+            ],
+        ];
+
+        $snapToken = \Midtrans\Snap::getSnapToken($params);
+
         $pembayaran = Pembayaran::all();
-        return view('admin.pembayaran.index', compact('pembayaran'));
+        return view('admin.pembayaran.index', [
+            'pembayaran' => $pembayaran,
+            'midToken' => $snapToken
+        ]);
     }
 
     /**

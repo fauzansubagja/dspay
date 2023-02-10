@@ -49,7 +49,6 @@ Route::middleware('auth')->group(function () {
     Route::resource('/management/keuangan', KeuanganController::class);
     Route::resource('/management/profile', ProfileController::class);
     Route::resource('/management/siswa', SiswaController::class);
-    Route::post('/filter/siswa', [FilterSiswaController::class, 'filter']);
 
     // Route::resource('/kalender', KalenderController::class);
     // Route::resource('/management/management', ManajamenController::class);

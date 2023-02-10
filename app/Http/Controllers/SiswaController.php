@@ -2,12 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use Alert;
 use App\Models\Kelas;
 use App\Models\Proli;
 use App\Models\Siswa;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
-use Alert;
 
 class SiswaController extends Controller
 {
@@ -26,7 +26,7 @@ class SiswaController extends Controller
     public function index(Request $request)
     {
         $siswa = Siswa::query();
-        // filter by nama
+        //     // filter by nama
         $siswa->when($request->nama, function ($query) use ($request) {
             return $query->where('nama', 'like', '%' . $request->nama . '%');
         });
@@ -34,15 +34,15 @@ class SiswaController extends Controller
         $siswa->when($request->kelas, function ($query) use ($request) {
             return $query->where('id_kelas', 'like', '%' . $request->kelas . '%');
         });
+        // filter by jurusan
+        $siswa->when($request->proli, function ($query) use ($request) {
+            return $query->where('id_proli', 'like', '%' . $request->proli . '%');
+        });
         return view('admin.management.siswa.index', [
             'siswa' => $siswa->paginate(10),
             'kelass' => Kelas::all(),
             'prolis' => Proli::all(),
-    ]);
-        // return view('admin.management.siswa.index', [
-        //     'siswas' => Siswa::all(),
-        //     'i' => 1
-        // ]);
+        ]);
     }
 
     /**

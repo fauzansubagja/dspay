@@ -59,6 +59,11 @@
             -moz-appearance: textfield;
         }
     </style>
+
+    {{-- midtrans --}}
+    <script type="text/javascript"
+    src="https://app.sandbox.midtrans.com/snap/snap.js"
+    data-client-key="SB-Mid-client-fSC6dpdJ28E0hOVV"></script>
 </head>
 
 <body>
@@ -188,7 +193,7 @@
                                 <span>Dashboard</span></a> </li>
                         <li class="list-divider"></li>
                         <li class="{{ (request()->is('admin/pembayaran*')) ? 'active' : '' }}"> <a
-                                href="/admin/pembayaran"><i class="fas fa-credit-card"></i> <span> Pembayaran
+                                href="{{ route('pembayaran.index') }}"><i class="fas fa-credit-card"></i> <span> Pembayaran
                                     Siswa
                                 </span></a>
                         </li>
