@@ -76,7 +76,7 @@
                                 <tbody>
                                     @foreach ($siswa as $data)
                                     <tr class="text-center">
-                                        <td>{{ $loop->interation }}</td>
+                                        <td>{{ $loop->iteration }}</td>
                                         <td>{{ $data->nis }}</td>
                                         <td>{{ $data->nama }}</td>
                                         <td>{{ $data->kelas->kelas }}</td>
