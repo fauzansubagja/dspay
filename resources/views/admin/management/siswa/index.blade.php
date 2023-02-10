@@ -59,7 +59,10 @@
                                     </div>
                                 </div>
                             </form>
-                            <table class="table table-nowrap mb-0">
+                            {{-- <form action="/management/siswa" method="get">
+                                @csrf
+                            </form> --}}
+                            <table class="datatable table table-stripped">
                                 <thead>
                                     <tr class="text-center">
                                         <th>No.</th>
@@ -77,12 +80,14 @@
                                         <td>{{ $no++ }}</td>
                                         <td>{{ $data->nis }}</td>
                                         <td>{{ $data->nama }}</td>
-                                        <td>{{ $data->kelas->kelas }} </td>
+                                        <td>{{ $data->kelas->kelas }}</td>
                                         <td>{{ $data->proli->proli }}</td>
                                         <td>
-                                            <a href="{{ route('siswa.edit', $data->id_siswa) }}"
-                                                class="btn btn-warning"><i class="fas fa-edit"></i></a>
-                                            <a href="" class="btn btn-secondary"><i class="fas fa-eye"></i></a>
+                                            <a href="{{ route('siswa.edit', $data->id_siswa) }}" class="btn btn-warning"
+                                                data-toggle="tooltip" title='Edit'><i class="fas fa-edit"></i></a>
+                                            <a href="{{ route('siswa.show', $data->id_siswa) }}"
+                                                class="btn btn-secondary" data-toggle="tooltip" title='Lihat'><i
+                                                    class="fas fa-eye"></i></a>
                                             <form action="{{ route('siswa.destroy', $data->id_siswa) }}" method="post"
                                                 class="d-inline">
                                                 @csrf
@@ -106,13 +111,16 @@
 
 @endsection
 @push('script-page')
-    {{-- Sweet Alert --}}
-    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-    
-    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+{{-- Sweet Alert --}}
+<script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
-    <script type="text/javascript">
-        $(document).on('click', '.show_confirm', function(event) {
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+<script src="{{ asset('plugins/datatables/jquery.dataTables.min.js') }}"></script>
+<script src="{{ asset('plugins/datatables/datatables.min.js') }}"></script>
+
+
+<script type="text/javascript">
+    $(document).on('click', '.show_confirm', function(event) {
             var form =  $(this).closest("form");
             var name = $(this).data("name");
             event.preventDefault();
@@ -140,10 +148,10 @@
             });
         });
     
-    </script>
+</script>
 
-    <script>
-        // delete option kelas
+<script>
+    // delete option kelas
         $('#sel-kel').on('click', function(){
             $('#opt-kel').remove()
         })

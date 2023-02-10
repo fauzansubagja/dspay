@@ -95,7 +95,11 @@ class SiswaController extends Controller
      */
     public function show(Siswa $siswa)
     {
-        return view('admin.management.siswa.detail');
+        return view('admin.management.siswa.detail', [
+            'siswa' => $siswa,
+            'kelass' => Kelas::all(),
+            'prolis' => Proli::all()
+        ]);
     }
 
     /**
