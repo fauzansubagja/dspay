@@ -74,10 +74,9 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    @php $no = 1; @endphp
                                     @foreach ($siswa as $data)
                                     <tr class="text-center">
-                                        <td>{{ $no++ }}</td>
+                                        <td>{{ $loop->interation }}</td>
                                         <td>{{ $data->nis }}</td>
                                         <td>{{ $data->nama }}</td>
                                         <td>{{ $data->kelas->kelas }}</td>

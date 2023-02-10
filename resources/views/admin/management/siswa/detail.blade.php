@@ -24,34 +24,31 @@
                             <div class="col-lg-9">
                                 <div class="table-responsive">
                                     <table class="table table-nowrap mb-0">
-                                        @foreach ($siswa as $data )
                                         <tr>
                                             <td width="20">NIS Siswa</td>
                                             <td class="px-2">:</td>
-                                            <td>{{ $data->nis }}</td>
+                                            <td>{{ $siswa->nis }}</td>
                                         </tr>
                                         <tr>
                                             <td width="20">Nama Lengkap</td>
                                             <td class="px-2">:</td>
-                                            <td>{{ $data->nama }}</td>
+                                            <td>{{ $siswa->nama }}</td>
                                         </tr>
                                         <tr>
                                             <td width="20">Kelas</td>
                                             <td class="px-2">:</td>
-                                            <td>{{ $data->kelas->kelas }}</td>
+                                            <td>{{ $siswa->kelas->kelas }}</td>
                                         </tr>
                                         <tr>
                                             <td width="20">Jurusan</td>
                                             <td class="px-2">:</td>
-                                            <td>{{ $data->proli->proli }}</td>
+                                            <td>{{ $siswa->proli->proli }}</td>
                                         </tr>
                                         <tr>
                                             <td width="20">Jenis Kelamin</td>
                                             <td class="px-2">:</td>
                                             <td></td>
                                         </tr>
-
-                                        @endforeach
                                     </table>
                                 </div>
                                 <div class="col-md-12">
