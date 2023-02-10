@@ -38,7 +38,7 @@ class SiswaController extends Controller
             'siswa' => $siswa->paginate(10),
             'kelass' => Kelas::all(),
             'prolis' => Proli::all(),
-    ]);
+        ]);
         // return view('admin.management.siswa.index', [
         //     'siswas' => Siswa::all(),
         //     'i' => 1
@@ -95,7 +95,11 @@ class SiswaController extends Controller
      */
     public function show(Siswa $siswa)
     {
-        return view('admin.management.siswa.detail');
+        return view('admin.management.siswa.detail', [
+            'siswa' => $siswa,
+            'kelass' => Kelas::all(),
+            'prolis' => Proli::all()
+        ]);
     }
 
     /**

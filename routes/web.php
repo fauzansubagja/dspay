@@ -45,7 +45,7 @@ Route::middleware('auth')->group(function () {
     Route::resource('/management/periode', PeriodeController::class);
     Route::resource('/management/kenaikan', KenaikanController::class);
     Route::resource('/management/kelulusan', KelulusanController::class);
-    Route::resource('/pembayaran', PembayaranController::class);
+    Route::resource('/admin/pembayaran', PembayaranController::class);
     Route::resource('/management/keuangan', KeuanganController::class);
     Route::resource('/management/profile', ProfileController::class);
     Route::resource('/management/siswa', SiswaController::class);
