@@ -12,35 +12,34 @@
             </div>
         </div>
 
+        @can('admin')
         <div class="row">
             <div class="col-lg-12">
-                <form>
-                    <div class="row formtype">
-                        <div class="col-md-3">
+                <div class="row formtype">  
+                    {{-- <div class="col-md-3">
+                        <div class="form-group">
+                            <label>Tahun Ajaran</label>
                             <div class="form-group">
-                                <label>Tahun Ajaran</label>
-                                <div class="form-group">
-                                    <select class="form-control" id="sel1" name="sellist1">
-                                        <option>Select</option>
-                                        <option>2021/2022</option>
-                                    </select>
-                                </div>
+                                <select class="form-control" id="sel1" name="sellist1">
+                                    <option>Select</option>
+                                    <option>2021/2022</option>
+                                </select>
                             </div>
                         </div>
-                        <div class="col-md-3">
-                            <div class="form-group">
-                                <label>Cari Siswa</label>
-                                <input class="form-control" type="text" value="" placeholder="NIS Siswa">
-                            </div>
-                        </div>
-                        <div class="col-md-3">
-                            <div class="form-group">
-                                <label>Search</label> <a href="#" class="btn btn-success btn-block mt-0 search_button">
-                                    Search </a>
-                            </div>
+                    </div> --}}
+                    <div class="col-md-3">
+                        <div class="form-group">
+                            <label>Cari Siswa</label>
+                            <input class="form-control" type="text" value="" placeholder="NIS Siswa" id="in-nis-siswa">
                         </div>
                     </div>
-                </form>
+                    <div class="col-md-3">
+                        <div class="form-group">
+                            <label>Search</label> 
+                            <button class="btn btn-success btn-block mt-0 search_button" id="btn-cari"> Cari </button>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
 
@@ -57,44 +56,76 @@
                                 <div class="table-responsive">
                                     <table class="table table-nowrap mb-0">
                                         <tr>
-                                            <td width="20">Tahun Ajaran</td>
-                                            <td class="px-2">:</td>
-                                            <td></td>
-                                        </tr>
-                                        <tr>
-                                            <td width="20">NIS</td>
-                                            <td class="px-2">:</td>
-                                            <td></td>
-                                        </tr>
-                                        <tr>
                                             <td width="20">Nama Siswa</td>
                                             <td class="px-2">:</td>
-                                            <td></td>
-                                        </tr>
-                                        <tr>
-                                            <td width="20">Nama Orang tua</td>
-                                            <td class="px-2">:</td>
-                                            <td></td>
+                                            <td id="nama-siswa"></td>
                                         </tr>
                                         <tr>
                                             <td width="20">Kelas</td>
                                             <td class="px-2">:</td>
-                                            <td></td>
+                                            <td id="kelas-siswa"></td>
+                                        </tr>
+                                        <tr>
+                                            <td width="20">Jurusan</td>
+                                            <td class="px-2">:</td>
+                                            <td id="jurusan-siswa"></td>
                                         </tr>
                                     </table>
                                 </div>
                             </div>
-                            <div class="col-lg-3">
+                            {{-- <div class="col-lg-3">
                                 <img src="" class="img-thumbnail img-responsive">
-                            </div>
+                            </div> --}}
                         </div>
                     </div>
                 </div>
             </div>
         </div>
+        @endcan
+        
+        @can('user')
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="card">
+                    <div class="card-header">
+                        <h4 class="card-title">Informasi Siswa <a href="add-staff.html"
+                                class="btn btn-danger float-right veiwbutton">Cetak semua tagihan</a></h4>
+                    </div>
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-lg-9">
+                                <div class="table-responsive">
+                                    <table class="table table-nowrap mb-0">
+                                        <tr>
+                                            <td width="20">Nama Siswa</td>
+                                            <td class="px-2">:</td>
+                                            <td id="nama-siswa">{{ $user->nama }}</td>
+                                        </tr>
+                                        <tr>
+                                            <td width="20">Kelas</td>
+                                            <td class="px-2">:</td>
+                                            <td id="kelas-siswa">{{ $user->kelas->kelas }}</td>
+                                        </tr>
+                                        <tr>
+                                            <td width="20">Jurusan</td>
+                                            <td class="px-2">:</td>
+                                            <td id="jurusan-siswa">{{ $user->proli->proli }}</td>
+                                        </tr>
+                                    </table>
+                                </div>
+                            </div>
+                            {{-- <div class="col-lg-3">
+                                <img src="" class="img-thumbnail img-responsive">
+                            </div> --}}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        @endcan
 
         <div class="row">
-            <div class="col-lg-5">
+            <div class="col-lg-8">
                 <div class="card">
                     <div class="card-header">
                         <h4 class="card-title">Transaksi Terakhir</h4>
@@ -102,16 +133,12 @@
                     <div class="card-body">
                         <div class="row">
                             <div class="table-responsive">
-                                <table class="table table-nowrap mb-0">
-                                    <tr class="info">
-                                        <th>Pembayaran</th>
-                                        <th>Tagihan</th>
-                                        <th>Tanggal</th>
-                                    </tr>
+                                <table class="table table-nowrap mb-0" id="table-transaksi">
                                     <tr>
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
+                                        <th>Pembayaran</th>
+                                        <th>Total Belum Dibayar</th>
+                                        <th>Tanggal</th>
+                                        <th>Lunas</th>
                                     </tr>
                                 </table>
                             </div>
@@ -120,7 +147,7 @@
                 </div>
             </div>
 
-            <div class="col-lg-4">
+            {{-- <div class="col-lg-4">
                 <div class="card">
                     <div class="card-header">
                         <h4 class="card-title">Pembayaran</h4>
@@ -151,31 +178,24 @@
                         </form>
                     </div>
                 </div>
-            </div>
+            </div> --}}
 
-            <div class="col-lg-3">
+            <div class="col-lg-4">
                 <div class="card">
                     <div class="card-header">
                         <h4 class="card-title">Pembayaran</h4>
                     </div>
                     <div class="card-body">
-                        <form action="" method="GET" class="view-pdf">
-                            <input type="hidden" name="n" value="">
-                            <input type="hidden" name="r" value="">
                             <div class="form-group">
-                                <label>Tanggal Transaksi</label>
-                                <div class="input-group date " data-date="" data-date-format="yyyy-mm-dd">
-                                    <span class="input-group-addon"><i class="glyphicon glyphicon-calendar"></i></span>
-                                    <input class="form-control" readonly="" required="" type="text" name="d" value="">
-                                </div>
+                                <label>Jumlah Bayar</label>
+                                <span class="input-group-addon"><i class="glyphicon glyphicon-calendar"></i></span>
+                                <input class="form-control" type="text" id="in-bayar">
                             </div>
                             <button class="btn btn-success btn-block" id="btn-bayar" type="button">Bayar</button>
-                        </form>
                     </div>
                 </div>
             </div>
-
-            <div class="col-lg-12">
+            {{-- <div class="col-lg-12">
                 <div class="card">
                     <div class="card-header">
                         <h4 class="card-title">Jenis Pembayaran</h4>
@@ -233,16 +253,86 @@
                         </div>
                     </div>
                 </div>
-            </div>
+            </div> --}}
 @endsection
             
 @push('script-page')
     <script type="text/javascript">
-        // For example trigger on button clicked, or any time you need
-        var payButton =$('#btn-bayar').on('click', function () {
-            // Trigger snap popup. @TODO: Replace TRANSACTION_TOKEN_HERE with your transaction token
-            window.snap.pay('{{ $midToken }}');
-            // customer will be redirected after completing payment pop-up 
+        $('#btn-bayar').on('click', function () {
+            if ('{{ Auth::user()->role }}' == 'User') {
+                $.ajax({
+                    type: "GET",
+                    url: "{{ url('admin/pembayaran')}}/{{ Auth::user()->nis }}",
+                    data: {
+                        'bayar' : $('#in-bayar').val(),
+                        'nama' : "{{ @$user->nama }}",
+                        'email' : "{{ Auth::user()->email }}",
+                        'no' : "{{ Auth::user()->no_tlp }}"
+                    },
+                    success: function (response) {
+                        window.snap.pay(response.midToken);
+                        
+                    }
+                });
+            }
+            $.ajax({
+                type: "POST",
+                url: "{{ url('transaksi') }}",
+                data: {
+                    'nominal': $('#in-bayar').val(),
+                    'nis': $('#in-nis-siswa').val(),
+                    '_token': "{{ csrf_token() }}"
+                },
+                success: function (response) {
+                    console.log(response);
+                }
+            });
+
+        });
+
+        $(document).on('click', '#btn-cari', function () {
+            const table = document.querySelectorAll('#table-data');
+            $.each(table, function (idx, table) { 
+                    $(table).remove();
+            });
+            const nis = $('#in-nis-siswa').val();
+            $.ajax({
+                type: "GET",
+                url: "{{ url('transaksi') }}/" + nis,
+                success: function (response) {
+                    $('#nama-siswa').text(response.data.nama)
+                    $('#kelas-siswa').text(response.data.kelas.kelas)
+                    $('#jurusan-siswa').text(response.data.proli.proli)
+                    const count = response.data.transaksi.length;
+
+                    $.each(response.data.transaksi, function (idx, transaksi) {
+                        let rows = '';
+                        const tgl = new Date(transaksi.tgl_bayar);
+                        const tgl_baru = tgl.toLocaleDateString("id-ID", {
+                            day: "2-digit",
+                            month: "2-digit",
+                            year: "numeric"
+                        });
+                        let lunas = 0;
+                        if (transaksi.lunas == 0) {
+                            lunas = "Belum Lunas";
+                        } else if (transaksi.lunas == 1) {
+                            lunas = "Lunas"
+                        }
+                        const nominalBayar = transaksi.nominal_bayar.toLocaleString();
+                        const nominalDibayar = transaksi.nominal_dibayar.toLocaleString();
+                        
+                        rows += 
+                                '<tr id="table-data">'+
+                                    '<td id="nominal-bayar"> '+ 'Rp. ' + nominalDibayar +' </td>' +
+                                    '<td id="total-belum">'+ 'Rp. ' + nominalBayar +'</td>'+
+                                    '<td id="tanggal-bayar">'+ tgl_baru +'</td>'+
+                                    '<td id="lunas">'+ lunas +'</td>'+
+                                '</tr>';
+                        $('#table-transaksi').append(rows)
+                    });
+            }
+            });
         });
   </script>
 @endpush

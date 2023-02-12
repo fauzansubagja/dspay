@@ -114,9 +114,9 @@
                         </div> --}}
                         <h4 class="card-title">
                             <button class="btn btn-primary btn-block mb-2" id="btn-simpan">Simpan</button>
-                            <form action="" method="get" accept-charset="utf-8">
-                                <button class="btn btn-danger btn-block" type="submit">Batal</button>
-                            </form>
+                            <a href="/management/siswa" class="btn btn-danger btn-block" >Batal</a>
+                            {{-- <form action="" method="get" accept-charset="utf-8">
+                            </form> --}}
                         </h4>
                     </div>
                 </div>

@@ -52,8 +52,8 @@
                                     </table>
                                 </div>
                                 <div class="col-md-12">
-                                    <a href="" class="btn btn-secondary">Kembali</a>
-                                    <a href="" class="btn btn-primary">Edit</a>
+                                    <a href="/management/siswa" class="btn btn-secondary">Kembali</a>
+                                    <a href="{{ route('siswa.edit', $siswa->id_siswa) }}" class="btn btn-primary">Edit</a>
                                     <a href="" class="btn btn-danger">Hapus</a>
                                 </div>
                             </div>

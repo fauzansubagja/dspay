@@ -14,11 +14,11 @@ class CreateTransaksiTable extends Migration
     public function up()
     {
         Schema::create('transaksi', function (Blueprint $table) {
-            $table->bigIncrements('id');
-            $table->integer('siswa_id');
-            $table->integer('tagihan_id');
-            $table->boolean('is_lunas')->nullable();
-            $table->text('keterangan')->nullable();
+            $table->id('id_transaksi');
+            $table->integer('nominal_dibayar');
+            $table->integer('nominal_bayar')->default('6000000');
+            $table->boolean('lunas')->default(false);
+            $table->date('tgl_bayar');
             $table->timestamps();
             $table->softDeletes();
         });

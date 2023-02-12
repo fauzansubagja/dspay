@@ -41,7 +41,7 @@
                                         <select id="sel-kel" class="form-control" name="kelas">
                                             <option id="opt-kel" value="">Kelas</option>
                                             @foreach ($kelass as $kelas)
-                                            <option value="{{$kelas->id_kelas}}">{{$kelas->kelas}}</option>
+                                            <option value="{{$kelas->id_kelas}}" {{isset($_GET['kelas']) && $_GET['kelas'] == $kelas->id_kelas ? 'selected' : '' }}>{{$kelas->kelas}}</option>
                                             @endforeach
                                         </select>
                                     </div>
@@ -50,7 +50,7 @@
                                         <select id="sel-pro" class="form-control" name="proli">
                                             <option id="opt-pro" value="">Jurusan</option>
                                             @foreach ($prolis as $proli)
-                                            <option value="{{$proli->id_proli}}">{{$proli->proli}}</option>
+                                            <option value="{{$proli->id_proli}}" {{isset($_GET['proli']) && $_GET['proli'] == $proli->id_proli ? 'selected' : '' }}>{{$proli->proli}}</option>
                                             @endforeach
                                         </select>
                                     </div>
@@ -98,6 +98,7 @@
                                         </td>
                                     </tr>
                                     @endforeach
+                                    {{-- {{ $siswa->links() }} --}}
                                 </tbody>
                             </table>
                         </div>

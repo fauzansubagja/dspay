@@ -36,7 +36,7 @@ Route::get('/', function () {
 
 Auth::routes();
 Route::get('/dashboard', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
-
+Route::resource('transaksi', App\Http\Controllers\Api\TransaksiController::class);
 
 Route::middleware('auth')->group(function () {
     Route::resource('/management/user', UserController::class);
@@ -54,6 +54,7 @@ Route::middleware('auth')->group(function () {
     // Route::resource('/management/management', ManajamenController::class);
     // Route::resource('/management/rekapitulasi', RekapitulasiController::class);  
 });
+
 // Route::resource('/management/kelas', KelasController::class);
 
 // Route::resource('/management/periode', PeriodeController::class);

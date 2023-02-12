@@ -21,5 +21,14 @@ class AdminUserSeeder extends Seeder
             'user_description' => 'Administrator',
             'password' => bcrypt('password'),
         ]);
+        User::create([
+            'username' => 'Andhika',
+            'nis' => '2021118526',
+            'email' => 'andhika@gmail.com',
+            'no_tlp' => '085754344451',
+            'role' => 'User',
+            'user_description' => 'User',
+            'password' => bcrypt('password'),
+        ]);
     }
 }

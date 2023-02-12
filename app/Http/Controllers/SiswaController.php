@@ -25,21 +25,9 @@ class SiswaController extends Controller
      */
     public function index(Request $request)
     {
-        $siswa = Siswa::query();
-        //     // filter by nama
-        $siswa->when($request->nama, function ($query) use ($request) {
-            return $query->where('nama', 'like', '%' . $request->nama . '%');
-        });
-        // filter by kelas
-        $siswa->when($request->kelas, function ($query) use ($request) {
-            return $query->where('id_kelas', 'like', '%' . $request->kelas . '%');
-        });
-        // filter by jurusan
-        $siswa->when($request->proli, function ($query) use ($request) {
-            return $query->where('id_proli', 'like', '%' . $request->proli . '%');
-        });
+
         return view('admin.management.siswa.index', [
-            'siswa' => $siswa->paginate(10),
+            'siswa' => Siswa::filter($request->nama, $request->kelas, $request->proli),
             'kelass' => Kelas::all(),
             'prolis' => Proli::all(),
         ]);

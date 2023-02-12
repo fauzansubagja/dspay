@@ -61,9 +61,11 @@
     </style>
 
     {{-- midtrans --}}
+    @can('user')
     <script type="text/javascript"
     src="https://app.sandbox.midtrans.com/snap/snap.js"
     data-client-key="SB-Mid-client-fSC6dpdJ28E0hOVV"></script>
+    @endcan
 </head>
 
 <body>

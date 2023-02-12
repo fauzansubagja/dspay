@@ -17,8 +17,9 @@ class CreateSiswaTable extends Migration
             $table->id('id_siswa');
             $table->string('nis');
             $table->string('nama');
-            $table->integer('id_kelas');
-            $table->integer('id_proli');
+            $table->foreignId('id_kelas');
+            $table->foreignId('id_proli');
+            // $table->foreignId('id_pembayaran');
             // $table->id('nis');
             // $table->string('nama');
             // $table->string('kelas');
