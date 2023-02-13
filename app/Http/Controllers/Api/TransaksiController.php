@@ -70,7 +70,8 @@ class TransaksiController extends Controller
         DB::commit();
 
         return response()->json([
-            'message' => 'Success'
+            'message' => 'Success',
+            'data' => Siswa::where('id_siswa', $id_siswa)->with('kelas', 'proli', 'transaksi')->first()
         ]);
     }
 

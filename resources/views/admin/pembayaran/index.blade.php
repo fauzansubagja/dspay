@@ -270,8 +270,7 @@
                         'no' : "{{ Auth::user()->no_tlp }}"
                     },
                     success: function (response) {
-                        window.snap.pay(response.midToken);
-                        
+                        window.snap.pay(response.midToken); 
                     }
                 });
             }
@@ -284,18 +283,62 @@
                     '_token': "{{ csrf_token() }}"
                 },
                 success: function (response) {
-                    console.log(response);
+                    const nis = $('#in-nis-siswa').val();
+                    getReplace(nis);
                 }
             });
 
         });
+        $('#in-bayar').on('keypress', function () {
+            if (event.which === 13) {
+                if ('{{ Auth::user()->role }}' == 'User') {
+                    $.ajax({
+                        type: "GET",
+                        url: "{{ url('admin/pembayaran')}}/{{ Auth::user()->nis }}",
+                        data: {
+                            'bayar' : $('#in-bayar').val(),
+                            'nama' : "{{ @$user->nama }}",
+                            'email' : "{{ Auth::user()->email }}",
+                            'no' : "{{ Auth::user()->no_tlp }}"
+                        },
+                        success: function (response) {
+                            window.snap.pay(response.midToken); 
+                        }
+                    });
+                }
+                $.ajax({
+                    type: "POST",
+                    url: "{{ url('transaksi') }}",
+                    data: {
+                        'nominal': $('#in-bayar').val(),
+                        'nis': $('#in-nis-siswa').val(),
+                        '_token': "{{ csrf_token() }}"
+                    },
+                    success: function (response) {
+                        const nis = $('#in-nis-siswa').val();
+                        getReplace(nis);
+                    }
+                });
+            }
+
+        });
 
         $(document).on('click', '#btn-cari', function () {
+            const nis = $('#in-nis-siswa').val();
+            getReplace(nis)
+        });
+        $(document).on('keypress', '#in-nis-siswa', function () {
+            if (event.which === 13) {
+                const nis = $('#in-nis-siswa').val();
+                getReplace(nis)
+            }
+        });
+        
+        function getReplace(nis) {
             const table = document.querySelectorAll('#table-data');
             $.each(table, function (idx, table) { 
                     $(table).remove();
             });
-            const nis = $('#in-nis-siswa').val();
             $.ajax({
                 type: "GET",
                 url: "{{ url('transaksi') }}/" + nis,
@@ -321,7 +364,7 @@
                         }
                         const nominalBayar = transaksi.nominal_bayar.toLocaleString();
                         const nominalDibayar = transaksi.nominal_dibayar.toLocaleString();
-                        
+
                         rows += 
                                 '<tr id="table-data">'+
                                     '<td id="nominal-bayar"> '+ 'Rp. ' + nominalDibayar +' </td>' +
@@ -333,7 +376,7 @@
                     });
             }
             });
-        });
+        }
   </script>
 @endpush
 
