@@ -28,7 +28,8 @@ class PembayaranController extends Controller
         }
         $user = Siswa::where('nis', Auth::user()->nis)->first();
         return view('admin.pembayaran.index', [
-            'user' => $user
+            'user' => $user,
+            'lunas' => $user->transaksi->where('lunas', true)->count()
         ]);
     }
 

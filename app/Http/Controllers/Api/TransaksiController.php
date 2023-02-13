@@ -71,7 +71,8 @@ class TransaksiController extends Controller
 
         return response()->json([
             'message' => 'Success',
-            'data' => Siswa::where('id_siswa', $id_siswa)->with('kelas', 'proli', 'transaksi')->first()
+            'data' => Siswa::where('id_siswa', $id_siswa)->with('kelas', 'proli', 'transaksi')->first(),
+            'lunas' => Siswa::where('id_siswa', $id_siswa)->first()->transaksi->where('lunas', true)->count()
         ]);
     }
 
@@ -84,7 +85,8 @@ class TransaksiController extends Controller
     public function show($nis)
     {
         return response()->json([
-            'data' => Siswa::where('nis', $nis)->with('kelas', 'proli', 'transaksi')->first()
+            'data' => Siswa::where('nis', $nis)->with('kelas', 'proli', 'transaksi')->first(),
+            'lunas' => Siswa::where('nis', $nis)->first()->transaksi->where('lunas', true)->count()
         ]);
     }
 

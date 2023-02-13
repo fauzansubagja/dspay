@@ -190,6 +190,8 @@
             <div class="sidebar-inner slimscroll">
                 <div id="sidebar-menu" class="sidebar-menu">
                     <ul>
+                        @can('admin')
+                            
                         <li class="{{ (request()->is('dashboard*')) ? 'active' : '' }}"> <a
                                 href="{{ url('/dashboard') }}"><i class="fas fa-tachometer-alt"></i>
                                 <span>Dashboard</span></a> </li>
@@ -243,6 +245,24 @@
                         <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
                             @csrf
                         </form>
+                        @endcan
+                        @can('user')
+                        <li class="{{ (request()->is('admin/pembayaran*')) ? 'active' : '' }}"> <a
+                                href="{{ route('pembayaran.index') }}"><i class="fas fa-credit-card"></i> <span> Pembayaran
+                                    Siswa
+                                </span></a>
+                        </li>
+                        <li class="list-divider"></li>
+                        <li class=""> <a href="{{ route('logout') }}" onclick="event.preventDefault();
+                            document.getElementById('logout-form').submit();"><i class="fas fa-sign-out-alt"></i>
+                                <span> {{ __('Logout') }}
+                                </span></a>
+                        </li>
+                        <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+                            @csrf
+                        </form>
+
+                        @endcan
                     </ul>
                 </div>
             </div>

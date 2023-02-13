@@ -5,7 +5,7 @@
         <div class="page-header">
             <div class="row">
                 <div class="col-sm-12 mt-5">
-                    <h3 class="page-title mt-3">Good Morning Fauzan Subagja!</h3>
+                    <h3 class="page-title mt-3">Good Morning {{ Auth::user()->username }}!</h3>
                     <ul class="breadcrumb">
                         <li class="breadcrumb-item active">Dashboard</li>
                     </ul>
@@ -32,7 +32,7 @@
                         <div class="dash-widget-header">
                             <div>
                                 <h3 style="card_widget_header">Diterima</h3>
-                                <h6 class="text-muted">Rp.2.500.000.00</h6>
+                                <h6 class="text-muted">{{ 'Rp. ' . number_format($diterima) }}</h6>
                             </div>
                             <div class="ml-auto mt-md-3 mt-lg-0"> <span class="opacity-7 text-muted"><svg
                                         xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewbox="0 0 24 24"
@@ -65,7 +65,7 @@
                             <div>
                                 <h3 style="card_widget_header">Siswa</h3>
                                 </h3>
-                                <h6 class="text-muted">1,700</h6>
+                                <h6 class="text-muted">{{ $siswa }}</h6>
                             </div>
                             <div class="ml-auto mt-md-3 mt-lg-0"><i class="fas fa-users"></i></div>
                         </div>

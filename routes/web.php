@@ -36,20 +36,22 @@ Route::get('/', function () {
 
 Auth::routes();
 Route::get('/dashboard', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
-Route::resource('transaksi', App\Http\Controllers\Api\TransaksiController::class);
 
-Route::middleware('auth')->group(function () {
+Route::middleware('admin')->group(function () {
     Route::resource('/management/user', UserController::class);
     Route::resource('/management/kelas', KelasController::class);
     Route::resource('/management/jurusan', ProliController::class);
     Route::resource('/management/periode', PeriodeController::class);
     Route::resource('/management/kenaikan', KenaikanController::class);
     Route::resource('/management/kelulusan', KelulusanController::class);
-    Route::resource('/admin/pembayaran', PembayaranController::class);
     Route::resource('/management/keuangan', KeuanganController::class);
     Route::resource('/management/profile', ProfileController::class);
     Route::resource('/management/siswa', SiswaController::class);
+});
 
+Route::middleware('auth')->group(function () {
+    Route::resource('/admin/pembayaran', PembayaranController::class);
+    Route::resource('transaksi', App\Http\Controllers\Api\TransaksiController::class);
     // Route::resource('/kalender', KalenderController::class);
     // Route::resource('/management/management', ManajamenController::class);
     // Route::resource('/management/rekapitulasi', RekapitulasiController::class);  

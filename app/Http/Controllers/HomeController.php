@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Siswa;
+use App\Models\Transaksi;
 use Illuminate\Http\Request;
 
 class HomeController extends Controller
@@ -13,7 +15,7 @@ class HomeController extends Controller
      */
     public function __construct()
     {
-        $this->middleware('auth');
+        $this->middleware('admin');
     }
 
     /**
@@ -23,6 +25,11 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return view('dashboard.index');
+        $siswa = Siswa::find(1366)->transaksi->where('lunas', true)->count();
+        dd($siswa);
+        return view('dashboard.index', [
+            'siswa' => Siswa::count(),
+            'diterima' => Transaksi::sum('nominal_dibayar')
+        ]);
     }
 }

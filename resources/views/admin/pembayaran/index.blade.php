@@ -81,6 +81,44 @@
                 </div>
             </div>
         </div>
+
+        <div class="row">
+            <div class="col-lg-8">
+                <div class="card">
+                    <div class="card-header">
+                        <h4 class="card-title">Transaksi Terakhir</h4>
+                    </div>
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="table-responsive">
+                                <table class="table table-nowrap mb-0" id="table-transaksi">
+                                    <tr>
+                                        <th>Pembayaran</th>
+                                        <th>Total Belum Dibayar</th>
+                                        <th>Tanggal</th>
+                                        <th>Lunas</th>
+                                    </tr>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-4">
+                <div class="card">
+                    <div class="card-header">
+                        <h4 class="card-title">Pembayaran</h4>
+                    </div>
+                    <div class="card-body">
+                            <div class="form-group">
+                                <label>Jumlah Bayar</label>
+                                <span class="input-group-addon"><i class="glyphicon glyphicon-calendar"></i></span>
+                                <input class="form-control" type="text" id="in-bayar">
+                            </div>
+                            <button class="btn btn-success btn-block" id="btn-bayar" type="button">Bayar</button>
+                    </div>
+                </div>
+            </div>
         @endcan
         
         @can('user')
@@ -122,7 +160,6 @@
                 </div>
             </div>
         </div>
-        @endcan
 
         <div class="row">
             <div class="col-lg-8">
@@ -140,12 +177,45 @@
                                         <th>Tanggal</th>
                                         <th>Lunas</th>
                                     </tr>
+                                    @foreach ($user->transaksi as $transaksi)
+                                    <tr id="table-data">
+                                        <td id="nominal-bayar"> {{ 'Rp. ' . number_format($transaksi->nominal_dibayar) }}</td> 
+                                        <td id="total-belum">{{ 'Rp. ' . number_format($transaksi->nominal_bayar) }}</td>
+                                        <td id="tanggal-bayar">{{ str_replace("-", "/", date("d-m-Y", strtotime($transaksi->tgl_bayar))) }}</td>
+                                        <td id="lunas">
+                                            @if ($transaksi->lunas == 0 )
+                                                Belum Lunas
+                                            @else
+                                                Lunas
+                                            @endif
+                                        </td>
+                                    </tr>
+                                    @endforeach
                                 </table>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
+            <div class="col-lg-4">
+                <div class="card">
+                    <div class="card-header">
+                        <h4 class="card-title">Pembayaran</h4>
+                    </div>
+                    <div class="card-body">
+                            <div class="form-group">
+                                <label>Jumlah Bayar</label>
+                                <span class="input-group-addon"><i class="glyphicon glyphicon-calendar"></i></span>
+                                <input class="form-control" type="text" id="in-bayar">
+                            </div>
+                            <button class="btn btn-success btn-block" id="btn-bayar" type="button">Bayar</button>
+                    </div>
+                </div>
+            </div>
+        @endcan
+
+        
+        
 
             {{-- <div class="col-lg-4">
                 <div class="card">
@@ -179,22 +249,6 @@
                     </div>
                 </div>
             </div> --}}
-
-            <div class="col-lg-4">
-                <div class="card">
-                    <div class="card-header">
-                        <h4 class="card-title">Pembayaran</h4>
-                    </div>
-                    <div class="card-body">
-                            <div class="form-group">
-                                <label>Jumlah Bayar</label>
-                                <span class="input-group-addon"><i class="glyphicon glyphicon-calendar"></i></span>
-                                <input class="form-control" type="text" id="in-bayar">
-                            </div>
-                            <button class="btn btn-success btn-block" id="btn-bayar" type="button">Bayar</button>
-                    </div>
-                </div>
-            </div>
             {{-- <div class="col-lg-12">
                 <div class="card">
                     <div class="card-header">
@@ -270,7 +324,36 @@
                         'no' : "{{ Auth::user()->no_tlp }}"
                     },
                     success: function (response) {
-                        window.snap.pay(response.midToken); 
+                        window.snap.pay(response.midToken, {
+                            onSuccess: function(result){
+                                alert("payment success!"); console.log(result);
+                                const nis = "{{ @$user->nis }}";
+                                $.ajax({
+                                    type: "POST",
+                                    url: "{{ url('transaksi') }}",
+                                    data: {
+                                        'nominal': $('#in-bayar').val(),
+                                        'nis': nis,
+                                        '_token': "{{ csrf_token() }}"
+                                    },
+                                    success: function (response) {
+                                        getReplace(nis);
+                                    }
+                                });
+                            },
+                            onPending: function(result){
+                                /* You may add your own implementation here */
+                                alert("wating your payment!"); console.log(result);
+                            },
+                            onError: function(result){
+                                /* You may add your own implementation here */
+                                alert("payment failed!"); console.log(result);
+                            },
+                            onClose: function(){
+                                /* You may add your own implementation here */
+                                alert('you closed the popup without finishing the payment');
+                            }
+                        }); 
                     }
                 });
             }
@@ -302,7 +385,36 @@
                             'no' : "{{ Auth::user()->no_tlp }}"
                         },
                         success: function (response) {
-                            window.snap.pay(response.midToken); 
+                            window.snap.pay(response.midToken, {
+                                onSuccess: function(result){
+                                    alert("payment success!"); console.log(result);
+                                    const nis = "{{ @$user->nis }}";
+                                    $.ajax({
+                                        type: "POST",
+                                        url: "{{ url('transaksi') }}",
+                                        data: {
+                                            'nominal': $('#in-bayar').val(),
+                                            'nis': nis,
+                                            '_token': "{{ csrf_token() }}"
+                                        },
+                                        success: function (response) {
+                                            getReplace(nis);
+                                        }
+                                    });
+                                },
+                                onPending: function(result){
+                                    /* You may add your own implementation here */
+                                    alert("wating your payment!"); console.log(result);
+                                },
+                                onError: function(result){
+                                    /* You may add your own implementation here */
+                                    alert("payment failed!"); console.log(result);
+                                },
+                                onClose: function(){
+                                    /* You may add your own implementation here */
+                                    alert('you closed the popup without finishing the payment');
+                                }
+                            }); 
                         }
                     });
                 }
