@@ -6,7 +6,7 @@ use Alert;
 use App\Models\Kelas;
 use App\Models\Proli;
 use App\Models\Siswa;
-use App\Exports\SiswaExportView;
+use App\Exports\SiswaExport;
 use Illuminate\Http\Request;
 use Maatwebsite\Excel\Facades\Excel;
 use Illuminate\Support\Facades\Storage;
