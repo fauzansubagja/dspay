@@ -51,7 +51,7 @@
                         <div class="dash-widget-header">
                             <div>
                                 <h3 style="card_widget_header">Tagihan</h3>
-                                <h6 class="text-muted">Rp.2.500.000.00</h6>
+                                <h6 class="text-muted">Rp. {{ $ditagih }}</h6>
                             </div>
                             <div class="ml-auto mt-md-3 mt-lg-0"><i class="fas fa-balance-scale"></i></div>
                         </div>

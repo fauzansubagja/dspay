@@ -52,7 +52,7 @@ Route::middleware('admin')->group(function () {
     Route::resource('/management/profile', ProfileController::class);
     Route::resource('/management/siswa', SiswaController::class);
     Route::get('/exportexcel', [SiswaController::class, 'exportexcel'])->name('exportexcel');
-    
+    Route::post('/importexcel', [SiswaController::class, 'importexcel'])->name('importexcel');
 });
 
 Route::middleware('auth')->group(function () {
@@ -62,4 +62,3 @@ Route::middleware('auth')->group(function () {
     // Route::resource('/management/management', ManajamenController::class);
     // Route::resource('/management/rekapitulasi', RekapitulasiController::class);  
 });
-

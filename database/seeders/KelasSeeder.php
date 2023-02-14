@@ -16,142 +16,186 @@ class KelasSeeder extends Seeder
     {
         // X
         Kelas::create([
-            'kelas' => 'X-DKV1'
+            'kelas' => 'X-DKV1',
+            'kelas_num' => '10'
         ]);
         Kelas::create([
-            'kelas' => 'X-DKV2'
+            'kelas' => 'X-DKV2',
+            'kelas_num' => '10'
         ]);
         Kelas::create([
-            'kelas' => 'X-PPLG1'
+            'kelas' => 'X-PPLG1',
+            'kelas_num' => '10'
         ]);
         Kelas::create([
-            'kelas' => 'X-PPLG2'
+            'kelas' => 'X-PPLG2',
+            'kelas_num' => '10'
         ]);
         Kelas::create([
-            'kelas' => 'X-PPLG3'
+            'kelas' => 'X-PPLG3',
+            'kelas_num' => '10'
         ]);
         Kelas::create([
-            'kelas' => 'X-TELK1'
+            'kelas' => 'X-TELK1',
+            'kelas_num' => '10'
         ]);
         Kelas::create([
-            'kelas' => 'X-TELK2'
+            'kelas' => 'X-TELK2',
+            'kelas_num' => '10'
         ]);
         Kelas::create([
-            'kelas' => 'X-TELK3'
+            'kelas' => 'X-TELK3',
+            'kelas_num' => '10'
         ]);
         Kelas::create([
-            'kelas' => 'X-TELK4'
+            'kelas' => 'X-TELK4',
+            'kelas_num' => '10'
         ]);
         Kelas::create([
-            'kelas' => 'X-TKTL1'
+            'kelas' => 'X-TKTL1',
+            'kelas_num' => '10'
         ]);
         Kelas::create([
-            'kelas' => 'X-TKTL2'
+            'kelas' => 'X-TKTL2',
+            'kelas_num' => '10'
         ]);
         Kelas::create([
-            'kelas' => 'X-TKTL3'
+            'kelas' => 'X-TKTL3',
+            'kelas_num' => '10'
         ]);
         Kelas::create([
-            'kelas' => 'X-TKTL4'
+            'kelas' => 'X-TKTL4',
+            'kelas_num' => '10'
         ]);
         Kelas::create([
-            'kelas' => 'X-TJKT1'
+            'kelas' => 'X-TJKT1',
+            'kelas_num' => '10'
         ]);
         Kelas::create([
-            'kelas' => 'X-TJKT2'
+            'kelas' => 'X-TJKT2',
+            'kelas_num' => '10'
         ]);
-        
+
         // XI
         Kelas::create([
-            'kelas' => 'XI-DKV1'
+            'kelas' => 'XI-DKV1',
+            'kelas_num' => '11'
         ]);
         Kelas::create([
-            'kelas' => 'XI-DKV2'
+            'kelas' => 'XI-DKV2',
+            'kelas_num' => '11'
         ]);
         Kelas::create([
-            'kelas' => 'XI-RPL1'
+            'kelas' => 'XI-RPL1',
+            'kelas_num' => '11'
         ]);
         Kelas::create([
-            'kelas' => 'XI-RPL2'
+            'kelas' => 'XI-RPL2',
+            'kelas_num' => '11'
         ]);
         Kelas::create([
-            'kelas' => 'XI-TAV1'
+            'kelas' => 'XI-TAV1',
+            'kelas_num' => '11'
         ]);
         Kelas::create([
-            'kelas' => 'XI-TAV2'
+            'kelas' => 'XI-TAV2',
+            'kelas_num' => '11'
         ]);
         Kelas::create([
-            'kelas' => 'XI-TAV3'
+            'kelas' => 'XI-TAV3',
+            'kelas_num' => '11'
         ]);
         Kelas::create([
-            'kelas' => 'XI-TAV4'
+            'kelas' => 'XI-TAV4',
+            'kelas_num' => '11'
         ]);
         Kelas::create([
-            'kelas' => 'XI-TOI1'
+            'kelas' => 'XI-TOI1',
+            'kelas_num' => '11'
         ]);
         Kelas::create([
-            'kelas' => 'XI-TOI2'
+            'kelas' => 'XI-TOI2',
+            'kelas_num' => '11'
         ]);
         Kelas::create([
-            'kelas' => 'XI-TKJ1'
+            'kelas' => 'XI-TKJ1',
+            'kelas_num' => '11'
         ]);
         Kelas::create([
-            'kelas' => 'XI-TKJ2'
+            'kelas' => 'XI-TKJ2',
+            'kelas_num' => '11'
         ]);
         Kelas::create([
-            'kelas' => 'XI-TITL1'
+            'kelas' => 'XI-TITL1',
+            'kelas_num' => '11'
         ]);
         Kelas::create([
-            'kelas' => 'XI-TITL2'
+            'kelas' => 'XI-TITL2',
+            'kelas_num' => '11'
         ]);
-        
+
         // XII
         Kelas::create([
-            'kelas' => 'XII-TAV1'
+            'kelas' => 'XII-TAV1',
+            'kelas_num' => '12'
         ]);
         Kelas::create([
-            'kelas' => 'XII-TAV2'
+            'kelas' => 'XII-TAV2',
+            'kelas_num' => '12'
         ]);
         Kelas::create([
-            'kelas' => 'XII-TAV3'
+            'kelas' => 'XII-TAV3',
+            'kelas_num' => '12'
         ]);
         Kelas::create([
-            'kelas' => 'XII-TITL1'
+            'kelas' => 'XII-TITL1',
+            'kelas_num' => '12'
         ]);
         Kelas::create([
-            'kelas' => 'XII-TITL2'
+            'kelas' => 'XII-TITL2',
+            'kelas_num' => '12'
         ]);
         Kelas::create([
-            'kelas' => 'XII-TOI1'
+            'kelas' => 'XII-TOI1',
+            'kelas_num' => '12'
         ]);
         Kelas::create([
-            'kelas' => 'XII-TOI2'
+            'kelas' => 'XII-TOI2',
+            'kelas_num' => '12'
         ]);
         Kelas::create([
-            'kelas' => 'XII-TKJ1'
+            'kelas' => 'XII-TKJ1',
+            'kelas_num' => '12'
         ]);
         Kelas::create([
-            'kelas' => 'XII-TKJ2'
+            'kelas' => 'XII-TKJ2',
+            'kelas_num' => '12'
         ]);
         Kelas::create([
-            'kelas' => 'XII-RPL1'
+            'kelas' => 'XII-RPL1',
+            'kelas_num' => '12'
         ]);
         Kelas::create([
-            'kelas' => 'XII-RPL2'
+            'kelas' => 'XII-RPL2',
+            'kelas_num' => '12'
         ]);
         Kelas::create([
-            'kelas' => 'XII-MM1'
+            'kelas' => 'XII-MM1',
+            'kelas_num' => '12'
         ]);
         Kelas::create([
-            'kelas' => 'XII-MM2'
+            'kelas' => 'XII-MM2',
+            'kelas_num' => '12'
         ]);
 
         // XIII
         Kelas::create([
-            'kelas' => 'XIII-TOI1'
+            'kelas' => 'XIII-TOI1',
+            'kelas_num' => '13'
         ]);
         Kelas::create([
-            'kelas' => 'XIII-TOI2'
+            'kelas' => 'XIII-TOI2',
+            'kelas_num' => '13'
         ]);
     }
 }

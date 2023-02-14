@@ -31,6 +31,20 @@ class Siswa extends Model
         return $query->get();
     }
 
+    public static function getJumlahTransaksiSiswa($nama_kelas, $bulan)
+    {
+        return Siswa::whereHas('kelas', function ($query) use ($nama_kelas) {
+            $query->where('kelas_num', $nama_kelas);
+        })
+            ->with(['transaksi' => function ($query) use ($bulan) {
+                $query->whereMonth('tgl_bayar', '=', $bulan);
+            }])
+            ->get()
+            ->sum(function ($siswa) {
+                return $siswa->transaksi->count();
+            });
+    }
+
     public function kelas()
     {
         return $this->hasOne(kelas::class, 'id_kelas', 'id_kelas');

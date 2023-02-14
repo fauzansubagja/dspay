@@ -20,12 +20,44 @@
                         <h4 class="card-title">
                             <a href="/management/siswa/create" class="btn btn-primary"><i class="fas fa-plus"></i>
                                 Tambah</a>
-                            <a href="add-booking.html" class="btn btn-danger"><i class="fas fa-upload"></i>
-                                Upload Siswa</a>
+                                <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#upload-modal"><i class="fas fa-upload"></i>
+                                Upload Siswa
+                                  </button>
                             <a href="/exportexcel" class="btn btn-warning"><i class="fas fa-print"></i>
                                 Cetak</a>
                         </h4>
                     </div>
+
+                    <!-- Modal -->
+                    <div class="modal fade" id="upload-modal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                        <div class="modal-dialog modal-dialog-centered">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title" id="exampleModalLabel">Import Siswa</h5>
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                    </div>
+                                    <div class="modal-body">
+                                        <div class="input-group mb-3">
+                                            <div class="input-group-prepend">
+                                              <span class="input-group-text" id="basic-addon1">File Excel</span>
+                                            </div>
+                                <form class="d-inline" id="form-import">
+                                    @csrf
+                                                <input name="file" type="file" class="form-control" aria-describedby="basic-addon1">
+                                            
+                                        </div>
+                                    </div>
+                                    <div class="modal-footer">
+                                    <button id="btn-close-modal" type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                    <button id="btn-import-modal" type="submit" class="btn btn-primary">Import</button>
+                                </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
                     <div class="card-body">
                         <div class="table">
                             <form action="/management/siswa" method="get">
@@ -150,7 +182,7 @@
 </script>
 
 <script>
-    // delete option kelas
+        // delete option kelas
         $('#sel-kel').on('click', function(){
             $('#opt-kel').remove()
         })
@@ -165,6 +197,27 @@
         $('#sel-pro').on('change', function(){
             $('#opt-pro').remove()
         })
+
+        $('#form-import').submit(function(event) {
+            event.preventDefault();
+
+            var form = $(this)[0];
+            var formData = new FormData(form);
+
+            $.ajax({
+                url: '{{ route('importexcel') }}',
+                method: 'POST',
+                data: formData,
+                contentType: false,
+                processData: false,
+                success: function(response) {
+                    $('#btn-close-modal').click()
+                },
+                error: function(xhr, status, error) {
+                    console.error(error);
+                }
+            });
+        });
     </script>
 @endpush
 

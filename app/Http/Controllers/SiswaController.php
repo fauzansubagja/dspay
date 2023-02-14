@@ -6,8 +6,10 @@ use Alert;
 use App\Models\Kelas;
 use App\Models\Proli;
 use App\Models\Siswa;
-use App\Exports\SiswaExports;
 use Illuminate\Http\Request;
+use App\Exports\SiswaExports;
+use App\Imports\SiswaImports;
+use GrahamCampbell\ResultType\Success;
 use Maatwebsite\Excel\Facades\Excel;
 use Illuminate\Support\Facades\Storage;
 
@@ -39,7 +41,7 @@ class SiswaController extends Controller
      * Show the form for creating a new resource.
      *
      * @return \Illuminate\Http\Response
-     */   
+     */
     public function create()
     {
         return view('admin.management.siswa.form', [
@@ -160,5 +162,13 @@ class SiswaController extends Controller
     public function exportexcel()
     {
         return Excel::download(new SiswaExports, 'data-siswa.xlsx');
+    }
+
+    public function importexcel(Request $request)
+    {
+        Excel::import(new SiswaImports, $request->file);
+        return response()->json([
+            'message' => 'Success'
+        ]);
     }
 }

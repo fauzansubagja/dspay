@@ -289,13 +289,16 @@
         var options = {
               series: [{
               name: 'Kelas X',
-              data: [44, 55, 57, 56, 61, 58, 63, 60, 66, 44, 55, 78]
+              data: ['{{ @$jumlah_transaksi['kelas10'][1] }}', '{{ @$jumlah_transaksi['kelas10'][2] }}','{{ @$jumlah_transaksi['kelas10'][3] }}','{{ @$jumlah_transaksi['kelas10'][4] }}','{{ @$jumlah_transaksi['kelas10'][5] }}','{{ @$jumlah_transaksi['kelas10'][6] }}','{{ @$jumlah_transaksi['kelas10'][7] }}','{{ @$jumlah_transaksi['kelas10'][8] }}','{{ @$jumlah_transaksi['kelas10'][9] }}','{{ @$jumlah_transaksi['kelas10'][10] }}','{{ @$jumlah_transaksi['kelas10'][11] }}','{{ @$jumlah_transaksi['kelas10'][12] }}']
             }, {
               name: 'Kelas XI',
-              data: [76, 85, 101, 98, 87, 105, 91, 114, 94, 44, 55, 89]
+              data: ['{{ @$jumlah_transaksi['kelas11'][1] }}', '{{ @$jumlah_transaksi['kelas11'][2] }}','{{ @$jumlah_transaksi['kelas11'][3] }}','{{ @$jumlah_transaksi['kelas11'][4] }}','{{ @$jumlah_transaksi['kelas11'][5] }}','{{ @$jumlah_transaksi['kelas11'][6] }}','{{ @$jumlah_transaksi['kelas11'][7] }}','{{ @$jumlah_transaksi['kelas11'][8] }}','{{ @$jumlah_transaksi['kelas11'][9] }}','{{ @$jumlah_transaksi['kelas11'][10] }}','{{ @$jumlah_transaksi['kelas11'][11] }}','{{ @$jumlah_transaksi['kelas11'][12] }}']
             }, {
               name: 'Kelas XII',
-              data: [35, 41, 36, 26, 45, 48, 52, 53, 41, 44, 55, 45]
+              data: ['{{ @$jumlah_transaksi['kelas12'][1] }}', '{{ @$jumlah_transaksi['kelas12'][2] }}','{{ @$jumlah_transaksi['kelas12'][3] }}','{{ @$jumlah_transaksi['kelas12'][4] }}','{{ @$jumlah_transaksi['kelas12'][5] }}','{{ @$jumlah_transaksi['kelas12'][6] }}','{{ @$jumlah_transaksi['kelas12'][7] }}','{{ @$jumlah_transaksi['kelas12'][8] }}','{{ @$jumlah_transaksi['kelas12'][9] }}','{{ @$jumlah_transaksi['kelas12'][10] }}','{{ @$jumlah_transaksi['kelas12'][11] }}','{{ @$jumlah_transaksi['kelas12'][12] }}']
+            }, {
+              name: 'Kelas XIII',
+              data: ['{{ @$jumlah_transaksi['kelas13'][1] }}', '{{ @$jumlah_transaksi['kelas13'][2] }}','{{ @$jumlah_transaksi['kelas13'][3] }}','{{ @$jumlah_transaksi['kelas13'][4] }}','{{ @$jumlah_transaksi['kelas13'][5] }}','{{ @$jumlah_transaksi['kelas13'][6] }}','{{ @$jumlah_transaksi['kelas13'][7] }}','{{ @$jumlah_transaksi['kelas13'][8] }}','{{ @$jumlah_transaksi['kelas13'][9] }}','{{ @$jumlah_transaksi['kelas13'][10] }}','{{ @$jumlah_transaksi['kelas13'][11] }}','{{ @$jumlah_transaksi['kelas13'][12] }}']
             }],
               chart: {
               type: 'bar',
@@ -342,8 +345,8 @@
         Morris.Donut({
         element: 'chart1',
         data: [
-          {label: "Lunas", value: 12},
-          {label: "Belum Lunas", value: 30},
+          {label: "Lunas", value: '{{ @$lunas }}' },
+          {label: "Belum Lunas", value: '{{ @$belum_lunas }}'},
         ],
         backgroundColor: "#f2f5fa",
               labelColor: "#009688",
