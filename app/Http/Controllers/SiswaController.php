@@ -6,7 +6,7 @@ use Alert;
 use App\Models\Kelas;
 use App\Models\Proli;
 use App\Models\Siswa;
-use App\Exports\SiswaExport;
+use App\Exports\SiswaExports;
 use Illuminate\Http\Request;
 use Maatwebsite\Excel\Facades\Excel;
 use Illuminate\Support\Facades\Storage;
@@ -159,6 +159,6 @@ class SiswaController extends Controller
 
     public function exportexcel()
     {
-        return Excel::download(new SiswaExport, 'data-siswa.xlsx');
+        return Excel::download(new SiswaExports, 'data-siswa.xlsx');
     }
 }
