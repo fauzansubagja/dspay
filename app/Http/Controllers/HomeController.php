@@ -25,8 +25,8 @@ class HomeController extends Controller
      */
     public function index()
     {
-        $siswa = Siswa::find(1366)->transaksi->where('lunas', true)->count();
-        dd($siswa);
+        // $siswa = Siswa::find(1366)->transaksi->where('lunas', true)->count();
+        // dd($siswa);
         return view('dashboard.index', [
             'siswa' => Siswa::count(),
             'diterima' => Transaksi::sum('nominal_dibayar')

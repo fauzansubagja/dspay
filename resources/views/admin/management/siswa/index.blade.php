@@ -22,7 +22,7 @@
                                 Tambah</a>
                             <a href="add-booking.html" class="btn btn-danger"><i class="fas fa-upload"></i>
                                 Upload Siswa</a>
-                            <a href="add-booking.html" class="btn btn-warning"><i class="fas fa-print"></i>
+                            <a href="/exportexcel" class="btn btn-warning"><i class="fas fa-print"></i>
                                 Cetak</a>
                         </h4>
                     </div>
@@ -115,8 +115,7 @@
 <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
 <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
-<script src="{{ asset('plugins/datatables/jquery.dataTables.min.js') }}"></script>
-<script src="{{ asset('plugins/datatables/datatables.min.js') }}"></script>
+
 
 
 <script type="text/javascript">

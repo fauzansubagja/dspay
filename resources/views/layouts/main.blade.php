@@ -16,6 +16,7 @@
     <link rel="stylesheet" href="{{ asset('plugins/fullcalendar/fullcalendar.min.css') }}">
     <link rel="stylesheet" href="{{ asset('css/style.css') }}">
     <link rel='stylesheet' href='https://cdn.jsdelivr.net/npm/sweetalert2@10.10.1/dist/sweetalert2.min.css'>
+	<link rel="stylesheet" href="{{ asset('/plugins/datatables/datatables.min.css')}}">
     <style>
         /* input nis */
         Chrome,
@@ -275,6 +276,8 @@
     <script src="{{ asset('js/popper.min.js') }}"></script>
     <script src="{{ asset('js/bootstrap.min.js') }}"></script>
     <script src="{{ asset('plugins/slimscroll/jquery.slimscroll.min.js') }}"></script>
+    <script src="{{ asset('plugins/datatables/jquery.dataTables.min.js') }}"></script>
+    <script src="{{ asset('plugins/datatables/datatables.min.js') }}"></script>
     <script src="{{ asset('plugins/raphael/raphael.min.js') }}"></script>
     <script src="{{ asset('plugins/morris/morris.min.js') }}"></script>
     <script src="{{ asset('js/chart.morris.js') }}"></script>

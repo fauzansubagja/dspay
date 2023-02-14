@@ -324,10 +324,10 @@
                         'no' : "{{ Auth::user()->no_tlp }}"
                     },
                     success: function (response) {
+                        const nis = "{{ @$user->nis }}";
                         window.snap.pay(response.midToken, {
                             onSuccess: function(result){
                                 alert("payment success!"); console.log(result);
-                                const nis = "{{ @$user->nis }}";
                                 $.ajax({
                                     type: "POST",
                                     url: "{{ url('transaksi') }}",
@@ -385,10 +385,10 @@
                             'no' : "{{ Auth::user()->no_tlp }}"
                         },
                         success: function (response) {
+                            const nis = "{{ @$user->nis }}";
                             window.snap.pay(response.midToken, {
                                 onSuccess: function(result){
                                     alert("payment success!"); console.log(result);
-                                    const nis = "{{ @$user->nis }}";
                                     $.ajax({
                                         type: "POST",
                                         url: "{{ url('transaksi') }}",

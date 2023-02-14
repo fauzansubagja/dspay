@@ -6,7 +6,9 @@ use Alert;
 use App\Models\Kelas;
 use App\Models\Proli;
 use App\Models\Siswa;
+use App\Exports\SiswaExportView;
 use Illuminate\Http\Request;
+use Maatwebsite\Excel\Facades\Excel;
 use Illuminate\Support\Facades\Storage;
 
 class SiswaController extends Controller
@@ -37,7 +39,7 @@ class SiswaController extends Controller
      * Show the form for creating a new resource.
      *
      * @return \Illuminate\Http\Response
-     */
+     */   
     public function create()
     {
         return view('admin.management.siswa.form', [
@@ -153,5 +155,10 @@ class SiswaController extends Controller
         Storage::delete($siswa->foto_siswa);
         $siswa->delete();
         return back()->with('success', 'Sukses Menghapus Siswa!');
+    }
+
+    public function exportexcel()
+    {
+        return Excel::download(new SiswaExport, 'data-siswa.xlsx');
     }
 }
