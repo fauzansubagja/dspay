@@ -338,8 +338,6 @@
             var chart = new ApexCharts(document.querySelector("#chart"), options);
             chart.render();
     </script>
-    @stack('script-page')
-
     <script>
         Morris.Donut({
         element: 'chart1',
@@ -354,6 +352,7 @@
               redraw: true,
       });
     </script>
+    @stack('script-page')
 </body>
 
 </html>

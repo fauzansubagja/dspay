@@ -13,6 +13,7 @@ use App\Http\Controllers\KenaikanController;
 use App\Http\Controllers\KeuanganController;
 use App\Http\Controllers\KelulusanController;
 use App\Http\Controllers\PembayaranController;
+use App\Http\Controllers\RekapitulasiController;
 use App\Http\Controllers\FilterSiswaController;
 use App\Http\Controllers\Backend\UserController;
 
@@ -37,6 +38,7 @@ Route::get('/tes', function () {
 
 Auth::routes();
 Route::get('/dashboard', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::get('/dashboard', [App\Http\Controllers\HomeController::class, 'lunas'])->name('grafik');
 
 Route::middleware('admin')->group(function () {
     Route::resource('/management/user', UserController::class);
@@ -45,7 +47,8 @@ Route::middleware('admin')->group(function () {
     Route::resource('/management/periode', PeriodeController::class);
     Route::resource('/management/kenaikan', KenaikanController::class);
     Route::resource('/management/kelulusan', KelulusanController::class);
-    Route::resource('/management/keuangan', KeuanganController::class);
+    Route::resource('/admin/laporan/keuangan', KeuanganController::class);
+    Route::resource('/admin/laporan/rekapitulasi', RekapitulasiController::class);
     Route::resource('/management/profile', ProfileController::class);
     Route::resource('/management/siswa', SiswaController::class);
     Route::get('/exportexcel', [SiswaController::class, 'exportexcel'])->name('exportexcel');
