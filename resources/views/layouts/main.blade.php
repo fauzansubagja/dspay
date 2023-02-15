@@ -16,7 +16,7 @@
     <link rel="stylesheet" href="{{ asset('plugins/fullcalendar/fullcalendar.min.css') }}">
     <link rel="stylesheet" href="{{ asset('css/style.css') }}">
     <link rel='stylesheet' href='https://cdn.jsdelivr.net/npm/sweetalert2@10.10.1/dist/sweetalert2.min.css'>
-	<link rel="stylesheet" href="{{ asset('/plugins/datatables/datatables.min.css')}}">
+    <link rel="stylesheet" href="{{ asset('/plugins/datatables/datatables.min.css') }}">
     <style>
         /* input nis */
         Chrome,
@@ -63,9 +63,8 @@
 
     {{-- midtrans --}}
     @can('user')
-    <script type="text/javascript"
-    src="https://app.sandbox.midtrans.com/snap/snap.js"
-    data-client-key="SB-Mid-client-fSC6dpdJ28E0hOVV"></script>
+        <script type="text/javascript" src="https://app.sandbox.midtrans.com/snap/snap.js"
+            data-client-key="SB-Mid-client-fSC6dpdJ28E0hOVV"></script>
     @endcan
 </head>
 
@@ -73,17 +72,18 @@
     <div class="main-wrapper">
         <div class="header">
             <div class="header-left">
-                <a href="index.html" class="logo"> <img src="{{ asset('/img/dspay-logo.png')}}" width="50" height="70"
-                        alt="logo">
+                <a href="index.html" class="logo"> <img src="{{ asset('/img/dspay-logo.png') }}" width="50"
+                        height="70" alt="logo">
                     <span class="logoclass">DSPay</span> </a>
-                <a href="index.html" class="logo logo-small"> <img src="{{ asset('/img/dspay-logo.png')}}" alt="Logo"
-                        width="30" height="30"> </a>
+                <a href="index.html" class="logo logo-small"> <img src="{{ asset('/img/dspay-logo.png') }}"
+                        alt="Logo" width="30" height="30"> </a>
             </div>
             <a href="javascript:void(0);" id="toggle_btn"> <i class="fe fe-text-align-left"></i> </a>
             <a class="mobile_btn" id="mobile_btn"> <i class="fas fa-bars"></i> </a>
             <ul class="nav user-menu">
                 <li class="nav-item dropdown noti-dropdown">
-                    <a href="#" class="dropdown-toggle nav-link" data-toggle="dropdown"> <i class="fe fe-bell"></i>
+                    <a href="#" class="dropdown-toggle nav-link" data-toggle="dropdown"> <i
+                            class="fe fe-bell"></i>
                         <span class="badge badge-pill">3</span> </a>
                     <div class="dropdown-menu notifications">
                         <div class="topnav-dropdown-header"> <span class="notification-title">Notifications</span> <a
@@ -128,7 +128,8 @@
                                                     src="assets/img/profiles/avatar-17.jpg">
                                             </span>
                                             <div class="media-body">
-                                                <p class="noti-details"><span class="noti-title">John Hendry</span> sent
+                                                <p class="noti-details"><span class="noti-title">John Hendry</span>
+                                                    sent
                                                     a cancellation request <span class="noti-title">Apple iPhone
                                                         XR</span></p>
                                                 <p class="noti-time"><span class="notification-time">8 mins ago</span>
@@ -147,7 +148,8 @@
                                                 <p class="noti-details"><span class="noti-title">Mercury Software
                                                         Inc</span> added a new product <span class="noti-title">Apple
                                                         MacBook Pro</span></p>
-                                                <p class="noti-time"><span class="notification-time">12 mins ago</span>
+                                                <p class="noti-time"><span class="notification-time">12 mins
+                                                        ago</span>
                                                 </p>
                                             </div>
                                         </div>
@@ -159,9 +161,9 @@
                     </div>
                 </li>
                 <li class="nav-item dropdown has-arrow">
-                    <a href="#" class="dropdown-toggle nav-link" data-toggle="dropdown"> <span class="user-img"><img
-                                class="rounded-circle" src="{{ asset('img/profile-img.jpg') }}" width="31"
-                                alt="Soeng Souy"></span> </a>
+                    <a href="#" class="dropdown-toggle nav-link" data-toggle="dropdown"> <span
+                            class="user-img"><img class="rounded-circle" src="{{ asset('img/profile-img.jpg') }}"
+                                width="31" alt="Soeng Souy"></span> </a>
                     <div class="dropdown-menu">
                         <div class="user-header">
                             <div class="avatar avatar-sm"> <img src="{{ asset('img/profile-img.jpg') }}"
@@ -172,7 +174,8 @@
                             </div>
                         </div> <a class="dropdown-item" href="profile.html">My Profile</a>
                         <a class="dropdown-item" href="settings.html">Account Settings</a>
-                        <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault();
+                        <a class="dropdown-item" href="{{ route('logout') }}"
+                            onclick="event.preventDefault();
                         document.getElementById('logout-form').submit();">{{ __('Logout') }}</a>
                         <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
                             @csrf
@@ -192,77 +195,82 @@
                 <div id="sidebar-menu" class="sidebar-menu">
                     <ul>
                         @can('admin')
-                            
-                        <li class="{{ (request()->is('dashboard*')) ? 'active' : '' }}"> <a
-                                href="{{ url('/dashboard') }}"><i class="fas fa-tachometer-alt"></i>
-                                <span>Dashboard</span></a> </li>
-                        <li class="list-divider"></li>
-                        <li class="{{ (request()->is('admin/pembayaran*')) ? 'active' : '' }}"> <a
-                                href="{{ route('pembayaran.index') }}"><i class="fas fa-credit-card"></i> <span> Pembayaran
-                                    Siswa
-                                </span></a>
-                        </li>
-                        <li class="submenu"> <a href="#"><i class="fas fa-user"></i> <span> management Data </span>
-                                <span class="menu-arrow"></span></a>
-                            <ul class="submenu_class" style="display: none;">
-                                <li><a class="{{ (request()->is('management/periode*')) ? 'active' : '' }}"
-                                        href="/management/periode">Tahun Ajaran </a></li>
-                                <li><a class="{{ (request()->is('management/kelas*')) ? 'active' : '' }}"
-                                        href="/management/kelas">
-                                        Kelas </a></li>
-                                <li><a class="{{ (request()->is('management/siswa*')) ? 'active' : '' }}"
-                                        href="/management/siswa">
-                                        Siswa </a></li>
-                                <li><a class="{{ (request()->is('management/jurusan*')) ? 'active' : '' }}"
-                                        href="/management/jurusan">
-                                        Jurusan </a></li>
-                            </ul>
-                        </li>
-                        <li class="{{ (request()->is('kalender*')) ? 'active' : '' }}"> <a href="/kalender"><i
-                                    class="fas fa-calendar-alt"></i> <span>Kalender</span></a> </li>
-                        </li>
-                        <li class="submenu"> <a href="#"><i class="fas fa-book"></i> <span> Laporan </span> <span
-                                    class="menu-arrow"></span></a>
-                            <ul class="submenu_class" style="display: none;">
-                                <li><a class="{{ (request()->is('admin/laporan/keuangan*')) ? 'active' : '' }}"
-                                        href="/admin/laporan/keuangan"><span> Laporan Keuangan </span></a></li>
-                                <li><a class="{{ (request()->is('admin/laporan/rekapitulasi*')) ? 'active' : '' }}"
-                                        href="/admin/laporan/rekapitulasi"><span> Rekapitulasi </span></a>
-                                </li>
-                            </ul>
-                        </li>
-                        <li class="{{ (request()->is('management/user*')) ? 'active' : '' }}"> <a
-                                href="/management/user"><i class="fas fa-users-cog"></i> <span> management Pengguna
-                                </span></a>
-                        <li class="{{ (request()->is('admin/cities*')) ? 'active' : '' }}"> <a href=""><i
-                                    class="fas fa-cog"></i>
-                                <span>Settings</span></a> </li>
-                        <li class="list-divider"></li>
-                        <li class=""> <a href="{{ route('logout') }}" onclick="event.preventDefault();
-                            document.getElementById('logout-form').submit();"><i class="fas fa-sign-out-alt"></i>
-                                <span> {{ __('Logout') }}
-                                </span></a>
-                        </li>
-                        <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
-                            @csrf
-                        </form>
+                            <li class="{{ request()->is('dashboard*') ? 'active' : '' }}"> <a
+                                    href="{{ url('/dashboard') }}"><i class="fas fa-tachometer-alt"></i>
+                                    <span>Dashboard</span></a> </li>
+                            <li class="list-divider"></li>
+                            <li class="{{ request()->is('admin/pembayaran*') ? 'active' : '' }}"> <a
+                                    href="{{ route('pembayaran.index') }}"><i class="fas fa-credit-card"></i> <span>
+                                        Pembayaran
+                                        Siswa
+                                    </span></a>
+                            </li>
+                            <li class="submenu"> <a href="#"><i class="fas fa-user"></i> <span> management Data
+                                    </span>
+                                    <span class="menu-arrow"></span></a>
+                                <ul class="submenu_class" style="display: none;">
+                                    <li><a class="{{ request()->is('management/periode*') ? 'active' : '' }}"
+                                            href="/management/periode">Tahun Ajaran </a></li>
+                                    <li><a class="{{ request()->is('management/kelas*') ? 'active' : '' }}"
+                                            href="/management/kelas">
+                                            Kelas </a></li>
+                                    <li><a class="{{ request()->is('management/siswa*') ? 'active' : '' }}"
+                                            href="/management/siswa">
+                                            Siswa </a></li>
+                                    <li><a class="{{ request()->is('management/jurusan*') ? 'active' : '' }}"
+                                            href="/management/jurusan">
+                                            Jurusan </a></li>
+                                </ul>
+                            </li>
+                            <li class="{{ request()->is('kalender*') ? 'active' : '' }}"> <a href="/kalender"><i
+                                        class="fas fa-calendar-alt"></i> <span>Kalender</span></a> </li>
+                            </li>
+                            <li class="submenu"> <a href="#"><i class="fas fa-book"></i> <span> Laporan </span>
+                                    <span class="menu-arrow"></span></a>
+                                <ul class="submenu_class" style="display: none;">
+                                    <li><a class="{{ request()->is('admin/laporan/keuangan*') ? 'active' : '' }}"
+                                            href="/admin/laporan/keuangan"><span> Laporan Keuangan </span></a></li>
+                                    <li><a class="{{ request()->is('admin/laporan/rekapitulasi*') ? 'active' : '' }}"
+                                            href="/admin/laporan/rekapitulasi"><span> Rekapitulasi </span></a>
+                                    </li>
+                                </ul>
+                            </li>
+                            <li class="{{ request()->is('management/user*') ? 'active' : '' }}"> <a
+                                    href="/management/user"><i class="fas fa-users-cog"></i> <span> management Pengguna
+                                    </span></a>
+                            <li class="{{ request()->is('admin/cities*') ? 'active' : '' }}"> <a href=""><i
+                                        class="fas fa-cog"></i>
+                                    <span>Settings</span></a> </li>
+                            <li class="list-divider"></li>
+                            <li class=""> <a href="{{ route('logout') }}"
+                                    onclick="event.preventDefault();
+                            document.getElementById('logout-form').submit();"><i
+                                        class="fas fa-sign-out-alt"></i>
+                                    <span> {{ __('Logout') }}
+                                    </span></a>
+                            </li>
+                            <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+                                @csrf
+                            </form>
                         @endcan
                         @can('user')
-                        <li class="{{ (request()->is('admin/pembayaran*')) ? 'active' : '' }}"> <a
-                                href="{{ route('pembayaran.index') }}"><i class="fas fa-credit-card"></i> <span> Pembayaran
-                                    Siswa
-                                </span></a>
-                        </li>
-                        <li class="list-divider"></li>
-                        <li class=""> <a href="{{ route('logout') }}" onclick="event.preventDefault();
-                            document.getElementById('logout-form').submit();"><i class="fas fa-sign-out-alt"></i>
-                                <span> {{ __('Logout') }}
-                                </span></a>
-                        </li>
-                        <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
-                            @csrf
-                        </form>
-
+                            <li class="{{ request()->is('admin/pembayaran*') ? 'active' : '' }}"> <a
+                                    href="{{ route('pembayaran.index') }}"><i class="fas fa-credit-card"></i> <span>
+                                        Pembayaran
+                                        Siswa
+                                    </span></a>
+                            </li>
+                            <li class="list-divider"></li>
+                            <li class=""> <a href="{{ route('logout') }}"
+                                    onclick="event.preventDefault();
+                            document.getElementById('logout-form').submit();"><i
+                                        class="fas fa-sign-out-alt"></i>
+                                    <span> {{ __('Logout') }}
+                                    </span></a>
+                            </li>
+                            <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+                                @csrf
+                            </form>
                         @endcan
                     </ul>
                 </div>
@@ -287,73 +295,113 @@
 
     <script>
         var options = {
-              series: [{
-              name: 'Kelas X',
-              data: ['{{ @$jumlah_transaksi['kelas10'][1] }}', '{{ @$jumlah_transaksi['kelas10'][2] }}','{{ @$jumlah_transaksi['kelas10'][3] }}','{{ @$jumlah_transaksi['kelas10'][4] }}','{{ @$jumlah_transaksi['kelas10'][5] }}','{{ @$jumlah_transaksi['kelas10'][6] }}','{{ @$jumlah_transaksi['kelas10'][7] }}','{{ @$jumlah_transaksi['kelas10'][8] }}','{{ @$jumlah_transaksi['kelas10'][9] }}','{{ @$jumlah_transaksi['kelas10'][10] }}','{{ @$jumlah_transaksi['kelas10'][11] }}','{{ @$jumlah_transaksi['kelas10'][12] }}']
+            series: [{
+                name: 'Kelas X',
+                data: ['{{ @$jumlah_transaksi['kelas10'][1] }}', '{{ @$jumlah_transaksi['kelas10'][2] }}',
+                    '{{ @$jumlah_transaksi['kelas10'][3] }}', '{{ @$jumlah_transaksi['kelas10'][4] }}',
+                    '{{ @$jumlah_transaksi['kelas10'][5] }}', '{{ @$jumlah_transaksi['kelas10'][6] }}',
+                    '{{ @$jumlah_transaksi['kelas10'][7] }}', '{{ @$jumlah_transaksi['kelas10'][8] }}',
+                    '{{ @$jumlah_transaksi['kelas10'][9] }}', '{{ @$jumlah_transaksi['kelas10'][10] }}',
+                    '{{ @$jumlah_transaksi['kelas10'][11] }}', '{{ @$jumlah_transaksi['kelas10'][12] }}'
+                ]
             }, {
-              name: 'Kelas XI',
-              data: ['{{ @$jumlah_transaksi['kelas11'][1] }}', '{{ @$jumlah_transaksi['kelas11'][2] }}','{{ @$jumlah_transaksi['kelas11'][3] }}','{{ @$jumlah_transaksi['kelas11'][4] }}','{{ @$jumlah_transaksi['kelas11'][5] }}','{{ @$jumlah_transaksi['kelas11'][6] }}','{{ @$jumlah_transaksi['kelas11'][7] }}','{{ @$jumlah_transaksi['kelas11'][8] }}','{{ @$jumlah_transaksi['kelas11'][9] }}','{{ @$jumlah_transaksi['kelas11'][10] }}','{{ @$jumlah_transaksi['kelas11'][11] }}','{{ @$jumlah_transaksi['kelas11'][12] }}']
+                name: 'Kelas XI',
+                data: ['{{ @$jumlah_transaksi['kelas11'][1] }}', '{{ @$jumlah_transaksi['kelas11'][2] }}',
+                    '{{ @$jumlah_transaksi['kelas11'][3] }}', '{{ @$jumlah_transaksi['kelas11'][4] }}',
+                    '{{ @$jumlah_transaksi['kelas11'][5] }}', '{{ @$jumlah_transaksi['kelas11'][6] }}',
+                    '{{ @$jumlah_transaksi['kelas11'][7] }}', '{{ @$jumlah_transaksi['kelas11'][8] }}',
+                    '{{ @$jumlah_transaksi['kelas11'][9] }}', '{{ @$jumlah_transaksi['kelas11'][10] }}',
+                    '{{ @$jumlah_transaksi['kelas11'][11] }}', '{{ @$jumlah_transaksi['kelas11'][12] }}'
+                ]
             }, {
-              name: 'Kelas XII',
-              data: ['{{ @$jumlah_transaksi['kelas12'][1] }}', '{{ @$jumlah_transaksi['kelas12'][2] }}','{{ @$jumlah_transaksi['kelas12'][3] }}','{{ @$jumlah_transaksi['kelas12'][4] }}','{{ @$jumlah_transaksi['kelas12'][5] }}','{{ @$jumlah_transaksi['kelas12'][6] }}','{{ @$jumlah_transaksi['kelas12'][7] }}','{{ @$jumlah_transaksi['kelas12'][8] }}','{{ @$jumlah_transaksi['kelas12'][9] }}','{{ @$jumlah_transaksi['kelas12'][10] }}','{{ @$jumlah_transaksi['kelas12'][11] }}','{{ @$jumlah_transaksi['kelas12'][12] }}']
+                name: 'Kelas XII',
+                data: ['{{ @$jumlah_transaksi['kelas12'][1] }}', '{{ @$jumlah_transaksi['kelas12'][2] }}',
+                    '{{ @$jumlah_transaksi['kelas12'][3] }}', '{{ @$jumlah_transaksi['kelas12'][4] }}',
+                    '{{ @$jumlah_transaksi['kelas12'][5] }}', '{{ @$jumlah_transaksi['kelas12'][6] }}',
+                    '{{ @$jumlah_transaksi['kelas12'][7] }}', '{{ @$jumlah_transaksi['kelas12'][8] }}',
+                    '{{ @$jumlah_transaksi['kelas12'][9] }}', '{{ @$jumlah_transaksi['kelas12'][10] }}',
+                    '{{ @$jumlah_transaksi['kelas12'][11] }}', '{{ @$jumlah_transaksi['kelas12'][12] }}'
+                ]
             }, {
-              name: 'Kelas XIII',
-              data: ['{{ @$jumlah_transaksi['kelas13'][1] }}', '{{ @$jumlah_transaksi['kelas13'][2] }}','{{ @$jumlah_transaksi['kelas13'][3] }}','{{ @$jumlah_transaksi['kelas13'][4] }}','{{ @$jumlah_transaksi['kelas13'][5] }}','{{ @$jumlah_transaksi['kelas13'][6] }}','{{ @$jumlah_transaksi['kelas13'][7] }}','{{ @$jumlah_transaksi['kelas13'][8] }}','{{ @$jumlah_transaksi['kelas13'][9] }}','{{ @$jumlah_transaksi['kelas13'][10] }}','{{ @$jumlah_transaksi['kelas13'][11] }}','{{ @$jumlah_transaksi['kelas13'][12] }}']
+                name: 'Kelas XIII',
+                data: ['{{ @$jumlah_transaksi['kelas13'][1] }}', '{{ @$jumlah_transaksi['kelas13'][2] }}',
+                    '{{ @$jumlah_transaksi['kelas13'][3] }}', '{{ @$jumlah_transaksi['kelas13'][4] }}',
+                    '{{ @$jumlah_transaksi['kelas13'][5] }}', '{{ @$jumlah_transaksi['kelas13'][6] }}',
+                    '{{ @$jumlah_transaksi['kelas13'][7] }}', '{{ @$jumlah_transaksi['kelas13'][8] }}',
+                    '{{ @$jumlah_transaksi['kelas13'][9] }}', '{{ @$jumlah_transaksi['kelas13'][10] }}',
+                    '{{ @$jumlah_transaksi['kelas13'][11] }}', '{{ @$jumlah_transaksi['kelas13'][12] }}'
+                ]
             }],
-              chart: {
-              type: 'bar',
-              height: 350
+            chart: {
+                type: 'bar',
+                height: 350
             },
             plotOptions: {
-              bar: {
-                horizontal: false,
-                columnWidth: '55%',
-                endingShape: 'rounded'
-              },
+                bar: {
+                    horizontal: false,
+                    columnWidth: '55%',
+                    endingShape: 'rounded'
+                },
             },
             dataLabels: {
-              enabled: false
+                enabled: false
             },
             stroke: {
-              show: true,
-              width: 2,
-              colors: ['transparent']
+                show: true,
+                width: 2,
+                colors: ['transparent']
             },
             xaxis: {
-              categories: ['Jan','Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'],
+                categories: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'],
+            },
+            download: {
+                csv: {
+                    filename: 'pembayaran-kelas-x-xiii.csv',
+                    columnDelimiter: ',',
+                    headerCategory: 'Bulan',
+                    headerValues: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep'],
+                    dateFormatter(timestamp) {
+                        return new Date(timestamp).toLocaleDateString('en-US')
+                    }
+                },
             },
             yaxis: {
-              title: {
-                text: '(Pembayaran)'
-              }
+                title: {
+                    text: '(Pembayaran)'
+                }
             },
             fill: {
-              opacity: 1
+                opacity: 1
             },
             tooltip: {
-              y: {
-                formatter: function (val) {
-                  return "" + val + " Pembayaran"
+                y: {
+                    formatter: function(val) {
+                        return "" + val + " Pembayaran"
+                    }
                 }
-              }
             }
-            };
-            var chart = new ApexCharts(document.querySelector("#chart"), options);
-            chart.render();
+        };
+        var chart = new ApexCharts(document.querySelector("#chart"), options);
+        chart.render();
     </script>
     <script>
         Morris.Donut({
-        element: 'chart1',
-        data: [
-          {label: "Lunas", value: '{{ @$lunas }}' },
-          {label: "Belum Lunas", value: '{{ @$belum_lunas }}'},
-        ],
-        backgroundColor: "#f2f5fa",
-              labelColor: "#009688",
-              colors: ["#0BA462", "#39B580", "#67C69D", "#95D7BB"],
-              resize: true,
-              redraw: true,
-      });
+            element: 'chart1',
+            data: [{
+                    label: "Lunas",
+                    value: '{{ @$lunas }}'
+                },
+                {
+                    label: "Belum Lunas",
+                    value: '{{ @$belum_lunas }}'
+                },
+            ],
+            backgroundColor: "#f2f5fa",
+            labelColor: "#009688",
+            colors: ["#0BA462", "#39B580", "#67C69D", "#95D7BB"],
+            resize: true,
+            redraw: true,
+        });
     </script>
     @stack('script-page')
 </body>
