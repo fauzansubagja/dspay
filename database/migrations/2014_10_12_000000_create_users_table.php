@@ -19,7 +19,7 @@ class CreateUsersTable extends Migration
             $table->string('nis')->nullable();
             $table->string('email')->unique();
             $table->string('no_tlp')->nullable();
-            $table->enum('role', ['User', 'Administrator'])->nullable();
+            $table->enum('role', ['User', 'Administrator'])->default('User');
             $table->string('user_img')->default('public/img/profile-img.jpg');
             $table->string('user_description')->nullable();
             $table->timestamp('email_verified_at')->nullable();

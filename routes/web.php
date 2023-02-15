@@ -29,7 +29,7 @@ use App\Http\Controllers\Backend\UserController;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return redirect('/login');
 });
 Route::get('/tes', function () {
     return view('tes');
@@ -38,7 +38,7 @@ Route::get('/tes', function () {
 
 Auth::routes();
 Route::get('/dashboard', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
-Route::get('/dashboard', [App\Http\Controllers\HomeController::class, 'lunas'])->name('grafik');
+// Route::get('/dashboard', [App\Http\Controllers\HomeController::class, 'lunas'])->name('grafik');
 
 Route::middleware('admin')->group(function () {
     Route::resource('/management/user', UserController::class);

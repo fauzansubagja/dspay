@@ -18,12 +18,13 @@
     <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
 
     <!-- Styles -->
-    <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+    {{-- <link href="{{ asset('css/app.css') }}" rel="stylesheet"> --}}
+    <link href="{{ asset('css/login.css') }}" rel="stylesheet">
 </head>
 
 <body>
     <div id="app">
-        <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
+        {{-- <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
             <div class="container">
                 <a class="navbar-brand" href="{{ url('/') }}">
                     {{ config('app.name', 'Laravel') }}
@@ -77,12 +78,18 @@
                     </ul>
                 </div>
             </div>
-        </nav>
+        </nav> --}}
 
         <main class="py-4">
             @yield('content')
         </main>
     </div>
+    <script src="{{ asset('js/jquery-3.5.1.min.js')}}"></script>
+	<script src="{{ asset('js/popper.min.js')}}"></script>
+	<script src="{{ asset('js/bootstrap.min.js')}}"></script>
+	<script src="{{ asset('plugins/slimscroll/jquery.slimscroll.min.js')}}"></script>
+	<script src="{{ asset('js/script.js')}}"></script>
+	<script src="{{ asset('js/login.js')}}"></script>
 </body>
 
 </html>

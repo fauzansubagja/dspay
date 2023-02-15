@@ -33,7 +33,7 @@ class HomeController extends Controller
             'kelas12' => [],
             'kelas13' => []
         ];
-
+        
         for ($bulan = 1; $bulan <= 12; $bulan++) {
             $jumlahTransaksi['kelas10'][$bulan] = Siswa::getJumlahTransaksiSiswa('10', $bulan);
             $jumlahTransaksi['kelas11'][$bulan] = Siswa::getJumlahTransaksiSiswa('11', $bulan);

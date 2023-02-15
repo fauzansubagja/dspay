@@ -17,8 +17,8 @@ class SiswaImports implements ToCollection
             $proli = Proli::where('proli', $row[4])->first();
             if ($row[0] != 'NO' && $row[1] != 'NIS' && $row[2] != 'Nama Siswa' && $row[3] != 'Kelas' && $row[4] != 'Jurusan') {
                 Siswa::create([
-                    'nis' => $row[0],
-                    'nama' => $row[1],
+                    'nis' => $row[1],
+                    'nama' => $row[2],
                     'id_kelas' => $kelas->id_kelas,
                     'id_proli' => $proli->id_proli,
                 ]);
