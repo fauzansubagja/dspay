@@ -59,6 +59,10 @@
         input#in-no[type=number] {
             -moz-appearance: textfield;
         }
+
+        .bold-header {
+            font-weight: bold;
+        }
     </style>
 
     {{-- midtrans --}}
@@ -334,13 +338,31 @@
             }],
             chart: {
                 type: 'bar',
-                height: 350
+                height: 350,
+                toolbar: {
+                type: 'area',
+                export: {
+                    csv: {
+                        filename: 'Pembayaran Kelas X-XIII',
+                        headerCategory: 'Kelas;Bulan',
+                        headerValues: ['X', 'XI', 'XII', 'XIII', 'Januari', 'Februari', 'Maret', 'April', 'Mei', 'Juni', 'Juli', 'Agustus', 'September', 'Oktober', 'November', 'Desember'],
+                        columnDelimiter: ';',
+                        cssClass: 'bold-header'
+                    },
+                    png: {
+                        filename: 'Pembayaran Kelas X-XIII',
+                    },
+                    svg: {
+                        filename: 'Pembayaran Kelas X-XIII',
+                    },
+                }
+                },
             },
             plotOptions: {
                 bar: {
-                    horizontal: false,
-                    columnWidth: '55%',
-                    endingShape: 'rounded'
+                horizontal: false,
+                columnWidth: '55%',
+                endingShape: 'rounded'
                 },
             },
             dataLabels: {
@@ -352,22 +374,11 @@
                 colors: ['transparent']
             },
             xaxis: {
-                categories: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'],
-            },
-            download: {
-                csv: {
-                    filename: 'pembayaran-kelas-x-xiii.csv',
-                    columnDelimiter: ',',
-                    headerCategory: 'Bulan',
-                    headerValues: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep'],
-                    dateFormatter(timestamp) {
-                        return new Date(timestamp).toLocaleDateString('en-US')
-                    }
-                },
+                categories: ['X', 'XI', 'XII', 'XIII', 'Januari', 'Februari', 'Maret', 'April', 'Mei', 'Juni', 'Juli', 'Agustus', 'September', 'Oktober', 'November', 'Desember'],
             },
             yaxis: {
                 title: {
-                    text: '(Pembayaran)'
+                text: '(Pembayaran)'
                 }
             },
             fill: {
@@ -375,12 +386,26 @@
             },
             tooltip: {
                 y: {
-                    formatter: function(val) {
-                        return "" + val + " Pembayaran"
-                    }
+                formatter: function(val) {
+                    return "" + val + " Pembayaran"
+                }
                 }
             }
-        };
+            };
+
+            var categories = options.xaxis.categories;
+            var newCategories = categories.slice(4).concat(categories.slice(0, 4));
+            options.xaxis.categories = newCategories;
+
+            // for (var i = 0; i < options.series.length; i++) {
+            // var data = options.series[i].data;
+            // var newData = data.slice(4).concat(data.slice(0, 4));
+            // options.series[i].data = newData;
+            // }
+
+            options.chart.toolbar.export.csv.headerCategory = 'Bulan';
+            options.chart.toolbar.export.csv.headerValues = ['X', 'XI', 'XII', 'XIII', 'Januari', 'Februari', 'Maret', 'April', 'Mei', 'Juni', 'Juli', 'Agustus', 'September', 'Oktober', 'November', 'Desember'];
+
         var chart = new ApexCharts(document.querySelector("#chart"), options);
         chart.render();
     </script>

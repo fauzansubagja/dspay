@@ -29,6 +29,11 @@ use App\Http\Controllers\Backend\UserController;
 */
 
 Route::get('/', function () {
+    if(@Auth::user()->role == 'Administrator'){
+        return redirect('/dashboard');
+    } else if (@Auth::user()->role == 'User') {
+        return redirect('/pembayaran');
+    }
     return redirect('/login');
 });
 Route::get('/tes', function () {
@@ -56,7 +61,7 @@ Route::middleware('admin')->group(function () {
 });
 
 Route::middleware('auth')->group(function () {
-    Route::resource('/admin/pembayaran', PembayaranController::class);
+    Route::resource('/pembayaran', PembayaranController::class);
     Route::resource('transaksi', App\Http\Controllers\Api\TransaksiController::class);
     // Route::resource('/kalender', KalenderController::class);
     // Route::resource('/management/management', ManajamenController::class);

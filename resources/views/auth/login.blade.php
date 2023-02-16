@@ -72,6 +72,28 @@
                             @enderror
                         </div>
                         <div class="input-field">
+                            <i class="fas fa-home"></i>
+                            <input id="nis" type="nis" class="form-control @error('nis') is-invalid @enderror"
+                                name="nis" value="{{ old('nis') }}" required autocomplete="nis"
+                                placeholder="NIS" />
+                            @error('nis')
+                                <span class="invalid-feedback" role="alert">
+                                    <strong>{{ $message }}</strong>
+                                </span>
+                            @enderror
+                        </div>
+                        <div class="input-field">
+                            <i class="fas fa-phone"></i>
+                            <input id="phone" type="phone" class="form-control @error('phone') is-invalid @enderror"
+                                name="phone" value="{{ old('phone') }}" required autocomplete="phone"
+                                placeholder="No. Handphone" />
+                            @error('phone')
+                                <span class="invalid-feedback" role="alert">
+                                    <strong>{{ $message }}</strong>
+                                </span>
+                            @enderror
+                        </div>
+                        <div class="input-field">
                             <i class="fas fa-envelope"></i>
                             <input id="email" type="email" class="form-control @error('email') is-invalid @enderror"
                                 name="email" value="{{ old('email') }}" required autocomplete="email"
@@ -133,7 +155,7 @@
                             Sign up
                         </button>
                     </div>
-                    <img src="img/log.svg" class="image" alt="" />
+                    <img src="img/login.svg" class="image" alt="" />
                 </div>
                 <div class="panel right-panel">
                     <div class="content">
@@ -146,7 +168,7 @@
                             Sign in
                         </button>
                     </div>
-                    <img src="img/register.svg" class="image" alt="" />
+                    <img src="img/reg.svg" class="image" alt="" />
                 </div>
             </div>
         </div>
