@@ -35,6 +35,7 @@ class TransaksiController extends Controller
      */
     public function store(Request $request)
     {
+        // dd($request);
         $request->validate($this->rules);
         $input = $request->all();
         $data = [

@@ -29,7 +29,7 @@
                     </div> --}}
                     <div class="col-md-3">
                         <div class="form-group">
-                            <label>Cari Siswa</label>
+                            <label>Cari NIS Siswa</label>
                             <input class="form-control" type="text" value="" placeholder="NIS Siswa" id="in-nis-siswa">
                         </div>
                     </div>
@@ -316,7 +316,7 @@
             if ('{{ Auth::user()->role }}' == 'User') {
                 $.ajax({
                     type: "GET",
-                    url: "{{ url('admin/pembayaran')}}/{{ Auth::user()->nis }}",
+                    url: "{{ url('/pembayaran')}}/{{ Auth::user()->nis }}",
                     data: {
                         'bayar' : $('#in-bayar').val(),
                         'nama' : "{{ @$user->nama }}",
@@ -377,7 +377,7 @@
                 if ('{{ Auth::user()->role }}' == 'User') {
                     $.ajax({
                         type: "GET",
-                        url: "{{ url('admin/pembayaran')}}/{{ Auth::user()->nis }}",
+                        url: "{{ url('pembayaran')}}/{{ Auth::user()->nis }}",
                         data: {
                             'bayar' : $('#in-bayar').val(),
                             'nama' : "{{ @$user->nama }}",

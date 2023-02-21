@@ -226,25 +226,25 @@
                                             Jurusan </a></li>
                                 </ul>
                             </li>
-                            <li class="{{ request()->is('kalender*') ? 'active' : '' }}"> <a href="/kalender"><i
-                                        class="fas fa-calendar-alt"></i> <span>Kalender</span></a> </li>
+                            {{-- <li class="{{ request()->is('kalender*') ? 'active' : '' }}"> <a href="/kalender"><i --}}
+                                        {{-- class="fas fa-calendar-alt"></i> <span>Kalender</span></a> </li> --}}
                             </li>
                             <li class="submenu"> <a href="#"><i class="fas fa-book"></i> <span> Laporan </span>
                                     <span class="menu-arrow"></span></a>
                                 <ul class="submenu_class" style="display: none;">
                                     <li><a class="{{ request()->is('admin/laporan/keuangan*') ? 'active' : '' }}"
                                             href="/admin/laporan/keuangan"><span> Laporan Keuangan </span></a></li>
-                                    <li><a class="{{ request()->is('admin/laporan/rekapitulasi*') ? 'active' : '' }}"
+                                    {{-- <li><a class="{{ request()->is('admin/laporan/rekapitulasi*') ? 'active' : '' }}"
                                             href="/admin/laporan/rekapitulasi"><span> Rekapitulasi </span></a>
-                                    </li>
+                                    </li> --}}
                                 </ul>
                             </li>
                             <li class="{{ request()->is('management/user*') ? 'active' : '' }}"> <a
                                     href="/management/user"><i class="fas fa-users-cog"></i> <span> management Pengguna
                                     </span></a>
-                            <li class="{{ request()->is('admin/cities*') ? 'active' : '' }}"> <a href=""><i
+                            {{-- <li class="{{ request()->is('admin/cities*') ? 'active' : '' }}"> <a href=""><i
                                         class="fas fa-cog"></i>
-                                    <span>Settings</span></a> </li>
+                                    <span>Settings</span></a> </li> --}}
                             <li class="list-divider"></li>
                             <li class=""> <a href="{{ route('logout') }}"
                                     onclick="event.preventDefault();
@@ -423,6 +423,7 @@
             ],
             backgroundColor: "#f2f5fa",
             labelColor: "#009688",
+            // colors: ["#00FF00", "#FF0000"],
             colors: ["#0BA462", "#39B580", "#67C69D", "#95D7BB"],
             resize: true,
             redraw: true,
