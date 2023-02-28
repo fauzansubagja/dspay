@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\User;
 use App\Models\Kelas;
 use App\Models\Proli;
 use App\Models\Siswa;
@@ -15,6 +16,7 @@ class DashboardController extends Controller
             'siswa' => Siswa::filter($request->nama, $request->kelas, $request->proli),
             'kelass' => Kelas::all(),
             'prolis' => Proli::all(),
+            'user' => User::all(),
         ]);
     }
 

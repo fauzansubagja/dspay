@@ -39,13 +39,11 @@ class PeriodeController extends Controller
     {
         $validateData = $request->validate([
             'periode' => 'required',
-            'status' => 'required',
         ]);
 
         if ($validateData) :
             $store = Periode::create([
                 'periode' => $request->periode,
-                'status' => $request->status
             ]);
             if ($store) :
                 Alert::success('Berhasil', 'Data Berhasil Di Tambahkan!');
@@ -92,13 +90,11 @@ class PeriodeController extends Controller
     {
         $validateData = $request->validate([
             'periode' => 'required',
-            'status' => 'required',
         ]);
 
         if ($validateData) :
             $update = Periode::findOrFail($id_periode)->update([
                 'periode' => $request->periode,
-                'status' => $request->status
             ]);
             if ($update) :
                 Alert::success('Berhasil', 'Data Berhasil Di Ubah!');

@@ -34,7 +34,7 @@
                     <div class="card-header">
                         <h4 class="card-title">
                             <button class="btn btn-primary btn-block" type="submit">Update</button>
-                            <button class="btn btn-danger btn-block" type="submit">Batal</button>
+                            <a href="/management/jurusan" class="btn btn-danger btn-block" type="submit">Batal</a>
                         </h4>
                         </form>
                     </div>

@@ -41,8 +41,8 @@
                             @enderror
                         </div>
                         <input type="submit" value="Login" class="btn solid" />
-                        <p class="social-text">Or Sign in with social platforms</p>
-                        <div class="social-media">
+                        {{-- <p class="social-text">Or Sign in with social platforms</p> --}}
+                        {{-- <div class="social-media">
                             <a href="#" class="social-icon">
                                 <i class="fab fa-facebook-f"></i>
                             </a>
@@ -55,7 +55,7 @@
                             <a href="#" class="social-icon">
                                 <i class="fab fa-linkedin-in"></i>
                             </a>
-                        </div>
+                        </div> --}}
                     </form>
                     <form method="POST" action="{{ route('register') }}" class="sign-up-form">
                         @csrf
@@ -121,7 +121,7 @@
                                 required autocomplete="new-password" placeholder="Confirm Password">
                         </div>
                         <input type="submit" class="btn" value="Sign up" />
-                        <p class="social-text">Or Sign up with social platforms</p>
+                        {{-- <p class="social-text">Or Sign up with social platforms</p>
                         <div class="social-media">
                             <a href="#" class="social-icon">
                                 <i class="fab fa-facebook-f"></i>
@@ -135,7 +135,7 @@
                             <a href="#" class="social-icon">
                                 <i class="fab fa-linkedin-in"></i>
                             </a>
-                        </div>
+                        </div> --}}
                     </form>
                 </div>
             </div>

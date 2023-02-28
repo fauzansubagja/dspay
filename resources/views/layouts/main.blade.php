@@ -176,8 +176,8 @@
                                 <h6>{{ Auth::user()->username }}</h6>
                                 <p class="text-muted mb-0">{{ Auth::user()->role }}</p>
                             </div>
-                        </div> <a class="dropdown-item" href="profile.html">My Profile</a>
-                        <a class="dropdown-item" href="settings.html">Account Settings</a>
+                        </div> <a class="dropdown-item" href="{{ route('user.show',Auth::user()->id) }}">My Profile</a>
+                        {{-- <a class="dropdown-item" href="settings.html">Account Settings</a> --}}
                         <a class="dropdown-item" href="{{ route('logout') }}"
                             onclick="event.preventDefault();
                         document.getElementById('logout-form').submit();">{{ __('Logout') }}</a>

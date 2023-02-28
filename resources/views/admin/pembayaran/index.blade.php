@@ -1,22 +1,22 @@
 @extends('layouts.main')
 @section('konten')
-<div class="page-wrapper">
-    <div class="content container-fluid">
-        <div class="page-header">
-            <div class="row align-items-center">
-                <div class="col">
-                    <div class="mt-5">
-                        <h3 class="card-title float-left mt-2">Pembayaran Siswa</h3>
+    <div class="page-wrapper">
+        <div class="content container-fluid">
+            <div class="page-header">
+                <div class="row align-items-center">
+                    <div class="col">
+                        <div class="mt-5">
+                            <h3 class="card-title float-left mt-2">Pembayaran Siswa</h3>
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
 
-        @can('admin')
-        <div class="row">
-            <div class="col-lg-12">
-                <div class="row formtype">  
-                    {{-- <div class="col-md-3">
+            @can('admin')
+                <div class="row">
+                    <div class="col-lg-12">
+                        <div class="row formtype">
+                            {{-- <div class="col-md-3">
                         <div class="form-group">
                             <label>Tahun Ajaran</label>
                             <div class="form-group">
@@ -27,197 +27,203 @@
                             </div>
                         </div>
                     </div> --}}
-                    <div class="col-md-3">
-                        <div class="form-group">
-                            <label>Cari NIS Siswa</label>
-                            <input class="form-control" type="text" value="" placeholder="NIS Siswa" id="in-nis-siswa">
-                        </div>
-                    </div>
-                    <div class="col-md-3">
-                        <div class="form-group">
-                            <label>Search</label> 
-                            <button class="btn btn-success btn-block mt-0 search_button" id="btn-cari"> Cari </button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <div class="row">
-            <div class="col-lg-12">
-                <div class="card">
-                    <div class="card-header">
-                        <h4 class="card-title">Informasi Siswa <a href="add-staff.html"
-                                class="btn btn-danger float-right veiwbutton">Cetak semua tagihan</a></h4>
-                    </div>
-                    <div class="card-body">
-                        <div class="row">
-                            <div class="col-lg-9">
-                                <div class="table-responsive">
-                                    <table class="table table-nowrap mb-0">
-                                        <tr>
-                                            <td width="20">Nama Siswa</td>
-                                            <td class="px-2">:</td>
-                                            <td id="nama-siswa"></td>
-                                        </tr>
-                                        <tr>
-                                            <td width="20">Kelas</td>
-                                            <td class="px-2">:</td>
-                                            <td id="kelas-siswa"></td>
-                                        </tr>
-                                        <tr>
-                                            <td width="20">Jurusan</td>
-                                            <td class="px-2">:</td>
-                                            <td id="jurusan-siswa"></td>
-                                        </tr>
-                                    </table>
+                            <div class="col-md-3">
+                                <div class="form-group">
+                                    <label>Cari NIS Siswa</label>
+                                    <input class="form-control" type="text" value="" placeholder="NIS Siswa"
+                                        id="in-nis-siswa">
                                 </div>
                             </div>
-                            {{-- <div class="col-lg-3">
-                                <img src="" class="img-thumbnail img-responsive">
-                            </div> --}}
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <div class="row">
-            <div class="col-lg-8">
-                <div class="card">
-                    <div class="card-header">
-                        <h4 class="card-title">Transaksi Terakhir</h4>
-                    </div>
-                    <div class="card-body">
-                        <div class="row">
-                            <div class="table-responsive">
-                                <table class="table table-nowrap mb-0" id="table-transaksi">
-                                    <tr>
-                                        <th>Pembayaran</th>
-                                        <th>Total Belum Dibayar</th>
-                                        <th>Tanggal</th>
-                                        <th>Lunas</th>
-                                    </tr>
-                                </table>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-lg-4">
-                <div class="card">
-                    <div class="card-header">
-                        <h4 class="card-title">Pembayaran</h4>
-                    </div>
-                    <div class="card-body">
-                            <div class="form-group">
-                                <label>Jumlah Bayar</label>
-                                <span class="input-group-addon"><i class="glyphicon glyphicon-calendar"></i></span>
-                                <input class="form-control" type="text" id="in-bayar">
-                            </div>
-                            <button class="btn btn-success btn-block" id="btn-bayar" type="button">Bayar</button>
-                    </div>
-                </div>
-            </div>
-        @endcan
-        
-        @can('user')
-        <div class="row">
-            <div class="col-lg-12">
-                <div class="card">
-                    <div class="card-header">
-                        <h4 class="card-title">Informasi Siswa <a href="add-staff.html"
-                                class="btn btn-danger float-right veiwbutton">Cetak semua tagihan</a></h4>
-                    </div>
-                    <div class="card-body">
-                        <div class="row">
-                            <div class="col-lg-9">
-                                <div class="table-responsive">
-                                    <table class="table table-nowrap mb-0">
-                                        <tr>
-                                            <td width="20">Nama Siswa</td>
-                                            <td class="px-2">:</td>
-                                            <td id="nama-siswa">{{ $user->nama }}</td>
-                                        </tr>
-                                        <tr>
-                                            <td width="20">Kelas</td>
-                                            <td class="px-2">:</td>
-                                            <td id="kelas-siswa">{{ $user->kelas->kelas }}</td>
-                                        </tr>
-                                        <tr>
-                                            <td width="20">Jurusan</td>
-                                            <td class="px-2">:</td>
-                                            <td id="jurusan-siswa">{{ $user->proli->proli }}</td>
-                                        </tr>
-                                    </table>
+                            <div class="col-md-3">
+                                <div class="form-group">
+                                    <label>Search</label>
+                                    <button class="btn btn-success btn-block mt-0 search_button" id="btn-cari"> Cari </button>
                                 </div>
                             </div>
-                            {{-- <div class="col-lg-3">
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-lg-12">
+                        <div class="card">
+                            <div class="card-header">
+                                {{-- <h4 class="card-title">Informasi Siswa <a href="add-staff.html"
+                                        class="btn btn-danger float-right veiwbutton">Cetak semua tagihan</a></h4> --}}
+                                <h4 class="card-title">Informasi Siswa</h4>
+                            </div>
+                            <div class="card-body">
+                                <div class="row">
+                                    <div class="col-lg-9">
+                                        <div class="table-responsive">
+                                            <table class="table table-nowrap mb-0">
+                                                <tr>
+                                                    <td width="20">Nama Siswa</td>
+                                                    <td class="px-2">:</td>
+                                                    <td id="nama-siswa"></td>
+                                                </tr>
+                                                <tr>
+                                                    <td width="20">Kelas</td>
+                                                    <td class="px-2">:</td>
+                                                    <td id="kelas-siswa"></td>
+                                                </tr>
+                                                <tr>
+                                                    <td width="20">Jurusan</td>
+                                                    <td class="px-2">:</td>
+                                                    <td id="jurusan-siswa"></td>
+                                                </tr>
+                                            </table>
+                                        </div>
+                                    </div>
+                                    {{-- <div class="col-lg-3">
                                 <img src="" class="img-thumbnail img-responsive">
                             </div> --}}
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <div class="row">
-            <div class="col-lg-8">
-                <div class="card">
-                    <div class="card-header">
-                        <h4 class="card-title">Transaksi Terakhir</h4>
-                    </div>
-                    <div class="card-body">
-                        <div class="row">
-                            <div class="table-responsive">
-                                <table class="table table-nowrap mb-0" id="table-transaksi">
-                                    <tr>
-                                        <th>Pembayaran</th>
-                                        <th>Total Belum Dibayar</th>
-                                        <th>Tanggal</th>
-                                        <th>Lunas</th>
-                                    </tr>
-                                    @foreach ($user->transaksi as $transaksi)
-                                    <tr id="table-data">
-                                        <td id="nominal-bayar"> {{ 'Rp. ' . number_format($transaksi->nominal_dibayar) }}</td> 
-                                        <td id="total-belum">{{ 'Rp. ' . number_format($transaksi->nominal_bayar) }}</td>
-                                        <td id="tanggal-bayar">{{ str_replace("-", "/", date("d-m-Y", strtotime($transaksi->tgl_bayar))) }}</td>
-                                        <td id="lunas">
-                                            @if ($transaksi->lunas == 0 )
-                                                Belum Lunas
-                                            @else
-                                                Lunas
-                                            @endif
-                                        </td>
-                                    </tr>
-                                    @endforeach
-                                </table>
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
-            </div>
-            <div class="col-lg-4">
-                <div class="card">
-                    <div class="card-header">
-                        <h4 class="card-title">Pembayaran</h4>
-                    </div>
-                    <div class="card-body">
-                            <div class="form-group">
-                                <label>Jumlah Bayar</label>
-                                <span class="input-group-addon"><i class="glyphicon glyphicon-calendar"></i></span>
-                                <input class="form-control" type="text" id="in-bayar">
+
+                <div class="row">
+                    <div class="col-lg-8">
+                        <div class="card">
+                            <div class="card-header">
+                                <h4 class="card-title">Transaksi Terakhir</h4>
                             </div>
-                            <button class="btn btn-success btn-block" id="btn-bayar" type="button">Bayar</button>
+                            <div class="card-body">
+                                <div class="row">
+                                    <div class="table-responsive">
+                                        <table class="table table-nowrap mb-0" id="table-transaksi">
+                                            <tr>
+                                                <th>Pembayaran</th>
+                                                <th>Total Belum Dibayar</th>
+                                                <th>Tanggal</th>
+                                                <th>Lunas</th>
+                                            </tr>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
-                </div>
-            </div>
-        @endcan
+                    <div class="col-lg-4">
+                        <div class="card">
+                            <div class="card-header">
+                                <h4 class="card-title">Pembayaran</h4>
+                            </div>
+                            <div class="card-body">
+                                <div class="form-group">
+                                    <label>Jumlah Bayar</label>
+                                    <span class="input-group-addon"><i class="glyphicon glyphicon-calendar"></i></span>
+                                    <input class="form-control" type="text" id="in-bayar">
+                                </div>
+                                <button class="btn btn-success btn-block" id="btn-bayar" type="button">Bayar</button>
+                            </div>
+                        </div>
+                    </div>
+                @endcan
 
-        
-        
+                @can('user')
+                    <div class="row">
+                        <div class="col-lg-12">
+                            <div class="card">
+                                <div class="card-header">
+                                    <h4 class="card-title">Informasi Siswa <a href="add-staff.html"
+                                            class="btn btn-danger float-right veiwbutton">Cetak semua tagihan</a></h4>
+                                </div>
+                                <div class="card-body">
+                                    <div class="row">
+                                        <div class="col-lg-9">
+                                            <div class="table-responsive">
+                                                <table class="table table-nowrap mb-0">
+                                                    <tr>
+                                                        <td width="20">Nama Siswa</td>
+                                                        <td class="px-2">:</td>
+                                                        <td id="nama-siswa">{{ $user->nama }}</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td width="20">Kelas</td>
+                                                        <td class="px-2">:</td>
+                                                        <td id="kelas-siswa">{{ $user->kelas->kelas }}</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td width="20">Jurusan</td>
+                                                        <td class="px-2">:</td>
+                                                        <td id="jurusan-siswa">{{ $user->proli->proli }}</td>
+                                                    </tr>
+                                                </table>
+                                            </div>
+                                        </div>
+                                        {{-- <div class="col-lg-3">
+                                <img src="" class="img-thumbnail img-responsive">
+                            </div> --}}
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
 
-            {{-- <div class="col-lg-4">
+                    <div class="row">
+                        <div class="col-lg-8">
+                            <div class="card">
+                                <div class="card-header">
+                                    <h4 class="card-title">Transaksi Terakhir</h4>
+                                </div>
+                                <div class="card-body">
+                                    <div class="row">
+                                        <div class="table-responsive">
+                                            <table class="table table-nowrap mb-0" id="table-transaksi">
+                                                <tr>
+                                                    <th>Pembayaran</th>
+                                                    <th>Total Belum Dibayar</th>
+                                                    <th>Tanggal</th>
+                                                    <th>Lunas</th>
+                                                </tr>
+                                                @foreach ($user->transaksi as $transaksi)
+                                                    <tr id="table-data">
+                                                        <td id="nominal-bayar">
+                                                            {{ 'Rp. ' . number_format($transaksi->nominal_dibayar) }}</td>
+                                                        <td id="total-belum">
+                                                            {{ 'Rp. ' . number_format($transaksi->nominal_bayar) }}</td>
+                                                        <td id="tanggal-bayar">
+                                                            {{ str_replace('-', '/', date('d-m-Y', strtotime($transaksi->tgl_bayar))) }}
+                                                        </td>
+                                                        <td id="lunas">
+                                                            @if ($transaksi->lunas == 0)
+                                                                Belum Lunas
+                                                            @else
+                                                                Lunas
+                                                            @endif
+                                                        </td>
+                                                    </tr>
+                                                @endforeach
+                                            </table>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-4">
+                            <div class="card">
+                                <div class="card-header">
+                                    <h4 class="card-title">Pembayaran</h4>
+                                </div>
+                                <div class="card-body">
+                                    <div class="form-group">
+                                        <label>Jumlah Bayar</label>
+                                        <span class="input-group-addon"><i class="glyphicon glyphicon-calendar"></i></span>
+                                        <input class="form-control" type="text" id="in-bayar">
+                                    </div>
+                                    <button class="btn btn-success btn-block" id="btn-bayar" type="button">Bayar</button>
+                                </div>
+                            </div>
+                        </div>
+                    @endcan
+
+
+
+
+                    {{-- <div class="col-lg-4">
                 <div class="card">
                     <div class="card-header">
                         <h4 class="card-title">Pembayaran</h4>
@@ -249,7 +255,7 @@
                     </div>
                 </div>
             </div> --}}
-            {{-- <div class="col-lg-12">
+                    {{-- <div class="col-lg-12">
                 <div class="card">
                     <div class="card-header">
                         <h4 class="card-title">Jenis Pembayaran</h4>
@@ -308,189 +314,225 @@
                     </div>
                 </div>
             </div> --}}
-@endsection
-            
-@push('script-page')
-    <script type="text/javascript">
-        $('#btn-bayar').on('click', function () {
-            if ('{{ Auth::user()->role }}' == 'User') {
-                $.ajax({
-                    type: "GET",
-                    url: "{{ url('/pembayaran')}}/{{ Auth::user()->nis }}",
-                    data: {
-                        'bayar' : $('#in-bayar').val(),
-                        'nama' : "{{ @$user->nama }}",
-                        'email' : "{{ Auth::user()->email }}",
-                        'no' : "{{ Auth::user()->no_tlp }}"
-                    },
-                    success: function (response) {
-                        const nis = "{{ @$user->nis }}";
-                        window.snap.pay(response.midToken, {
-                            onSuccess: function(result){
-                                alert("payment success!"); console.log(result);
+                @endsection
+
+                @push('script-page')
+                    <script type="text/javascript"></script>
+                    <script type="text/javascript">
+		
+                        var rupiah = document.getElementById('rupiah');
+                        rupiah.addEventListener('keyup', function(e){
+                            // tambahkan 'Rp.' pada saat form di ketik
+                            // gunakan fungsi formatRupiah() untuk mengubah angka yang di ketik menjadi format angka
+                            rupiah.value = formatRupiah(this.value, 'Rp. ');
+                        });
+                 
+                        /* Fungsi formatRupiah */
+                        function formatRupiah(angka, prefix){
+                            var number_string = angka.replace(/[^,\d]/g, '').toString(),
+                            split   		= number_string.split(','),
+                            sisa     		= split[0].length % 3,
+                            rupiah     		= split[0].substr(0, sisa),
+                            ribuan     		= split[0].substr(sisa).match(/\d{3}/gi);
+                 
+                            // tambahkan titik jika yang di input sudah menjadi angka ribuan
+                            if(ribuan){
+                                separator = sisa ? '.' : '';
+                                rupiah += separator + ribuan.join('.');
+                            }
+                 
+                            rupiah = split[1] != undefined ? rupiah + ',' + split[1] : rupiah;
+                            return prefix == undefined ? rupiah : (rupiah ? 'Rp. ' + rupiah : '');
+                        }
+                    </script>
+                    <script type="text/javascript">
+                        $('#btn-bayar').on('click', function() {
+                            if ('{{ Auth::user()->role }}' == 'User') {
+                                $.ajax({
+                                    type: "GET",
+                                    url: "{{ url('/pembayaran') }}/{{ Auth::user()->nis }}",
+                                    data: {
+                                        'bayar': $('#in-bayar').val(),
+                                        'nama': "{{ @$user->nama }}",
+                                        'email': "{{ Auth::user()->email }}",
+                                        'no': "{{ Auth::user()->no_tlp }}"
+                                    },
+                                    success: function(response) {
+                                        const nis = "{{ @$user->nis }}";
+                                        window.snap.pay(response.midToken, {
+                                            onSuccess: function(result) {
+                                                alert("payment success!");
+                                                console.log(result);
+                                                $.ajax({
+                                                    type: "POST",
+                                                    url: "{{ url('transaksi') }}",
+                                                    data: {
+                                                        'nominal': $('#in-bayar').val(),
+                                                        'nis': nis,
+                                                        '_token': "{{ csrf_token() }}"
+                                                    },
+                                                    success: function(response) {
+                                                        getReplace(nis);
+                                                    }
+                                                });
+                                            },
+                                            onPending: function(result) {
+                                                /* You may add your own implementation here */
+                                                alert("wating your payment!");
+                                                console.log(result);
+                                            },
+                                            onError: function(result) {
+                                                /* You may add your own implementation here */
+                                                alert("payment failed!");
+                                                console.log(result);
+                                            },
+                                            onClose: function() {
+                                                /* You may add your own implementation here */
+                                                alert('you closed the popup without finishing the payment');
+                                            }
+                                        });
+                                    }
+                                });
+                            }
+                            $.ajax({
+                                type: "POST",
+                                url: "{{ url('transaksi') }}",
+                                data: {
+                                    'nominal': $('#in-bayar').val(),
+                                    'nis': $('#in-nis-siswa').val(),
+                                    '_token': "{{ csrf_token() }}"
+                                },
+                                success: function(response) {
+                                    const nis = $('#in-nis-siswa').val();
+                                    getReplace(nis);
+                                }
+                            });
+
+                        });
+
+                        $('#in-bayar').on('keypress', function() {
+                            if (event.which === 13) {
+                                if ('{{ Auth::user()->role }}' == 'User') {
+                                    $.ajax({
+                                        type: "GET",
+                                        url: "{{ url('pembayaran') }}/{{ Auth::user()->nis }}",
+                                        data: {
+                                            'bayar': $('#in-bayar').val(),
+                                            'nama': "{{ @$user->nama }}",
+                                            'email': "{{ Auth::user()->email }}",
+                                            'no': "{{ Auth::user()->no_tlp }}"
+                                        },
+                                        success: function(response) {
+                                            const nis = "{{ @$user->nis }}";
+                                            window.snap.pay(response.midToken, {
+                                                onSuccess: function(result) {
+                                                    alert("payment success!");
+                                                    console.log(result);
+                                                    $.ajax({
+                                                        type: "POST",
+                                                        url: "{{ url('transaksi') }}",
+                                                        data: {
+                                                            'nominal': $('#in-bayar').val(),
+                                                            'nis': nis,
+                                                            '_token': "{{ csrf_token() }}"
+                                                        },
+                                                        success: function(response) {
+                                                            getReplace(nis);
+                                                        }
+                                                    });
+                                                },
+                                                onPending: function(result) {
+                                                    /* You may add your own implementation here */
+                                                    alert("wating your payment!");
+                                                    console.log(result);
+                                                },
+                                                onError: function(result) {
+                                                    /* You may add your own implementation here */
+                                                    alert("payment failed!");
+                                                    console.log(result);
+                                                },
+                                                onClose: function() {
+                                                    /* You may add your own implementation here */
+                                                    alert(
+                                                        'you closed the popup without finishing the payment');
+                                                }
+                                            });
+                                        }
+                                    });
+                                }
                                 $.ajax({
                                     type: "POST",
                                     url: "{{ url('transaksi') }}",
                                     data: {
                                         'nominal': $('#in-bayar').val(),
-                                        'nis': nis,
+                                        'nis': $('#in-nis-siswa').val(),
                                         '_token': "{{ csrf_token() }}"
                                     },
-                                    success: function (response) {
+                                    success: function(response) {
+                                        const nis = $('#in-nis-siswa').val();
                                         getReplace(nis);
                                     }
                                 });
-                            },
-                            onPending: function(result){
-                                /* You may add your own implementation here */
-                                alert("wating your payment!"); console.log(result);
-                            },
-                            onError: function(result){
-                                /* You may add your own implementation here */
-                                alert("payment failed!"); console.log(result);
-                            },
-                            onClose: function(){
-                                /* You may add your own implementation here */
-                                alert('you closed the popup without finishing the payment');
                             }
-                        }); 
-                    }
-                });
-            }
-            $.ajax({
-                type: "POST",
-                url: "{{ url('transaksi') }}",
-                data: {
-                    'nominal': $('#in-bayar').val(),
-                    'nis': $('#in-nis-siswa').val(),
-                    '_token': "{{ csrf_token() }}"
-                },
-                success: function (response) {
-                    const nis = $('#in-nis-siswa').val();
-                    getReplace(nis);
-                }
-            });
 
-        });
-        $('#in-bayar').on('keypress', function () {
-            if (event.which === 13) {
-                if ('{{ Auth::user()->role }}' == 'User') {
-                    $.ajax({
-                        type: "GET",
-                        url: "{{ url('pembayaran')}}/{{ Auth::user()->nis }}",
-                        data: {
-                            'bayar' : $('#in-bayar').val(),
-                            'nama' : "{{ @$user->nama }}",
-                            'email' : "{{ Auth::user()->email }}",
-                            'no' : "{{ Auth::user()->no_tlp }}"
-                        },
-                        success: function (response) {
-                            const nis = "{{ @$user->nis }}";
-                            window.snap.pay(response.midToken, {
-                                onSuccess: function(result){
-                                    alert("payment success!"); console.log(result);
-                                    $.ajax({
-                                        type: "POST",
-                                        url: "{{ url('transaksi') }}",
-                                        data: {
-                                            'nominal': $('#in-bayar').val(),
-                                            'nis': nis,
-                                            '_token': "{{ csrf_token() }}"
-                                        },
-                                        success: function (response) {
-                                            getReplace(nis);
-                                        }
-                                    });
-                                },
-                                onPending: function(result){
-                                    /* You may add your own implementation here */
-                                    alert("wating your payment!"); console.log(result);
-                                },
-                                onError: function(result){
-                                    /* You may add your own implementation here */
-                                    alert("payment failed!"); console.log(result);
-                                },
-                                onClose: function(){
-                                    /* You may add your own implementation here */
-                                    alert('you closed the popup without finishing the payment');
-                                }
-                            }); 
-                        }
-                    });
-                }
-                $.ajax({
-                    type: "POST",
-                    url: "{{ url('transaksi') }}",
-                    data: {
-                        'nominal': $('#in-bayar').val(),
-                        'nis': $('#in-nis-siswa').val(),
-                        '_token': "{{ csrf_token() }}"
-                    },
-                    success: function (response) {
-                        const nis = $('#in-nis-siswa').val();
-                        getReplace(nis);
-                    }
-                });
-            }
-
-        });
-
-        $(document).on('click', '#btn-cari', function () {
-            const nis = $('#in-nis-siswa').val();
-            getReplace(nis)
-        });
-        $(document).on('keypress', '#in-nis-siswa', function () {
-            if (event.which === 13) {
-                const nis = $('#in-nis-siswa').val();
-                getReplace(nis)
-            }
-        });
-        
-        function getReplace(nis) {
-            const table = document.querySelectorAll('#table-data');
-            $.each(table, function (idx, table) { 
-                    $(table).remove();
-            });
-            $.ajax({
-                type: "GET",
-                url: "{{ url('transaksi') }}/" + nis,
-                success: function (response) {
-                    $('#nama-siswa').text(response.data.nama)
-                    $('#kelas-siswa').text(response.data.kelas.kelas)
-                    $('#jurusan-siswa').text(response.data.proli.proli)
-                    const count = response.data.transaksi.length;
-
-                    $.each(response.data.transaksi, function (idx, transaksi) {
-                        let rows = '';
-                        const tgl = new Date(transaksi.tgl_bayar);
-                        const tgl_baru = tgl.toLocaleDateString("id-ID", {
-                            day: "2-digit",
-                            month: "2-digit",
-                            year: "numeric"
                         });
-                        let lunas = 0;
-                        if (transaksi.lunas == 0) {
-                            lunas = "Belum Lunas";
-                        } else if (transaksi.lunas == 1) {
-                            lunas = "Lunas"
+
+                        $(document).on('click', '#btn-cari', function() {
+                            const nis = $('#in-nis-siswa').val();
+                            getReplace(nis)
+                        });
+                        $(document).on('keypress', '#in-nis-siswa', function() {
+                            if (event.which === 13) {
+                                const nis = $('#in-nis-siswa').val();
+                                getReplace(nis)
+                            }
+                        });
+
+                        function getReplace(nis) {
+                            const table = document.querySelectorAll('#table-data');
+                            $.each(table, function(idx, table) {
+                                $(table).remove();
+                            });
+                            $.ajax({
+                                type: "GET",
+                                url: "{{ url('transaksi') }}/" + nis,
+                                success: function(response) {
+                                    $('#nama-siswa').text(response.data.nama)
+                                    $('#kelas-siswa').text(response.data.kelas.kelas)
+                                    $('#jurusan-siswa').text(response.data.proli.proli)
+                                    const count = response.data.transaksi.length;
+
+                                    $.each(response.data.transaksi, function(idx, transaksi) {
+                                        let rows = '';
+                                        const tgl = new Date(transaksi.tgl_bayar);
+                                        const tgl_baru = tgl.toLocaleDateString("id-ID", {
+                                            day: "2-digit",
+                                            month: "2-digit",
+                                            year: "numeric"
+                                        });
+                                        let lunas = 0;
+                                        if (transaksi.lunas == 0) {
+                                            lunas = "Belum Lunas";
+                                        } else if (transaksi.lunas == 1) {
+                                            lunas = "Lunas"
+                                        }
+                                        const nominalBayar = transaksi.nominal_bayar.toLocaleString();
+                                        const nominalDibayar = transaksi.nominal_dibayar.toLocaleString();
+
+                                        rows +=
+                                            '<tr id="table-data">' +
+                                            '<td id="nominal-bayar"> ' + 'Rp. ' + nominalDibayar + ' </td>' +
+                                            '<td id="total-belum">' + 'Rp. ' + nominalBayar + '</td>' +
+                                            '<td id="tanggal-bayar">' + tgl_baru + '</td>' +
+                                            '<td id="lunas">' + lunas + '</td>' +
+                                            '</tr>';
+                                        $('#table-transaksi').append(rows)
+                                    });
+                                }
+                            });
                         }
-                        const nominalBayar = transaksi.nominal_bayar.toLocaleString();
-                        const nominalDibayar = transaksi.nominal_dibayar.toLocaleString();
-
-                        rows += 
-                                '<tr id="table-data">'+
-                                    '<td id="nominal-bayar"> '+ 'Rp. ' + nominalDibayar +' </td>' +
-                                    '<td id="total-belum">'+ 'Rp. ' + nominalBayar +'</td>'+
-                                    '<td id="tanggal-bayar">'+ tgl_baru +'</td>'+
-                                    '<td id="lunas">'+ lunas +'</td>'+
-                                '</tr>';
-                        $('#table-transaksi').append(rows)
-                    });
-            }
-            });
-        }
-  </script>
-@endpush
+                    </script>
+                @endpush
 
 
 
@@ -503,7 +545,7 @@
 
 
 
-            {{-- <script type="text/javascript">
+                {{-- <script type="text/javascript">
                 function startCalculate(){
 				interval=setInterval("Calculate()",10);
 			}

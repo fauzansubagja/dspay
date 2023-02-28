@@ -42,7 +42,7 @@
                     <div class="card-header">
                         <h4 class="card-title">
                             <button class="btn btn-primary btn-block" type="submit">Simpan</button>
-                            <button class="btn btn-danger btn-block" type="submit">Batal</button>
+                            <a href="/management/periode" class="btn btn-danger btn-block" type="submit">Batal</a>
                             </form>
                         </h4>
                     </div>
