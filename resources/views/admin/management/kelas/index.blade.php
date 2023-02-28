@@ -23,19 +23,19 @@
                                 Tambah</a>
                             <form action="" class="form-horizontal float-right" method="get" accept-charset="utf-8">
                                 <div class="input-group input-group" style="width: 260px;">
-                                    <input type="text" id="field" autofocus name="n" placeholder="Nama Kelas"
+                                    {{-- <input type="text" id="field" autofocus name="n" placeholder="Nama Kelas"
                                         class="form-control" required>
                                     <div class="input-group-btn">
                                         <button type="submit" class="btn btn-default veiwbutton"><i
                                                 class="fa fa-search"></i></button>
-                                    </div>
+                                    </div> --}}
                                 </div>
                             </form>
                         </h4>
                     </div>
                     <div class="card-body">
                         <div class="table-responsive">
-                            <table class="table table-nowrap mb-0">
+                            <table class="datatable table table-stripped">
                                 <thead>
                                     <tr class="text-center">
                                         <th>No.</th>
